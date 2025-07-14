@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ExternalLink, Github, Award, Users, Zap } from 'lucide-react'
+import { ExternalLink, Github, Award } from 'lucide-react'
 
 const projects = [
   {
