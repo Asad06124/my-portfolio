@@ -5,18 +5,13 @@ import { useEffect, useState } from 'react'
 
 export function BackgroundElements() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [clientHeight, setClientHeight] = useState(800) // default fallback
 
   useEffect(() => {
-    const handleMouseMove = (e: { clientX: number; clientY: number }) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: (e.clientY / window.innerHeight) * 2 - 1
-      })
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-    }
+    setClientHeight(window.innerHeight)
+    const handleResize = () => setClientHeight(window.innerHeight)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   // Always use light theme colors
@@ -1102,7 +1097,7 @@ export function BackgroundElements() {
             top: '-50px',
           }}
           animate={{
-            y: [0, window.innerHeight + 150],
+            y: [0, clientHeight + 150],
             opacity: [0, 0.7, 0],
           }}
           transition={{
