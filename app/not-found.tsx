@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { NotFoundHero } from '@/components/sections/not-found-hero'
+import { ThemeProvider } from '@/components/ui/theme-provider'
 
 export const metadata: Metadata = {
   title: '404 - Page Not Found',
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function NotFound() {
-  return <NotFoundHero />
+  return( 
+    <ThemeProvider>
+  <NotFoundHero />
+  </ThemeProvider>
+)
 }

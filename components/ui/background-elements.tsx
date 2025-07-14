@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 export function BackgroundElements() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [clientHeight, setClientHeight] = useState(800) // default fallback
 
   useEffect(() => {
@@ -70,7 +69,7 @@ export function BackgroundElements() {
       <motion.div
         className="absolute top-1/5 left-1/4 w-80 h-56"
         style={{
-          transform: `perspective(1400px) rotateX(${12 + mousePosition.y * 6}deg) rotateY(${mousePosition.x * 12}deg)`,
+          transform: `perspective(1400px) rotateX(12deg) rotateY(0deg)`,
         }}
         animate={{
           y: [0, -25, 0],
@@ -166,7 +165,7 @@ export function BackgroundElements() {
       <motion.div
         className="absolute top-1/4 right-1/6 w-96 h-64"
         style={{
-          transform: `perspective(1200px) rotateX(${mousePosition.y * 3}deg) rotateY(${-mousePosition.x * 8}deg)`,
+          transform: `perspective(1200px) rotateX(0deg) rotateY(0deg)`,
         }}
         animate={{
           y: [0, -18, 0],
@@ -278,7 +277,7 @@ export function BackgroundElements() {
       <motion.div
         className="absolute top-1/6 right-1/12 w-32 h-48"
         style={{
-          transform: `perspective(1000px) rotateX(${mousePosition.y * 3}deg) rotateY(${-mousePosition.x * 5}deg)`,
+          transform: `perspective(1000px) rotateX(0deg) rotateY(0deg)`,
         }}
         animate={{
           y: [0, -20, 0],
@@ -373,7 +372,7 @@ export function BackgroundElements() {
       <motion.div
         className="absolute bottom-1/4 right-1/5 w-56 h-16"
         style={{
-          transform: `perspective(800px) rotateX(${45 + mousePosition.y * 6}deg) rotateY(${mousePosition.x * 4}deg)`,
+          transform: `perspective(800px) rotateX(45deg) rotateY(0deg)`,
         }}
         animate={{
           y: [0, -8, 0],
@@ -441,7 +440,7 @@ export function BackgroundElements() {
       <motion.div
         className="absolute bottom-1/3 left-1/4 w-12 h-18"
         style={{
-          transform: `perspective(500px) rotateX(${25 + mousePosition.y * 4}deg) rotateY(${mousePosition.x * 6}deg)`,
+          transform: `perspective(500px) rotateX(25deg) rotateY(0deg)`,
         }}
         animate={{
           y: [0, -6, 0],
@@ -502,7 +501,7 @@ export function BackgroundElements() {
         className="absolute bottom-1/6 center w-40 h-28"
         style={{
           left: '45%',
-          transform: `perspective(700px) rotateX(${8 + mousePosition.y * 4}deg) rotateY(${mousePosition.x * 3}deg)`,
+          transform: `perspective(700px) rotateX(8deg) rotateY(0deg)`,
         }}
         animate={{
           y: [0, -12, 0],
@@ -585,7 +584,7 @@ export function BackgroundElements() {
       <motion.div
         className="absolute bottom-1/4 right-1/3 w-20 h-40"
         style={{
-          transform: `perspective(600px) rotateX(${mousePosition.y * 4}deg) rotateY(${mousePosition.x * 5}deg)`,
+          transform: `perspective(600px) rotateX(0deg) rotateY(0deg)`,
         }}
         animate={{
           y: [0, -15, 0],
@@ -651,7 +650,7 @@ export function BackgroundElements() {
       <motion.div
         className="absolute top-2/3 left-1/6 w-16 h-20"
         style={{
-          transform: `perspective(500px) rotateX(${mousePosition.y * 5}deg) rotateY(${mousePosition.x * 4}deg)`,
+          transform: `perspective(500px) rotateX(0deg) rotateY(0deg)`,
         }}
         animate={{
           y: [0, -10, 0],
@@ -718,7 +717,7 @@ export function BackgroundElements() {
       <motion.div
         className="absolute top-1/2 left-1/8 w-32 h-28"
         style={{
-          transform: `perspective(900px) rotateX(${mousePosition.y * 3}deg) rotateY(${mousePosition.x * 7}deg)`,
+          transform: `perspective(900px) rotateX(0deg) rotateY(0deg)`,
         }}
         animate={{
           y: [0, -15, 0],
@@ -810,7 +809,7 @@ export function BackgroundElements() {
       <motion.div
         className="absolute bottom-1/3 left-1/5 w-20 h-24"
         style={{
-          transform: `perspective(600px) rotateX(${mousePosition.y * 3}deg) rotateY(${mousePosition.x * 6}deg)`,
+          transform: `perspective(600px) rotateX(0deg) rotateY(0deg)`,
         }}
         animate={{
           y: [0, -10, 0],
@@ -885,7 +884,7 @@ export function BackgroundElements() {
       <motion.div
         className="absolute top-1/6 left-1/12 w-40 h-32"
         style={{
-          transform: `perspective(700px) rotateX(${mousePosition.y * 4}deg) rotateY(${mousePosition.x * 6}deg)`,
+          transform: `perspective(700px) rotateX(0deg) rotateY(0deg)`,
         }}
         animate={{
           y: [0, -25, 0],
@@ -1186,8 +1185,8 @@ export function BackgroundElements() {
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(circle at ${45 + mousePosition.x * 25}% ${45 + mousePosition.y * 25}%, ${colors.glow} 0%, transparent 60%),
-            radial-gradient(circle at ${55 - mousePosition.x * 20}% ${55 - mousePosition.y * 20}%, ${colors.secondary} 0%, transparent 70%)
+            radial-gradient(circle at ${45 + 0 * 25}% ${45 + 0 * 25}%, ${colors.glow} 0%, transparent 60%),
+            radial-gradient(circle at ${55 - 0 * 20}% ${55 - 0 * 20}%, ${colors.secondary} 0%, transparent 70%)
           `,
         }}
         animate={{

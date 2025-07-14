@@ -2,7 +2,7 @@
 
 import { createContext, useContext, ReactNode, useEffect } from 'react'
 
-type Theme = 'light'
+type Theme = 'light' | 'dark'
 
 type ThemeProviderProps = {
   children: ReactNode
@@ -10,14 +10,10 @@ type ThemeProviderProps = {
 
 type ThemeProviderState = {
   theme: Theme
-  setTheme: (theme: Theme) => void
-  toggleTheme: () => void
 }
 
 const initialState: ThemeProviderState = {
   theme: 'light',
-  setTheme: () => null,
-  toggleTheme: () => null,
 }
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
@@ -26,10 +22,7 @@ export function ThemeProvider({
   children,
   ...props
 }: ThemeProviderProps) {
-  // Always use dark theme
   const theme: Theme = 'dark';
-  const setTheme = () => {};
-  const toggleTheme = () => {};
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -39,8 +32,6 @@ export function ThemeProvider({
 
   const value = {
     theme,
-    setTheme,
-    toggleTheme,
   };
 
   return (
