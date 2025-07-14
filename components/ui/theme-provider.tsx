@@ -30,41 +30,36 @@ export function ThemeProvider({
   storageKey = 'devstudio-theme',
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme | null>(null)
-
-  // Set theme on client only
-  useEffect(() => {
-    let initial: Theme = defaultTheme
+  const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem(storageKey) as Theme
-      if (stored === 'light') {
-        initial = stored
-      }
+      return stored || defaultTheme
     }
-    setTheme(initial)
-  }, [defaultTheme, storageKey])
+    return defaultTheme
+  })
 
-  // Update document and localStorage when theme changes
   useEffect(() => {
-    if (!theme) return
     const root = window.document.documentElement
-    root.classList.remove('light', 'light')
+    
+    // Remove existing theme classes
+    root.classList.remove('light', 'dark')
+    
+    // Add current theme class
     root.classList.add(theme)
+    
+    // Save to localStorage
     localStorage.setItem(storageKey, theme)
   }, [theme, storageKey])
 
   const toggleTheme = () => {
-    setTheme(prevTheme => (prevTheme === 'light' ? 'light' : 'light'))
+    setTheme(prevTheme => prevTheme === 'dark' ? 'light' : 'dark')
   }
 
   const value = {
-    theme: theme || defaultTheme,
-    setTheme: (t: Theme) => setTheme(t),
+    theme,
+    setTheme,
     toggleTheme,
   }
-
-  // Only render children after theme is set on client
-  if (theme === null) return null
 
   return (
     <ThemeProviderContext.Provider {...props} value={value}>
