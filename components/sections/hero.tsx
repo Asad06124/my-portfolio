@@ -6,9 +6,9 @@ import Link from 'next/link'
 import { ArrowRight, Play, Code, Sparkles, Users, Award, Clock, CheckCircle } from 'lucide-react'
 
 const stats = [
-  { icon: Award, label: 'Projects Delivered', value: '200+', color: 'text-emerald-600' },
-  { icon: Users, label: 'Happy Clients', value: '50+', color: 'text-blue-600' },
-  { icon: Code, label: 'Technologies', value: '25+', color: 'text-purple-600' },
+  { icon: Award, label: 'Projects Delivered', value: '30+', color: 'text-emerald-600' },
+  { icon: Users, label: 'Happy Clients', value: '5+', color: 'text-blue-600' },
+  { icon: Code, label: 'Technologies', value: '15+', color: 'text-purple-600' },
   { icon: Clock, label: 'Years Experience', value: '8+', color: 'text-orange-600' },
 ]
 
@@ -39,7 +39,7 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Enhanced Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-background" />
+      <div className="absolute inset-0  from-background via-background/90 to-background" />
       
       {/* Floating Elements */}
       <motion.div

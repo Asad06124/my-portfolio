@@ -48,7 +48,7 @@ export function Navbar() {
             className="flex items-center space-x-2 text-xl font-bold text-accent focus-ring rounded-lg p-2 -ml-2"
           >
             <Code2 className="w-6 h-6" />
-            <span>John Doe</span>
+            <span>Asad Ullah</span>
           </Link>
 
           {/* Desktop Navigation */}

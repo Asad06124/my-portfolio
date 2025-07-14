@@ -49,8 +49,8 @@ export function AboutHero() {
           >
             <div className="relative w-full h-96 rounded-2xl overflow-hidden">
               <Image
-                src="/about-hero.jpg"
-                alt="John Doe at work"
+                src="/profile2.jpg"
+                alt="Asad Ullah"
                 fill
                 className="object-cover"
                 priority

@@ -7,30 +7,30 @@ import { Github, Linkedin, Twitter, Mail, Code, Palette, Smartphone, TrendingUp 
 
 const teamMembers = [
   {
-    name: 'Alex Rodriguez',
-    role: 'Full-Stack Developer & Team Lead',
-    specialization: 'React, Node.js, Cloud Architecture',
-    bio: 'Passionate about building scalable web applications and leading development teams to deliver exceptional results.',
-    image: '/team/alex.jpg',
-    skills: ['React', 'Node.js', 'TypeScript', 'AWS', 'Docker'],
+    name: 'Asad Ullah',
+    role: 'Mobile App Developer & Backend Engineer',
+    specialization: 'React Native, Flutter, iOS/Android, Node.js API Development, API Development, Database Design, DevOps',
+    bio: 'Specializing in cross-platform mobile development, robust Node.js APIs, and building scalable backend systems with native performance and stunning user experiences.',
+    image: '/profile.jpg',
+    skills: [ 'Flutter', 'Swift', 'Kotlin', 'Firebase', 'Node.js', 'Python', 'PostgreSQL', 'Docker', 'Kubernetes', 'GraphQL' ],
     experience: '8+ years',
     icon: Code,
-    gradient: 'from-accent to-accent-tertiary',
+    gradient: 'from-accent-tertiary to-accent-secondary',
     social: {
-      github: 'https://github.com/alexrod',
-      linkedin: 'https://linkedin.com/in/alexrod',
-      twitter: 'https://twitter.com/alexrod',
-      email: 'alex@devstudio.pro'
+      github: 'https://github.com/asad06124',
+      linkedin: 'https://linkedin.com/in/theasadsahir',
+      twitter: 'https://x.com/theasadsahir',
+      email: 'asadbalqani@gmail.com'
     }
   },
   {
-    name: 'Sarah Chen',
-    role: 'UI/UX Designer & Creative Director',
-    specialization: 'Product Design, User Research, Branding',
-    bio: 'Creating beautiful, intuitive interfaces that users love and businesses need to succeed in the digital world.',
-    image: '/team/sarah.jpg',
-    skills: ['Figma', 'Adobe Creative Suite', 'Prototyping', 'User Research', 'Design Systems'],
-    experience: '6+ years',
+    name: 'Amir Abbas',
+    role: 'UI/UX Designer, Logo Designer & Graphic Designer',
+    specialization: 'Product Design, User Research, Branding, Logo Design, Graphic Design, Brand Identity, Print Design, Illustrations',
+    bio: 'Creating beautiful, intuitive interfaces, memorable logos, compelling graphics, and visual identities that users love and businesses need to succeed in the digital world.',
+    image: '/amir-profile.png',
+    skills: ['Figma', 'Adobe Creative Suite', 'Prototyping', 'User Research', 'Design Systems', 'Logo Design', 'Graphic Design', 'Adobe Illustrator', 'Photoshop', 'InDesign', 'Brand Design', 'Typography'],
+    experience: '4+ years',
     icon: Palette,
     gradient: 'from-accent-secondary to-accent',
     social: {
@@ -39,67 +39,36 @@ const teamMembers = [
       email: 'sarah@devstudio.pro'
     }
   },
+  // {
+  //   name: 'Marcus Johnson',
+  //   role: 'Mobile App Developer',
+  //   specialization: 'React Native, Flutter, iOS/Android',
+  //   bio: 'Specializing in cross-platform mobile development with native performance and stunning user experiences.',
+  //   image: '/team/marcus.jpg',
+  //   skills: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Firebase'],
+  //   experience: '5+ years',
+  //   icon: Smartphone,
+  //   gradient: 'from-accent-tertiary to-accent-secondary',
+  //   social: {
+  //     github: 'https://github.com/marcusj',
+  //     linkedin: 'https://linkedin.com/in/marcusj',
+  //     email: 'marcus@devstudio.pro'
+  //   }
+  // },
   {
-    name: 'Marcus Johnson',
-    role: 'Mobile App Developer',
-    specialization: 'React Native, Flutter, iOS/Android',
-    bio: 'Specializing in cross-platform mobile development with native performance and stunning user experiences.',
-    image: '/team/marcus.jpg',
-    skills: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Firebase'],
-    experience: '5+ years',
-    icon: Smartphone,
-    gradient: 'from-accent-tertiary to-accent-secondary',
-    social: {
-      github: 'https://github.com/marcusj',
-      linkedin: 'https://linkedin.com/in/marcusj',
-      email: 'marcus@devstudio.pro'
-    }
-  },
-  {
-    name: 'Emma Thompson',
-    role: 'Digital Marketing Strategist',
+    name: 'M Zeeshan',
+    role: 'SEO Expert',
     specialization: 'SEO, Content Marketing, Analytics',
-    bio: 'Driving growth through data-driven marketing strategies and compelling content that converts visitors into customers.',
-    image: '/team/emma.jpg',
+    bio: 'Driving growth through data-driven SEO strategies and compelling content that converts visitors into customers.',
+    image: '/team/zeeshan.jpg',
     skills: ['SEO', 'Google Analytics', 'Content Strategy', 'Social Media', 'PPC'],
     experience: '7+ years',
     icon: TrendingUp,
     gradient: 'from-accent to-accent-secondary',
     social: {
-      linkedin: 'https://linkedin.com/in/emmathompson',
-      twitter: 'https://twitter.com/emmathompson',
-      email: 'emma@devstudio.pro'
-    }
-  },
-  {
-    name: 'David Park',
-    role: 'Backend Engineer',
-    specialization: 'API Development, Database Design, DevOps',
-    bio: 'Building robust, scalable backend systems that power modern applications with reliability and performance.',
-    image: '/team/david.jpg',
-    skills: ['Python', 'PostgreSQL', 'Docker', 'Kubernetes', 'GraphQL'],
-    experience: '6+ years',
-    icon: Code,
-    gradient: 'from-accent-tertiary to-accent',
-    social: {
-      github: 'https://github.com/davidpark',
-      linkedin: 'https://linkedin.com/in/davidpark',
-      email: 'david@devstudio.pro'
-    }
-  },
-  {
-    name: 'Lisa Wang',
-    role: 'Graphic Designer',
-    specialization: 'Brand Identity, Print Design, Illustrations',
-    bio: 'Creating compelling visual identities and memorable brand experiences that resonate with target audiences.',
-    image: '/team/lisa.jpg',
-    skills: ['Adobe Illustrator', 'Photoshop', 'InDesign', 'Brand Design', 'Typography'],
-    experience: '4+ years',
-    icon: Palette,
-    gradient: 'from-accent-secondary to-accent-tertiary',
-    social: {
-      linkedin: 'https://linkedin.com/in/lisawang',
-      email: 'lisa@devstudio.pro'
+      linkedin: 'https://linkedin.com/in/mzeeshan',
+      twitter: 'https://twitter.com/mzeeshan',
+      email: 'zeeshan@devstudio.pro'
     }
   }
 ]

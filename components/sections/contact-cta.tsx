@@ -34,7 +34,7 @@ export function ContactCTA() {
             </Link>
             
             <Link
-              href="mailto:john@example.com"
+              href="mailto:asadbalqani@gmail.com"
               className="btn-secondary inline-flex items-center gap-2 text-lg"
             >
               <Mail className="w-5 h-5" />

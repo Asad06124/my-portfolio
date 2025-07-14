@@ -5,8 +5,8 @@ import { Users, Award, Target, Zap } from 'lucide-react'
 
 const achievements = [
   { icon: Users, label: 'Team Members', value: '12+', color: 'text-accent' },
-  { icon: Award, label: 'Years Combined Experience', value: '50+', color: 'text-accent-secondary' },
-  { icon: Target, label: 'Projects Completed', value: '200+', color: 'text-accent-tertiary' },
+  { icon: Award, label: 'Years Combined Experience', value: '20+', color: 'text-accent-secondary' },
+  { icon: Target, label: 'Projects Completed', value: '30+', color: 'text-accent-tertiary' },
   { icon: Zap, label: 'Client Satisfaction', value: '99%', color: 'text-accent' },
 ]
 

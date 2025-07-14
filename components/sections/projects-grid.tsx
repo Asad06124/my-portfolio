@@ -13,7 +13,7 @@ const projects = [
     image: '/projects/ecommerce.jpg',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Stripe', 'PostgreSQL', 'Prisma'],
     liveUrl: 'https://ecommerce-demo.com',
-    githubUrl: 'https://github.com/johndoe/ecommerce-platform',
+    githubUrl: 'https://github.com/asad06124/ecommerce-platform',
     year: '2024',
     category: 'Full Stack'
   },
@@ -24,7 +24,7 @@ const projects = [
     image: '/projects/taskapp.jpg',
     technologies: ['React', 'Node.js', 'Socket.io', 'MongoDB', 'Express', 'JWT'],
     liveUrl: 'https://taskapp-demo.com',
-    githubUrl: 'https://github.com/johndoe/task-management',
+    githubUrl: 'https://github.com/asad06124/task-management',
     year: '2024',
     category: 'Full Stack'
   },
@@ -35,7 +35,7 @@ const projects = [
     image: '/projects/weather.jpg',
     technologies: ['React', 'Chart.js', 'OpenWeather API', 'CSS Grid', 'Responsive Design'],
     liveUrl: 'https://weather-dashboard-demo.com',
-    githubUrl: 'https://github.com/johndoe/weather-dashboard',
+    githubUrl: 'https://github.com/asad06124/weather-dashboard',
     year: '2023',
     category: 'Frontend'
   },
@@ -46,7 +46,7 @@ const projects = [
     image: '/projects/analytics.jpg',
     technologies: ['Next.js', 'D3.js', 'Node.js', 'PostgreSQL', 'Redis', 'API Integration'],
     liveUrl: 'https://analytics-demo.com',
-    githubUrl: 'https://github.com/johndoe/social-analytics',
+    githubUrl: 'https://github.com/asad06124/social-analytics',
     year: '2023',
     category: 'Full Stack'
   },
@@ -56,8 +56,8 @@ const projects = [
     longDescription: 'Designed and developed a professional portfolio website showcasing projects and skills. Built with performance and SEO in mind, featuring smooth animations and modern design.',
     image: '/projects/portfolio.jpg',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'MDX'],
-    liveUrl: 'https://johndoe.dev',
-    githubUrl: 'https://github.com/johndoe/portfolio',
+    liveUrl: 'https://asadullah.dev',
+    githubUrl: 'https://github.com/asad06124/portfolio',
     year: '2023',
     category: 'Frontend'
   },
@@ -68,7 +68,7 @@ const projects = [
     image: '/projects/chat.jpg',
     technologies: ['React', 'Socket.io', 'Node.js', 'MongoDB', 'Express', 'File Upload'],
     liveUrl: 'https://chat-demo.com',
-    githubUrl: 'https://github.com/johndoe/chat-app',
+    githubUrl: 'https://github.com/asad06124/chat-app',
     year: '2022',
     category: 'Full Stack'
   }
@@ -167,7 +167,7 @@ export function ProjectsGrid() {
               Follow me on GitHub to stay updated with my latest work.
             </p>
             <Link
-              href="https://github.com/johndoe"
+              href="https://github.com/asad06124"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary inline-flex items-center gap-2"

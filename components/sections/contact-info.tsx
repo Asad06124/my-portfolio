@@ -8,14 +8,14 @@ const contactMethods = [
   {
     icon: Mail,
     title: 'Email',
-    description: 'john@example.com',
-    href: 'mailto:john@example.com',
+    description: 'asadbalqani@gmail.com',
+    href: 'mailto:asadbalqani@gmail.com',
     action: 'Send Email'
   },
   {
     icon: MapPin,
     title: 'Location',
-    description: 'San Francisco, CA',
+    description: 'Model Town Lahore Pakistan',
     href: '#',
     action: 'View Map'
   },
@@ -31,19 +31,19 @@ const contactMethods = [
 const socialLinks = [
   {
     name: 'GitHub',
-    href: 'https://github.com/johndoe',
+    href: 'https://github.com/asad06124',
     icon: Github,
     description: 'Follow my code'
   },
   {
     name: 'Twitter',
-    href: 'https://twitter.com/johndoe',
+    href: 'https://x.com/theasadsahir',
     icon: Twitter,
     description: 'Latest updates'
   },
   {
     name: 'LinkedIn',
-    href: 'https://linkedin.com/in/johndoe',
+    href: 'https://linkedin.com/in/theasadsahir',
     icon: Linkedin,
     description: 'Professional network'
   }

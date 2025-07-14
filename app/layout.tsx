@@ -68,12 +68,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`dark ${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+      <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      </head>
       <body className="min-h-screen">
-        <ThemeProvider
-          defaultTheme="dark"
-          storageKey="devstudio-theme"
-        >
+        <ThemeProvider>
           <BackgroundElements />
           <div className="relative z-10 min-h-screen flex flex-col">
             <Navbar />

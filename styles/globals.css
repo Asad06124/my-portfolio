@@ -27,6 +27,7 @@
     --glass-border: 0 0% 0% / 0.1;
   }
 
+  /* Remove .light class, keep only .dark for dark theme */
   .dark {
     /* Dark theme variables */
     --background: 222.2 84% 4.9%;
@@ -38,7 +39,7 @@
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted-foreground: 215 20.2% 65.1;
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
