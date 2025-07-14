@@ -30,7 +30,7 @@ export function ContactForm() {
       } else {
         alert('Failed to send message. Please try again later.')
       }
-    } catch (_err) {
+    } catch {
       alert('Failed to send message. Please try again later.')
     } finally {
       setIsSubmitting(false)
