@@ -19,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: {
     default: 'Asad Development Team | World-Class Full-Stack Solutions',
-    template: '%s | Asad Development Team'
+    template: 'Asad | %s'
   },
   description: 'Asad Development Team delivers world-class web, mobile, and enterprise solutions. Experts in UI/UX, full-stack development, digital marketing, and scalable technology for global clients.',
   keywords: [
@@ -127,6 +127,7 @@ export default function RootLayout({
         <link rel="alternate" href="https://asadthedev.com/pakistan" hrefLang="en-PK" />
         <link rel="alternate" href="https://asadthedev.com/lahore" hrefLang="en-LHE" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",

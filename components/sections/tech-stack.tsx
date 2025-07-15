@@ -49,7 +49,7 @@ const techCategories = [
       { name: 'AWS', logo: '/tech/aws.svg', proficiency: 90 },
       { name: 'Docker', logo: '/tech/docker.svg', proficiency: 92 },
       { name: 'Kubernetes', logo: '/tech/kubernetes.svg', proficiency: 85 },
-      { name: 'Vercel', logo: '/tech/vercel.svg', proficiency: 95 },
+      { name: 'Vercel', logo: '/favicon.svg', proficiency: 95 },
       { name: 'GitHub Actions', logo: '/tech/github-actions.svg', proficiency: 88 },
       { name: 'Terraform', logo: '/tech/terraform.svg', proficiency: 83 }
     ],
