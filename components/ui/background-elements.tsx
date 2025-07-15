@@ -21,17 +21,17 @@ export function BackgroundElements() {
   }, [])
 
   const colors = useMemo(() => ({
-    bg: 'from-white via-blue-50 to-indigo-100',
-    accent1: '#1e40af',
-    accent2: '#0891b2',
-    accent3: '#7c3aed',
-    accent4: '#d97706',
-    accent5: '#059669',
-    text: '#1e293b',
-    glow: 'rgba(30, 64, 175, 0.08)',
-    secondary: 'rgba(8, 145, 178, 0.06)',
-    screenBg: '#ffffff',
-    deviceBg: 'linear-gradient(135deg, #ffffff, #f8fafc)',
+    bg: 'from-black via-zinc-900 to-zinc-800', // dark gradient
+    accent1: '#ffffff', // white accent
+    accent2: '#e5e7eb', // light gray accent
+    accent3: '#a1a1aa', // mid gray accent
+    accent4: '#fbbf24', // gold for contrast
+    accent5: '#10b981', // green for contrast
+    text: '#ffffff', // white text
+    glow: 'rgba(255, 255, 255, 0.08)', // white glow
+    secondary: 'rgba(229, 231, 235, 0.06)', // light gray
+    screenBg: '#18181b', // very dark gray for screens
+    deviceBg: 'linear-gradient(135deg, #18181b, #27272a)', // dark gradient for devices
   }), [])
 
   // Reduce animations on mobile
