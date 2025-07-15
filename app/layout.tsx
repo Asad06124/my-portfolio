@@ -5,7 +5,6 @@ import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
 import { BackgroundElements } from '@/components/ui/background-elements'
 import { ThemeProvider } from '@/components/ui/theme-provider'
-import { usePathname } from 'next/navigation'
 
 const inter = Inter({ 
   subsets: ['latin'],
