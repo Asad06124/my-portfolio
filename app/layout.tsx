@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
+import Script from 'next/script';
 import './globals.css'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
@@ -83,8 +84,10 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
+  
   children: React.ReactNode
 }) {
+  
   // Get the current path for canonical URL
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
   const canonicalUrl = `https://Asadthedev.com${pathname}`;
@@ -283,7 +286,21 @@ export default function RootLayout({
         }) }} />
         <link rel="canonical" href={canonicalUrl} />
       </head>
+
       <body className="min-h-screen">
+      <Script
+  src="https://www.googletagmanager.com/gtag/js?id=G-SPV7Q240NT"
+  strategy="afterInteractive"
+/>
+<Script id="google-analytics" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SPV7Q240NT');
+  `}
+</Script>
+
         <ThemeProvider>
           <BackgroundElements />
           <div className="relative z-10 min-h-screen flex flex-col">
