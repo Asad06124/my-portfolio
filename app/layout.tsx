@@ -21,6 +21,11 @@ export const metadata: Metadata = {
     default: 'Asad Development Team | World-Class Full-Stack Solutions',
     template: 'Asad | %s'
   },
+  icons: {
+    icon: "/favicon.ico",        
+    shortcut: "/favicon.ico",    
+    apple: "/favicon.png",    
+  },
   description: 'Asad Development Team delivers world-class web, mobile, and enterprise solutions. Experts in UI/UX, full-stack development, digital marketing, and scalable technology for global clients.',
   keywords: [
     'asad development team', 'world class developers', 'full stack', 'mobile apps', 'UI/UX design', 'web development', 'software company', 'digital marketing', 'enterprise solutions', 'startup development', 'agile team',
