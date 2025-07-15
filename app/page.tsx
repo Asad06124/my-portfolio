@@ -8,6 +8,11 @@ import { ContactCTA } from '@/components/sections/contact-cta'
 export const metadata: Metadata = {
   title: 'Home | Asad',
   description: 'Welcome to the personal portfolio of Asad – Full-stack developer for web, mobile, and enterprise solutions. Explore my portfolio, services, and team.',
+  icons: {
+    icon: "/favicon.ico",        
+    shortcut: "/favicon.ico",    
+    apple: "/favicon.png",    
+  },
   openGraph: {
     title: 'Home | Asad',
     description: 'Welcome to the personal portfolio of Asad – Full-stack developer for web, mobile, and enterprise solutions. Explore my portfolio, services, and team.',
@@ -15,7 +20,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/favicon.png',
         width: 1200,
         height: 630,
         alt: 'Asad - Full-Stack Developer Portfolio'
@@ -26,7 +31,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Home | Asad',
     description: 'Welcome to the personal portfolio of Asad – Full-stack developer for web, mobile, and enterprise solutions.',
-    images: ['/og-image.jpg'],
+    images: ['/favicon.png'],
     creator: '@asadthedev'
   },
   robots: {
