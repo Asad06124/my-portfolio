@@ -108,6 +108,10 @@
     scroll-behavior: smooth;
   }
 
+  html, body {
+    overscroll-behavior: none;
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
