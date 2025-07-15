@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 
 export default function TeamPage() {
   return (
-    <>
+    <div className="flex flex-col items-center w-full">
       <TeamHero />
       <TeamGrid />
       <TeamValues />
-    </>
+    </div>
   )
 }

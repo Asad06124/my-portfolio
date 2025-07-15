@@ -10,7 +10,8 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <>
+    <div className="flex flex-col items-center w-full">
+
       <Script id="projects-jsonld" type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
@@ -22,6 +23,6 @@ export default function ProjectsPage() {
       />
       <ProjectsHero />
       <ProjectsGrid />
-    </>
+      </div>
   )
 }

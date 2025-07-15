@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 }
 
 export default function ContactPage() {
-  return (
-    <>
+  return (<div className="flex flex-col items-center w-full">
+
       <ContactHero />
       <div className="section-padding">
         <div className="container">
@@ -20,6 +20,6 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
