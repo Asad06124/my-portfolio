@@ -21,17 +21,17 @@ export function BackgroundElements() {
   }, [])
 
   const colors = useMemo(() => ({
-    bg: 'from-black via-neutral-900 to-neutral-800',
-    accent1: '#ffffff', // white accents
-    accent2: '#cccccc',
-    accent3: '#888888',
-    accent4: '#444444',
-    accent5: '#222222',
-    text: '#ffffff', // white text
-    glow: 'rgba(255,255,255,0.08)',
-    secondary: 'rgba(255,255,255,0.06)',
-    screenBg: '#111111',
-    deviceBg: 'linear-gradient(135deg, #222222, #111111)',
+    bg: 'from-white via-blue-50 to-indigo-100',
+    accent1: '#1e40af',
+    accent2: '#0891b2',
+    accent3: '#7c3aed',
+    accent4: '#d97706',
+    accent5: '#059669',
+    text: '#1e293b',
+    glow: 'rgba(30, 64, 175, 0.08)',
+    secondary: 'rgba(8, 145, 178, 0.06)',
+    screenBg: '#ffffff',
+    deviceBg: 'linear-gradient(135deg, #ffffff, #f8fafc)',
   }), [])
 
   // Reduce animations on mobile
@@ -47,7 +47,7 @@ export function BackgroundElements() {
       {/* Simplified overlay */}
       <div
         className="absolute inset-0 backdrop-blur-[1px] z-10"
-        style={{ backgroundColor: 'rgba(0, 0, 0, 0.62)' }}
+        style={{ backgroundColor: 'rgba(255, 255, 255, 0.62)' }}
       />
       <div className={`absolute inset-0 bg-gradient-to-br ${colors.bg}`} />
 

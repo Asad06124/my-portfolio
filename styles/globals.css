@@ -30,44 +30,23 @@
   /* Remove .light class, keep only .dark for dark theme */
   .dark {
     /* Dark theme variables */
-    --background: 0 0% 0%; /* black */
-    --foreground: 0 0% 100%; /* white */
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 100%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
     --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 0 0% 0%;
+    --primary-foreground: 222.2 84% 4.9%;
     --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 0 0% 100%;
+    --muted-foreground: 215 20.2% 65.1;
     --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 0 0% 100%;
+    --accent-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 217.2 91.2% 59.8%;
     --glass: 255 255 255 / 0.05;
     --glass-border: 255 255 255 / 0.1;
-  }
-
-  .dark .text-foreground,
-  .dark .text-muted-foreground,
-  .dark .text-foreground\/80,
-  .dark .text-foreground\/60,
-  .dark .text-foreground\/90,
-  .dark .text-muted-foreground\/80,
-  .dark .text-muted-foreground\/60,
-  .dark .text-muted-foreground\/90 {
-    color: #fff !important;
-  }
-
-  .dark .prose p,
-  .dark .prose h1,
-  .dark .prose h2,
-  .dark .prose h3,
-  .dark .prose h4,
-  .dark .prose h5,
-  .dark .prose h6 {
-    color: #fff !important;
   }
 
   * {
