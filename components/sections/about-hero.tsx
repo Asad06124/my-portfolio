@@ -7,18 +7,18 @@ export function AboutHero() {
   return (
     <section className="section-padding pt-24">
       <div className="container">
-        <div className="flex flex-col items-center gap-16">
+        <div className="grid gap-16 items-center grid-cols-1 lg:grid-cols-2">
           {/* Content */}
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full max-w-2xl text-center"
+            className="w-full max-w-2xl mx-auto text-center lg:text-left lg:mx-0"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               My Developer Journey
             </h1>
-            <div className="prose prose-lg mx-auto">
+            <div className="prose prose-lg mx-auto lg:mx-0">
               <p>
                 I've always been fascinated by the intersection of technology and creativity. 
                 What started as curiosity about how websites work has evolved into a passion 
@@ -43,12 +43,12 @@ export function AboutHero() {
 
           {/* Image */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-2xl overflow-hidden mx-auto">
+            <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-2xl overflow-hidden mx-auto lg:mx-0">
               <Image
                 src="/profile2.jpg"
                 alt="Asad Ullah"
