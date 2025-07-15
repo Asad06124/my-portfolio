@@ -126,8 +126,9 @@ export default function RootLayout({
         <link rel="alternate" href="https://asadthedev.com/india" hrefLang="en-IN" />
         <link rel="alternate" href="https://asadthedev.com/pakistan" hrefLang="en-PK" />
         <link rel="alternate" href="https://asadthedev.com/lahore" hrefLang="en-LHE" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="manifest" href="/manifest.json" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
