@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <>
+    <div className="flex flex-col items-center w-full">
       <Script id="about-jsonld" type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
@@ -27,6 +27,6 @@ export default function AboutPage() {
       <Experience />
       <Skills />
       <Philosophy />
-    </>
+    </div>
   )
 }
