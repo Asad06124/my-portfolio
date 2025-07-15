@@ -7,7 +7,7 @@ export function AboutHero() {
   return (
     <section className="section-padding pt-24">
       <div className="container">
-        <div className="grid gap-16 items-center grid-cols-1 lg:grid-cols-2">
+        <div className="grid gap-16 items-center grid-cols-1 lg:grid-cols-2 max-w-5xl mx-auto justify-center">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
