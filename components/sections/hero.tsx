@@ -233,6 +233,16 @@ export function Hero() {
           }}
         />
       ))}
+
+      {/* Internal Links */}
+      <div className="flex flex-wrap gap-4 justify-center mt-8">
+        <Link href="/about" className="text-accent underline hover:text-accent/80">About</Link>
+        <Link href="/services" className="text-accent underline hover:text-accent/80">Services</Link>
+        <Link href="/projects" className="text-accent underline hover:text-accent/80">Projects</Link>
+        <Link href="/team" className="text-accent underline hover:text-accent/80">Team</Link>
+        <Link href="/blog" className="text-accent underline hover:text-accent/80">Blog</Link>
+        <Link href="/contact" className="text-accent underline hover:text-accent/80">Contact</Link>
+      </div>
     </section>
   )
 }

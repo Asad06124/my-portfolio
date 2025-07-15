@@ -5,7 +5,7 @@ import { ContactInfo } from '@/components/sections/contact-info'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Get in touch with me for project collaborations, job opportunities, or just to say hello.',
+  description: 'Get in touch with Asad for project collaborations, job opportunities, or just to say hello.',
 }
 
 export default function ContactPage() {

@@ -6,7 +6,7 @@ import { TechStack } from '@/components/sections/tech-stack'
 
 export const metadata: Metadata = {
   title: 'Our Services',
-  description: 'Comprehensive digital solutions including web development, mobile apps, UI/UX design, and digital marketing services.',
+  description: 'Comprehensive digital solutions by Asad, including web development, mobile apps, UI/UX design, and digital marketing services.',
 }
 
 export default function ServicesPage() {

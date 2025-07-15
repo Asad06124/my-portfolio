@@ -247,6 +247,10 @@ export function ServicesGrid() {
             </div>
           </div>
         </motion.div>
+        <div className="flex flex-wrap gap-4 justify-center mt-8">
+          <Link href="/contact" className="text-accent underline hover:text-accent/80">Contact</Link>
+          <Link href="/projects" className="text-accent underline hover:text-accent/80">Projects</Link>
+        </div>
       </div>
     </section>
   )

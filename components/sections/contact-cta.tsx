@@ -24,6 +24,11 @@ export function ContactCTA() {
             wanting to collaborate, I'd love to hear from you.
           </p>
           
+          <div className="flex flex-wrap gap-4 justify-center mt-8">
+            <Link href="/about" className="text-accent underline hover:text-accent/80">About</Link>
+            <Link href="/services" className="text-accent underline hover:text-accent/80">Services</Link>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               href="/contact"

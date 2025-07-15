@@ -5,7 +5,7 @@ import { TeamValues } from '@/components/sections/team-valus'
 
 export const metadata: Metadata = {
   title: 'Our Team',
-  description: 'Meet our elite team of developers, designers, and digital marketing experts who bring your ideas to life.',
+  description: 'Meet the team members collaborating with Asad on web, mobile, and digital projects.',
 }
 
 export default function TeamPage() {

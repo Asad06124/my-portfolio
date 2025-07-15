@@ -1,0 +1,16 @@
+{
+  "name": "Asad",
+  "short_name": "Asad",
+  "description": "Personal portfolio of Asad, a full-stack developer specializing in web, mobile, and enterprise solutions. UI/UX design, full-stack development, mobile apps, and digital marketing.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#171717",
+  "theme_color": "#171717",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+} 
