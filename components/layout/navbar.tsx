@@ -4,45 +4,91 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Code2, Sparkles, Rocket, Star, Zap, ChevronDown, BookOpen, Briefcase, Github, Home } from 'lucide-react'
+import { Menu, X, Code2, Sparkles, Rocket, Star, Zap, ChevronDown, BookOpen, Home, FolderKanban, Hammer, Info, Mail, Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navigation = [
   {
     name: 'Home',
     href: '/',
-    icon: Home, // Lucide icon component
-    description: 'Welcome to our homepage',
+    icon: Home,
+    description: 'Back to the homepage',
     isExternal: false,
     badge: null,
+    tag: null,
     submenu: null,
+    isDisabled: false,
     isActive: true
+  },
+  {
+    name: 'About',
+    href: '/about',
+    icon: Info,
+    description: 'Learn more about us',
+    isExternal: false,
+    badge: null,
+    tag: null,
+    submenu: null,
+    isDisabled: false
   },
   {
     name: 'Services',
     href: '/services',
-    icon: Briefcase,
-    description: 'Our professional services',
+    icon: Hammer,
+    description: 'What we offer',
+    isExternal: false,
+    badge: null,
+    tag: null,
     submenu: [
       { name: 'Web Development', href: '/services/web' },
       { name: 'Mobile Apps', href: '/services/mobile' },
       { name: 'UI/UX Design', href: '/services/design' }
-    ]
+    ],
+    isDisabled: false
+  },
+  {
+    name: 'Projects',
+    href: '/projects',
+    icon: FolderKanban,
+    description: 'Our past work',
+    isExternal: false,
+    badge: null,
+    tag: null,
+    submenu: null,
+    isDisabled: false
+  },
+  {
+    name: 'Team',
+    href: '/team',
+    icon: Users,
+    description: 'Meet our team',
+    isExternal: false,
+    badge: null,
+    tag: null,
+    submenu: null,
+    isDisabled: false
   },
   {
     name: 'Blog',
     href: '/blog',
-    tag: 'Coming Soon',
     icon: BookOpen,
-    badge: { text: 'New', variant: 'success' },
+    description: 'Read our latest thoughts',
+    isExternal: false,
+    badge: { text: 'Coming Soon', variant: 'secondary' },
+    tag: 'Coming Soon',
+    submenu: null,
     isDisabled: true
   },
   {
-    name: 'GitHub',
-    href: 'https://github.com/yourusername',
-    icon: Github,
-    isExternal: true,
-    target: '_blank'
+    name: 'Contact',
+    href: '/contact',
+    icon: Mail,
+    description: 'Get in touch',
+    isExternal: false,
+    badge: null,
+    tag: null,
+    submenu: null,
+    isDisabled: false
   }
 ]
 
