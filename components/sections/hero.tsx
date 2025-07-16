@@ -66,7 +66,7 @@ export function Hero() {
         <motion.div
           key={index}
           className={`absolute ${element.size} ${element.position} ${element.color} rounded-full blur-xl`}
-          style={{ y: index % 2 === 0 ? y1 : y2 }}
+          // style={{ y: index % 2 === 0 ? y1 : y2 }}
           animate={{ 
             scale: [1, 1.3, 1],
             rotate: [0, 360],
