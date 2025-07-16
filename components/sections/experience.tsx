@@ -6,13 +6,11 @@ import {
   Building, 
   Calendar, 
   TrendingUp, 
-  Users, 
   Code, 
   Award,
   MapPin,
   Briefcase,
   Star,
-  Sparkles,
   ChevronRight,
   Zap
 } from 'lucide-react'

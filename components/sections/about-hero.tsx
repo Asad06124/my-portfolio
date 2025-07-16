@@ -4,12 +4,10 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useState } from 'react'
 import { 
-  Sparkles, 
   Code, 
   Heart, 
   Coffee, 
   Rocket,
-  Star,
   MapPin,
   Calendar,
   Github,
