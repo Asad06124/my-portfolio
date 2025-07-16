@@ -7,11 +7,11 @@ import { Footer } from '@/components/layout/footer'
 import { BackgroundElements } from '@/components/ui/background-elements'
 import { ThemeProvider } from '@/components/ui/theme-provider'
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter'
 })
-const jetbrainsMono = JetBrains_Mono({ 
+const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono'
 })
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     template: 'Asad | %s'
   },
   icons: {
-    icon: "/favicon.ico",        
-    shortcut: "/favicon.ico",    
-    apple: "/favicon.png",    
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.png",
   },
   description: 'Asad Development Team delivers world-class web, mobile, and enterprise solutions. Experts in UI/UX, full-stack development, digital marketing, and scalable technology for global clients.',
   keywords: [
@@ -84,10 +84,10 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  
+
   children: React.ReactNode
 }) {
-  
+
   // Get the current path for canonical URL
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
   const canonicalUrl = `https://Asadthedev.com${pathname}`;
@@ -137,175 +137,181 @@ export default function RootLayout({
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Asad Development Team",
-          "url": "https://asadthedev.com",
-          "logo": "/og-image.jpg",
-          "founder": {
-            "@type": "Person",
-            "name": "Asad",
-            "url": "https://asadthedev.com/about"
-          },
-          "contactPoint": [{
-            "@type": "ContactPoint",
-            "email": "contact@asadthedev.com",
-            "telephone": "+1234567890",
-            "contactType": "customer support"
-          }],
-          "sameAs": [
-            "https://twitter.com/asadthedev",
-            "https://github.com/asad06124",
-            "https://linkedin.com/in/theasadsahir"
-          ],
-          "description": "Asad Development Team delivers world-class web, mobile, and enterprise solutions. Experts in UI/UX, full-stack development, digital marketing, and scalable technology for global clients.",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Remote",
-            "addressCountry": "Global"
-          },
-          "serviceArea": {
-            "@type": "Place",
-            "name": "Worldwide"
-          },
-          "makesOffer": [
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Development" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile App Development" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UI/UX Design" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digital Marketing" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Enterprise Solutions" } }
-          ],
-          "award": [
-            "Top Rated Agency 2024",
-            "Best UI/UX Design 2023",
-            "Clutch Global Leader 2022"
-          ],
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5.0",
-            "reviewCount": "120"
-          },
-          "review": [
-            {
-              "@type": "Review",
-              "author": { "@type": "Person", "name": "Sarah Thompson" },
-              "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-              "reviewBody": "Asad Development Team delivered our project on time with exceptional quality. Highly recommended!"
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Asad Development Team",
+            "url": "https://asadthedev.com",
+            "logo": "/og-image.jpg",
+            "founder": {
+              "@type": "Person",
+              "name": "Asad",
+              "url": "https://asadthedev.com/about"
             },
-            {
-              "@type": "Review",
-              "author": { "@type": "Person", "name": "Michael Chen" },
-              "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-              "reviewBody": "Professional, creative, and reliable. The best dev team we've worked with."
-            }
-          ],
-          "areaServed": [
-            { "@type": "Country", "name": "Pakistan" },
-            { "@type": "City", "name": "Lahore" },
-            { "@type": "City", "name": "Karachi" },
-            { "@type": "City", "name": "Islamabad" },
-            { "@type": "City", "name": "Rawalpindi" },
-            { "@type": "City", "name": "Multan" },
-            { "@type": "City", "name": "Faisalabad" },
-            { "@type": "City", "name": "Peshawar" },
-            { "@type": "City", "name": "Quetta" },
-            { "@type": "City", "name": "Sialkot" },
-            { "@type": "City", "name": "Gujranwala" },
-            { "@type": "Continent", "name": "Asia" },
-            { "@type": "Country", "name": "India" },
-            { "@type": "Country", "name": "Bangladesh" },
-            { "@type": "Country", "name": "Sri Lanka" },
-            { "@type": "Country", "name": "Nepal" },
-            { "@type": "Country", "name": "Malaysia" },
-            { "@type": "Country", "name": "Singapore" },
-            { "@type": "Country", "name": "Indonesia" },
-            { "@type": "Country", "name": "Philippines" },
-            { "@type": "Region", "name": "Middle East" },
-            { "@type": "Country", "name": "UAE" },
-            { "@type": "Country", "name": "Saudi Arabia" },
-            { "@type": "Country", "name": "Jordan" },
-            { "@type": "Country", "name": "Qatar" },
-            { "@type": "Country", "name": "Oman" },
-            { "@type": "Country", "name": "Bahrain" },
-            { "@type": "Country", "name": "Kuwait" },
-            { "@type": "Country", "name": "Turkey" },
-            { "@type": "Country", "name": "Global" }
-          ]
-        }) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What services does Asad Development Team offer?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "We offer web development, mobile app development, UI/UX design, digital marketing, enterprise solutions, and more."
-              }
+            "contactPoint": [{
+              "@type": "ContactPoint",
+              "email": "contact@asadthedev.com",
+              "telephone": "+1234567890",
+              "contactType": "customer support"
+            }],
+            "sameAs": [
+              "https://twitter.com/asadthedev",
+              "https://github.com/asad06124",
+              "https://linkedin.com/in/theasadsahir"
+            ],
+            "description": "Asad Development Team delivers world-class web, mobile, and enterprise solutions. Experts in UI/UX, full-stack development, digital marketing, and scalable technology for global clients.",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Remote",
+              "addressCountry": "Global"
             },
-            {
-              "@type": "Question",
-              "name": "Which regions do you serve?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "We serve clients globally, with a focus on Pakistan, Asia, the Middle East, and international markets."
-              }
+            "serviceArea": {
+              "@type": "Place",
+              "name": "Worldwide"
             },
-            {
-              "@type": "Question",
-              "name": "What technologies do you specialize in?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Our team specializes in Flutter, Node.js, React, Figma, Adobe, UI/UX, and more."
-              }
+            "makesOffer": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Development" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile App Development" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UI/UX Design" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digital Marketing" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Enterprise Solutions" } }
+            ],
+            "award": [
+              "Top Rated Agency 2024",
+              "Best UI/UX Design 2023",
+              "Clutch Global Leader 2022"
+            ],
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5.0",
+              "reviewCount": "120"
             },
-            {
-              "@type": "Question",
-              "name": "How can I contact Asad Development Team?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "You can contact us via our website contact form or email us at contact@asadthedev.com."
+            "review": [
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Sarah Thompson" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+                "reviewBody": "Asad Development Team delivered our project on time with exceptional quality. Highly recommended!"
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Michael Chen" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+                "reviewBody": "Professional, creative, and reliable. The best dev team we've worked with."
               }
-            }
-          ]
-        }) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://asadthedev.com/" },
-            { "@type": "ListItem", "position": 2, "name": "About", "item": "https://asadthedev.com/about" },
-            { "@type": "ListItem", "position": 3, "name": "Services", "item": "https://asadthedev.com/services" },
-            { "@type": "ListItem", "position": 4, "name": "Projects", "item": "https://asadthedev.com/projects" },
-            { "@type": "ListItem", "position": 5, "name": "Team", "item": "https://asadthedev.com/team" },
-            { "@type": "ListItem", "position": 6, "name": "Contact", "item": "https://asadthedev.com/contact" },
-            { "@type": "ListItem", "position": 7, "name": "Blog", "item": "https://asadthedev.com/blog" }
-          ]
-        }) }} />
+            ],
+            "areaServed": [
+              { "@type": "Country", "name": "Pakistan" },
+              { "@type": "City", "name": "Lahore" },
+              { "@type": "City", "name": "Karachi" },
+              { "@type": "City", "name": "Islamabad" },
+              { "@type": "City", "name": "Rawalpindi" },
+              { "@type": "City", "name": "Multan" },
+              { "@type": "City", "name": "Faisalabad" },
+              { "@type": "City", "name": "Peshawar" },
+              { "@type": "City", "name": "Quetta" },
+              { "@type": "City", "name": "Sialkot" },
+              { "@type": "City", "name": "Gujranwala" },
+              { "@type": "Continent", "name": "Asia" },
+              { "@type": "Country", "name": "India" },
+              { "@type": "Country", "name": "Bangladesh" },
+              { "@type": "Country", "name": "Sri Lanka" },
+              { "@type": "Country", "name": "Nepal" },
+              { "@type": "Country", "name": "Malaysia" },
+              { "@type": "Country", "name": "Singapore" },
+              { "@type": "Country", "name": "Indonesia" },
+              { "@type": "Country", "name": "Philippines" },
+              { "@type": "Region", "name": "Middle East" },
+              { "@type": "Country", "name": "UAE" },
+              { "@type": "Country", "name": "Saudi Arabia" },
+              { "@type": "Country", "name": "Jordan" },
+              { "@type": "Country", "name": "Qatar" },
+              { "@type": "Country", "name": "Oman" },
+              { "@type": "Country", "name": "Bahrain" },
+              { "@type": "Country", "name": "Kuwait" },
+              { "@type": "Country", "name": "Turkey" },
+              { "@type": "Country", "name": "Global" }
+            ]
+          })
+        }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What services does Asad Development Team offer?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We offer web development, mobile app development, UI/UX design, digital marketing, enterprise solutions, and more."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which regions do you serve?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We serve clients globally, with a focus on Pakistan, Asia, the Middle East, and international markets."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What technologies do you specialize in?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our team specializes in Flutter, Node.js, React, Figma, Adobe, UI/UX, and more."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can I contact Asad Development Team?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You can contact us via our website contact form or email us at contact@asadthedev.com."
+                }
+              }
+            ]
+          })
+        }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://asadthedev.com/" },
+              { "@type": "ListItem", "position": 2, "name": "About", "item": "https://asadthedev.com/about" },
+              { "@type": "ListItem", "position": 3, "name": "Services", "item": "https://asadthedev.com/services" },
+              { "@type": "ListItem", "position": 4, "name": "Projects", "item": "https://asadthedev.com/projects" },
+              { "@type": "ListItem", "position": 5, "name": "Team", "item": "https://asadthedev.com/team" },
+              { "@type": "ListItem", "position": 6, "name": "Contact", "item": "https://asadthedev.com/contact" },
+              { "@type": "ListItem", "position": 7, "name": "Blog", "item": "https://asadthedev.com/blog" }
+            ]
+          })
+        }} />
         <link rel="canonical" href={canonicalUrl} />
       </head>
 
       <body className="min-h-screen">
-      <Script
-  src="https://www.googletagmanager.com/gtag/js?id=G-SPV7Q240NT"
-  strategy="afterInteractive"
-/>
-<Script id="google-analytics" strategy="afterInteractive">
-  {`
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-SPV7Q240NT"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-SPV7Q240NT');
   `}
-</Script>
+        </Script>
 
         <ThemeProvider>
           <BackgroundElements />
           <div className="relative z-10 min-h-screen flex flex-col">
             <Navbar />
-            <main className="flex-1 px-4 py-4 md:px-8 md:py-8">
+            <main className="flex-1">
               {children}
             </main>
             <Footer />

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Code2, Sparkles } from 'lucide-react'
+import { Menu, X, Code2, Sparkles, Rocket, Star, Zap, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navigation = [
@@ -20,9 +20,11 @@ const navigation = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
+    setIsLoaded(true)
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
     }
@@ -34,66 +36,154 @@ export function Navbar() {
   const closeMenu = () => setIsOpen(false)
 
   return (
-    <header className={cn(
-      'fixed top-0 z-50 w-full transition-all duration-300',
-      scrolled 
-        ? 'bg-background/80 backdrop-blur-lg border-b border-border' 
-        : 'bg-transparent'
-    )}>
+    <motion.header 
+      className={cn(
+        'fixed top-0 z-50 w-full transition-all duration-500',
+        scrolled 
+          ? 'bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-2xl shadow-blue-500/5' 
+          : 'bg-transparent'
+      )}
+      initial={{ y: -100 }}
+      animate={{ y: isLoaded ? 0 : -100 }}
+      transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+    >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link 
-            href="/" 
-            className="flex items-center space-x-2 text-xl font-bold text-accent focus-ring rounded-lg p-2 -ml-2"
+        <div className="flex items-center justify-between h-20">
+          {/* Enhanced Logo */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: isLoaded ? 1 : 0, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Code2 className="w-6 h-6" />
-            <span>Asad Ullah</span>
-          </Link>
+            <Link 
+              href="/" 
+              className="group flex items-center space-x-3 focus-ring rounded-2xl p-3 -ml-3 transition-all duration-300 hover:bg-blue-500/10"
+            >
+              <div className="relative">
+                <motion.div
+                  className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center shadow-2xl shadow-blue-500/25"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Code2 className="w-6 h-6 text-white" />
+                </motion.div>
+                
+                {/* Floating sparkle */}
+                <motion.div
+                  className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-500 rounded-full opacity-0 group-hover:opacity-100"
+                  animate={{ 
+                    scale: [0, 1, 0],
+                    rotate: [0, 180, 360]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 3
+                  }}
+                />
+              </div>
+              
+              <div className="hidden sm:block">
+                <span className="text-xl font-black bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                  Asad Ullah
+                </span>
+                <div className="text-xs text-muted-foreground font-medium">
+                  Full-Stack Developer
+                </div>
+              </div>
+            </Link>
+          </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
-            {navigation.map((item) => (
-              <Link
+          <motion.div 
+            className="hidden lg:flex items-center space-x-2"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: isLoaded ? 1 : 0, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            {navigation.map((item, index) => (
+              <motion.div
                 key={item.name}
-                href={item.href}
-                className={cn(
-                  'relative px-6 py-3 text-sm font-semibold transition-all duration-300 rounded-xl group',
-                  pathname === item.href
-                    ? 'text-accent bg-glass/50 shadow-neon'
-                    : 'text-foreground/80 hover:text-accent hover:bg-glass/30'
-                )}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
               >
-                <span className="relative z-10">{item.name}</span>
-                {pathname === item.href && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent-tertiary/20 rounded-xl border border-accent/30"
-                    transition={{ type: "spring", duration: 0.6 }}
-                  />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-r from-accent/0 to-accent/0 group-hover:from-accent/10 group-hover:to-accent-tertiary/10 rounded-xl transition-all duration-300" />
-              </Link>
+                <Link
+                  href={item.href}
+                  className={cn(
+                    'relative px-6 py-3 text-sm font-semibold transition-all duration-300 rounded-2xl group overflow-hidden',
+                    pathname === item.href
+                      ? 'text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-2xl shadow-blue-500/25'
+                      : 'text-foreground/80 hover:text-blue-500 hover:bg-blue-500/10'
+                  )}
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    {item.name}
+                    {pathname === item.href && (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <Star className="w-3 h-3" />
+                      </motion.div>
+                    )}
+                  </span>
+                  
+                  {pathname === item.href && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl"
+                      transition={{ type: "spring", duration: 0.6 }}
+                    />
+                  )}
+                  
+                  {/* Hover Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/10 group-hover:to-purple-500/10 rounded-2xl transition-all duration-300" />
+                  
+                  {/* Shine Effect */}
+                  <div className="absolute inset-0 -top-full group-hover:top-full bg-gradient-to-b from-white/10 to-transparent transition-all duration-500 transform -skew-y-12" />
+                </Link>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
+          {/* Enhanced CTA Button */}
+          <motion.div 
+            className="hidden lg:block"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: isLoaded ? 1 : 0, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
             <Link
               href="/contact"
-              className="btn-primary group"
+              className="group relative overflow-hidden px-8 py-4 text-sm font-bold rounded-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 hover:scale-105"
             >
-              <span>Start Project</span>
-              <Sparkles className="w-4 h-4 ml-2 group-hover:animate-spin" />
+              <span className="relative z-10 flex items-center gap-2">
+                Start Project
+                <motion.div
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                >
+                  <Sparkles className="w-4 h-4" />
+                </motion.div>
+              </span>
+              
+              {/* Shine effect */}
+              <div className="absolute inset-0 -top-full group-hover:top-full bg-gradient-to-b from-white/20 to-transparent transition-all duration-700 transform -skew-y-12" />
             </Link>
-          </div>
+          </motion.div>
 
-          {/* Mobile menu button */}
-          <button
+          {/* Enhanced Mobile menu button */}
+          <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden focus-ring rounded-xl p-3 glass-card"
+            className="lg:hidden focus-ring rounded-2xl p-3 bg-background/50 backdrop-blur-sm border border-border/50 hover:bg-blue-500/10 hover:border-blue-500/30 transition-all duration-300"
             aria-expanded={isOpen}
             aria-label="Toggle menu"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: isLoaded ? 1 : 0, scale: 1 }}
+            transition={{ duration: 0.4, delay: 0.8 }}
+            whileTap={{ scale: 0.95 }}
           >
             <AnimatePresence mode="wait">
               {isOpen ? (
@@ -104,7 +194,7 @@ export function Navbar() {
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <X className="w-6 h-6 text-accent" />
+                  <X className="w-6 h-6 text-blue-500" />
                 </motion.div>
               ) : (
                 <motion.div
@@ -114,66 +204,104 @@ export function Navbar() {
                   exit={{ rotate: -90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Menu className="w-6 h-6 text-accent" />
+                  <Menu className="w-6 h-6 text-blue-500" />
                 </motion.div>
               )}
             </AnimatePresence>
-          </button>
+          </motion.button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Enhanced Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0, y: -20 }}
               animate={{ opacity: 1, height: 'auto', y: 0 }}
               exit={{ opacity: 0, height: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="lg:hidden border-t border-glass-border bg-glass/50 backdrop-blur-xl rounded-b-2xl mt-4 overflow-hidden"
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="lg:hidden border-t border-border/50 bg-background/80 backdrop-blur-xl rounded-b-3xl mt-4 overflow-hidden shadow-2xl shadow-blue-500/10"
             >
-              <div className="py-6 space-y-2">
+              <div className="py-8 space-y-3">
                 {navigation.map((item, index) => (
                   <motion.div
                     key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
                   >
                     <Link
                       href={item.href}
                       onClick={closeMenu}
                       className={cn(
-                        'block px-6 py-4 text-lg font-semibold transition-all duration-300 rounded-xl mx-4',
+                        'group flex items-center justify-between px-6 py-4 text-lg font-semibold transition-all duration-300 rounded-2xl mx-4 overflow-hidden',
                         pathname === item.href
-                          ? 'text-accent bg-glass shadow-neon border border-accent/30'
-                          : 'text-foreground/80 hover:text-accent hover:bg-glass/50'
+                          ? 'text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-2xl shadow-blue-500/25'
+                          : 'text-foreground/80 hover:text-blue-500 hover:bg-blue-500/10'
                       )}
                     >
-                      {item.name}
+                      <span className="flex items-center gap-3">
+                        {item.name}
+                        {pathname === item.href && (
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <Star className="w-4 h-4" />
+                          </motion.div>
+                        )}
+                      </span>
+                      
+                      <ChevronDown className="w-4 h-4 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
                     </Link>
                   </motion.div>
                 ))}
                 
+                {/* Mobile CTA */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.6 }}
-                  className="px-4 pt-4"
+                  transition={{ duration: 0.4, delay: 0.8 }}
+                  className="px-4 pt-6"
                 >
                   <Link
                     href="/contact"
                     onClick={closeMenu}
-                    className="btn-primary w-full justify-center group"
+                    className="group relative overflow-hidden flex items-center justify-center gap-3 w-full px-8 py-5 text-lg font-bold rounded-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300"
                   >
-                    <span>Start Project</span>
-                    <Sparkles className="w-4 h-4 ml-2 group-hover:animate-spin" />
+                    <span className="relative z-10 flex items-center gap-3">
+                      <Rocket className="w-5 h-5" />
+                      Start Project
+                      <motion.div
+                        animate={{ rotate: [0, 360] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                      >
+                        <Sparkles className="w-5 h-5" />
+                      </motion.div>
+                    </span>
+                    
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 -top-full group-hover:top-full bg-gradient-to-b from-white/20 to-transparent transition-all duration-700 transform -skew-y-12" />
                   </Link>
+                </motion.div>
+
+                {/* Mobile Footer */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 1 }}
+                  className="px-6 pt-6 border-t border-border/30 mx-4 mt-6"
+                >
+                  <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                    <Zap className="w-4 h-4 text-blue-500" />
+                    <span>Ready to build something amazing?</span>
+                  </div>
                 </motion.div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </nav>
-    </header>
+    </motion.header>
   )
 }
