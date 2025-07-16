@@ -34,8 +34,6 @@ export function Hero() {
   const { scrollY } = useScroll()
   
   // Smoother parallax with spring - but much more subtle
-  const y1 = useSpring(useTransform(scrollY, [0, 800], [0, -100]), { stiffness: 100, damping: 30 })
-  const y2 = useSpring(useTransform(scrollY, [0, 800], [0, -50]), { stiffness: 100, damping: 30 })
   
   // No opacity change - hero stays fully visible always
 
