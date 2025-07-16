@@ -309,7 +309,7 @@ export default function RootLayout({
 
         <ThemeProvider>
           <BackgroundElements />
-          <div className="relative z-10 min-h-screen flex flex-col">
+          <div className="space-x-2 px-2 relative z-10 min-h-screen flex flex-col">
             <Navbar />
             <main className="flex-1">
               {children}

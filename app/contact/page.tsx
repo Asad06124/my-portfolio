@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default function ContactPage() {
-  return (<div className="flex flex-col items-center w-full">
+  return (<div className="items-center w-full">
 
       <ContactHero />
       <div className="section-padding">

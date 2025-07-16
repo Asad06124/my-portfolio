@@ -273,7 +273,7 @@ export function Hero() {
             >
               <Link
                 href="/projects"
-                className="group relative overflow-hidden px-12 py-6 text-lg font-bold rounded-2xl bg-gradient-to-r from-primary via-purple-500 to-cyan-500 text-white shadow-2xl shadow-primary/25 hover:shadow-primary/40 transition-all duration-300"
+                className="group flex items-center px-12 py-6 text-lg font-bold rounded-2xl bg-background/50 backdrop-blur-xl border-2 border-primary/30 text-foreground hover:bg-primary/10 hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 <span className="relative z-10 flex items-center">
                   View Our Work

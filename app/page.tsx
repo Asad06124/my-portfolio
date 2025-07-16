@@ -44,7 +44,7 @@ export default function Home() {
   
   return (
     
-    <div className="flex flex-col items-center w-full">
+    <div className="items-center w-full">
       <Hero />
       <ServicesGrid />
       <FeaturedProjects />

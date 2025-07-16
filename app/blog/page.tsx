@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
-  return( <div className="flex flex-col items-center w-full"><ComingSoonSection /></div>)
+  return( <div className="items-center w-full"><ComingSoonSection /></div>)
 }
