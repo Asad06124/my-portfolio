@@ -37,8 +37,7 @@ export function Hero() {
   const y1 = useSpring(useTransform(scrollY, [0, 800], [0, -100]), { stiffness: 100, damping: 30 })
   const y2 = useSpring(useTransform(scrollY, [0, 800], [0, -50]), { stiffness: 100, damping: 30 })
   
-  // Much more subtle opacity change - only starts fading after more scroll
-  const opacity = useTransform(scrollY, [0, 600, 1000], [1, 0.8, 0.3])
+  // No opacity change - hero stays fully visible always
 
   useEffect(() => {
     setIsLoaded(true)
@@ -55,7 +54,6 @@ export function Hero() {
   return (
     <motion.section 
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
-      style={{ opacity }}
     >
       {/* Enhanced Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90" />
