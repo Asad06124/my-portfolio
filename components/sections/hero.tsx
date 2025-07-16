@@ -33,10 +33,12 @@ export function Hero() {
   const [isLoaded, setIsLoaded] = useState(false)
   const { scrollY } = useScroll()
   
-  // Smoother parallax with spring
-  const y1 = useSpring(useTransform(scrollY, [0, 500], [0, -150]), { stiffness: 100, damping: 30 })
-  const y2 = useSpring(useTransform(scrollY, [0, 500], [0, -100]), { stiffness: 100, damping: 30 })
-  const opacity = useTransform(scrollY, [0, 300], [1, 0])
+  // Smoother parallax with spring - but much more subtle
+  const y1 = useSpring(useTransform(scrollY, [0, 800], [0, -100]), { stiffness: 100, damping: 30 })
+  const y2 = useSpring(useTransform(scrollY, [0, 800], [0, -50]), { stiffness: 100, damping: 30 })
+  
+  // Much more subtle opacity change - only starts fading after more scroll
+  const opacity = useTransform(scrollY, [0, 600, 1000], [1, 0.8, 0.3])
 
   useEffect(() => {
     setIsLoaded(true)
