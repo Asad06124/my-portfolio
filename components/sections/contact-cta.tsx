@@ -8,7 +8,6 @@ import {
   ArrowRight, 
   MessageCircle, 
   Calendar,
-  Phone,
   Sparkles,
   Zap,
   Heart,

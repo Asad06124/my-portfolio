@@ -12,7 +12,6 @@ import {
   Shield,
   ArrowRight,
   CheckCircle,
-  Zap,
   Globe,
   Star,
   Clock,

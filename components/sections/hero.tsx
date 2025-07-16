@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight, Play, Code, Sparkles, Users, Award, Clock, CheckCircle, Zap, Globe, Rocket, Star } from 'lucide-react'
+import { ArrowRight, Play, Code, Sparkles, Users, Award, Clock, Zap, Globe, Rocket, Star } from 'lucide-react'
 
 const stats = [
   { icon: Award, label: 'Projects Delivered', value: '30+', color: 'text-emerald-500', bgColor: 'from-emerald-500/20 to-emerald-600/10' },
