@@ -43,8 +43,8 @@ export function ProjectsHero() {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               My{' '}
               {/* <span className="relative"> */}
-                <span className="gradient-text bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent animate-gradient">
-                  Projects
+              <span className="gradient-text bg-gradient-to-r from-pink-500 via-yellow-500 to-blue-500 bg-clip-text text-transparent animate-gradient">
+              Projects
                 {/* </span> */}
                 <motion.div
                   className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-accent/0 via-accent to-accent/0 rounded-full"
