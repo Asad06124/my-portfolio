@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion, useScroll } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, Play, Code, Sparkles, Users, Award, Clock, Zap, Globe, Rocket, Star } from 'lucide-react'
 
@@ -31,7 +31,7 @@ const floatingElements = [
 export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isLoaded, setIsLoaded] = useState(false)
-  const { scrollY } = useScroll()
+  // Removed: const { scrollY } = useScroll()
   
   // Smoother parallax with spring - but much more subtle
   
