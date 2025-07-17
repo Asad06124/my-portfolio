@@ -94,6 +94,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon.ico" />
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=1" />
@@ -133,8 +134,8 @@ export default function RootLayout({
         <link rel="alternate" href="https://asadthedev.com/india" hrefLang="en-IN" />
         <link rel="alternate" href="https://asadthedev.com/pakistan" hrefLang="en-PK" />
         <link rel="alternate" href="https://asadthedev.com/lahore" hrefLang="en-LHE" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="manifest" href="/manifest.json" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{
