@@ -291,6 +291,25 @@ export default function RootLayout({
           })
         }} />
         <link rel="canonical" href={canonicalUrl} />
+        <link
+          rel="preload"
+          href="/fonts/inter-latin.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/jetbrains-mono-latin.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/profile2.jpg"
+        />
       </head>
 
       <body className="min-h-screen">
