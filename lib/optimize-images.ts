@@ -32,12 +32,14 @@ async function optimizeImages(): Promise<void> {
           console.log(`Optimized ${file} in ${imagesDir}`);
         }
       }
-    } catch (error: any) {
-      if (error.code === 'ENOENT') {
-        console.log(`Directory ${imagesDir} not found, skipping`);
-        continue;
+    } catch (error: unknown) {
+      if (typeof error === 'object' && error !== null && 'code' in error) {
+        if ((error as { code?: string }).code === 'ENOENT') {
+          console.log(`Directory ${imagesDir} not found, skipping`);
+          continue;
+        }
       }
-      console.error(`Error optimizing images in ${imagesDir}: ${error}`);
+      console.error(`Error optimizing images in ${imagesDir}:`, error);
     }
   }
 }
