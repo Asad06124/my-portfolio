@@ -9,7 +9,7 @@ const testimonials = [
     name: 'Sarah Thompson',
     role: 'CEO, TechStart Inc.',
     company: 'TechStart Inc.',
-    image: '/testimonials/sarah.jpg',
+    image: '/testimonials/sarah.webp',
     content: 'DevStudio Pro transformed our vision into a world-class platform. Their attention to detail and technical expertise exceeded our expectations. The team delivered on time and within budget.',
     rating: 5,
     project: 'Enterprise SaaS Platform'
@@ -18,7 +18,7 @@ const testimonials = [
     name: 'Michael Chen',
     role: 'CTO, FinanceFlow',
     company: 'FinanceFlow',
-    image: '/testimonials/michael.jpg',
+    image: '/testimonials/michael.webp',
     content: 'Working with DevStudio Pro was a game-changer for our company. They built a secure, scalable mobile app that our users love. The development process was smooth and professional.',
     rating: 5,
     project: 'FinTech Mobile App'
@@ -27,7 +27,7 @@ const testimonials = [
     name: 'Dr. Emily Rodriguez',
     role: 'Founder, HealthBridge',
     company: 'HealthBridge',
-    image: '/testimonials/emily.jpg',
+    image: '/testimonials/emily.webp',
     content: 'The healthcare platform they developed has revolutionized how we connect with patients. The team understood our complex requirements and delivered a solution that truly makes a difference.',
     rating: 5,
     project: 'Healthcare Platform'

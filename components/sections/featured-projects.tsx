@@ -23,7 +23,7 @@ const projects = [
   {
     title: 'FinTech Mobile App',
     description: 'A comprehensive financial management app with real-time analytics, investment tracking, and secure payment processing. Built for modern users who demand security and speed.',
-    image: '/projects/fintech.jpg',
+    image: '/projects/fintech.webp',
     technologies: ['React Native', 'Node.js', 'PostgreSQL', 'Stripe', 'AWS'],
     liveUrl: 'https://fintech-demo.com',
     githubUrl: 'https://github.com/devstudio/fintech-app',
@@ -41,7 +41,7 @@ const projects = [
   {
     title: 'E-Learning Platform',
     description: 'Modern educational platform with live streaming, interactive courses, and AI-powered learning recommendations. Revolutionizing online education with cutting-edge technology.',
-    image: '/projects/elearning.jpg',
+    image: '/projects/elearning.webp',
     technologies: ['Next.js', 'TypeScript', 'MongoDB', 'WebRTC', 'OpenAI'],
     liveUrl: 'https://elearning-demo.com',
     githubUrl: 'https://github.com/devstudio/elearning-platform',
@@ -59,7 +59,7 @@ const projects = [
   {
     title: 'Healthcare Dashboard',
     description: 'Advanced healthcare management system with patient records, appointment scheduling, and telemedicine features. Empowering healthcare providers with data-driven insights.',
-    image: '/projects/healthcare.jpg',
+    image: '/projects/healthcare.webp',
     technologies: ['React', 'Python', 'FastAPI', 'PostgreSQL', 'Docker'],
     liveUrl: 'https://healthcare-demo.com',
     githubUrl: 'https://github.com/devstudio/healthcare-dashboard',

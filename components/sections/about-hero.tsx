@@ -193,7 +193,7 @@ export function AboutHero() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <Image
-                  src="/profile2.jpg"
+                  src="/profile2.webp"
                   alt="Asad Ullah"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"

@@ -99,7 +99,7 @@ export function About() {
           >
             <div className="relative w-full h-96 rounded-2xl overflow-hidden">
               <Image
-                src="/profile2.jpg"
+                src="/profile2.webp"
                 alt="Asad Ullah"
                 fill
                 className="object-cover"
