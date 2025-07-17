@@ -268,7 +268,7 @@ export function Navbar() {
                   initial={{ rotate: -90, opacity: 0 }}
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.02 }}
                 >
                   <X className="w-6 h-6 text-blue-500" />
                 </motion.div>
@@ -278,7 +278,7 @@ export function Navbar() {
                   initial={{ rotate: 90, opacity: 0 }}
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.02 }}
                 >
                   <Menu className="w-6 h-6 text-blue-500" />
                 </motion.div>

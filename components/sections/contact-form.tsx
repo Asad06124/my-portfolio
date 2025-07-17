@@ -125,7 +125,7 @@ export function ContactForm() {
     <motion.div
       initial={{ opacity: 0, x: -30 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.02 }}
       viewport={{ once: true }}
       className="relative overflow-hidden rounded-3xl bg-background/50 backdrop-blur-xl border border-border/50 p-8"
     >

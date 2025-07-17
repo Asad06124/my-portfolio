@@ -41,7 +41,7 @@ export function TestimonialsSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.02 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
