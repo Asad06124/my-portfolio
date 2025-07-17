@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run optimize:images && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "optimize:images": "npx tsx lib/optimize-images.ts",
+    "analyze": "ANALYZE=true npm run build",
+    "lighthouse": "lighthouse https://asadthedev.com --output=html --output-path=lighthouse-report.html"
   },
   "dependencies": {
     "@next/mdx": "^15.3.5",

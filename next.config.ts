@@ -1,159 +1,160 @@
+// ============================================
+// 1. UPDATE next.config.ts - Global Configuration
+// ============================================
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  trailingSlash: true,
-  images: {
-    unoptimized: true,
-    formats: ['image/webp', 'image/avif'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 31536000, // 1 year
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-  },
+  basePath: '',  // Remove basePath since you're using custom domain
+  assetPrefix: '', // Remove assetPrefix for custom domain
   
-  // Performance optimizations
+  // ===== PERFORMANCE OPTIMIZATIONS =====
+  
+  // Image Optimization (Global)
+  images: {
+    unoptimized: false, // Enable optimization even for static export
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year cache
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+  },
+
+  // Compiler Optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+    styledComponents: true,
+  },
+
+  // Experimental Features for Performance
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['lucide-react', 'framer-motion'],
-    scrollRestoration: true,
     webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB', 'INP'],
+    
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
   },
-  
-  // Compiler optimizations
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production' ? {
-      exclude: ['error', 'warn']
-    } : false,
-    reactRemoveProperties: process.env.NODE_ENV === 'production',
-  },
-  
-  // Asset optimization
-  swcMinify: true,
 
-  // Bundle optimization
-  webpack: (config: any, { dev }: { dev: boolean }) => {
-    // Production optimizations
-    if (!dev) {
-      config.optimization = {
-        ...config.optimization,
-        splitChunks: {
-          chunks: 'all',
-          cacheGroups: {
-            vendor: {
-              test: /[\\/]node_modules[\\/]/,
-              name: 'vendors',
-              chunks: 'all',
-              maxSize: 244000, // 244KB
-            },
-            common: {
-              name: 'common',
-              minChunks: 2,
-              chunks: 'all',
-              maxSize: 244000,
-            },
-            // Separate chunk for large libraries
-            framerMotion: {
-              test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-              name: 'framer-motion',
-              chunks: 'all',
-            },
-            lucideReact: {
-              test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
-              name: 'lucide-react',
-              chunks: 'all',
-            }
+  // Webpack Optimizations
+  webpack: (config: any, { dev, isServer }: { dev: boolean; isServer: boolean }) => {
+    // Optimize bundle splitting
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+          common: {
+            name: 'common',
+            minChunks: 2,
+            chunks: 'all',
+            enforce: true,
           },
         },
       };
     }
-    
-    // Optimize bundle size
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      // Tree shake lodash
-      'lodash': 'lodash-es',
-    };
-    
+
+    // Optimize images at build time
+    config.module.rules.push({
+      test: /\.(png|jpe?g|gif|svg)$/i,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            publicPath: '/_next/static/images/',
+            outputPath: 'static/images/',
+            name: '[name].[hash].[ext]',
+          },
+        },
+        {
+          loader: 'image-webpack-loader',
+          options: {
+            mozjpeg: {
+              progressive: true,
+              quality: 60,
+            },
+            optipng: {
+              enabled: false,
+            },
+            pngquant: {
+              quality: [0.60, 0.70],
+              speed: 4,
+            },
+            gifsicle: {
+              interlaced: false,
+            },
+            webp: {
+              quality: 60,
+            },
+          },
+        },
+      ],
+    });
+
     return config;
   },
-  
-  // Headers for caching and security
+
+  // Headers for Performance
   async headers() {
     return [
       {
         source: '/(.*)',
         headers: [
           {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on'
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload'
           },
           {
             key: 'X-Frame-Options',
-            value: 'DENY',
+            value: 'DENY'
           },
           {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
           },
           {
             key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-        ],
+            value: 'origin-when-cross-origin'
+          }
+        ]
       },
-      // Cache static assets
       {
-        source: '/(.*)\\.(js|css|woff|woff2|ttf|otf|eot)$',
+        source: '/static/(.*)',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      // Cache images
+            value: 'public, max-age=31536000, immutable'
+          }
+        ]
+      }
+    ];
+  },
+
+  // Redirects and Rewrites for SEO
+  async redirects() {
+    return [
       {
-        source: '/(.*)\\.(jpg|jpeg|png|gif|ico|svg|webp|avif)$',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      // Preload critical resources
-      {
-        source: '/',
-        headers: [
-          {
-            key: 'Link',
-            value: '</hero-1920w.webp>; rel=preload; as=image; type=image/webp',
-          },
-        ],
+        source: '/home',
+        destination: '/',
+        permanent: true,
       },
     ];
   },
-  
-  // Environment-specific optimizations
-  env: {
-    ANALYZE_BUNDLE: process.env.ANALYZE_BUNDLE || 'false',
-  },
-  
-  // Static optimization
-  generateBuildId: async () => {
-    return `build-${Date.now()}`;
-  },
 };
 
-// Bundle analyzer (optional)
-let config = nextConfig;
-
-if (process.env.ANALYZE_BUNDLE === 'true') {
-  const withBundleAnalyzer = require('@next/bundle-analyzer')({
-    enabled: true,
-  });
-  config = withBundleAnalyzer(config);
-}
-
-export default config;
+export default nextConfig;
