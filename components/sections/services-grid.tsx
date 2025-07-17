@@ -149,14 +149,14 @@ export function ServicesGrid() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.2 }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.1, delay: 0.02 }}
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 mb-6"
           >
@@ -194,7 +194,7 @@ export function ServicesGrid() {
               key={service.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.2, delay: index * 0.05 }}
               viewport={{ once: true }}
               onHoverStart={() => setHoveredService(service.title)}
               onHoverEnd={() => setHoveredService(null)}
@@ -249,7 +249,7 @@ export function ServicesGrid() {
                       key={feature}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: 0.3 + featureIndex * 0.1 }}
+                      transition={{ duration: 0.15, delay: 0.08 + featureIndex * 0.03 }}
                       viewport={{ once: true }}
                       className="flex items-center gap-4 group/feature"
                     >
@@ -275,7 +275,7 @@ export function ServicesGrid() {
                         key={tech}
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, delay: 0.5 + techIndex * 0.05 }}
+                        transition={{ duration: 0.12, delay: 0.1 + techIndex * 0.02 }}
                         viewport={{ once: true }}
                         whileHover={{ scale: 1.05 }}
                         className="px-4 py-2 bg-background/70 backdrop-blur-sm border border-border/50 text-foreground/80 text-sm rounded-xl hover:bg-blue-500/10 hover:border-blue-500/30 hover:text-foreground transition-all duration-300"
@@ -365,7 +365,7 @@ export function ServicesGrid() {
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.1, delay: 0.02 }}
                 viewport={{ once: true }}
                 className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-500 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-blue-500/25"
               >

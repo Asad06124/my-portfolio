@@ -78,7 +78,7 @@ export function ContactForm() {
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.1, delay: 0.02 }}
             className="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-emerald-500/25"
           >
             <CheckCircle className="w-10 h-10 text-white" />
@@ -125,7 +125,7 @@ export function ContactForm() {
     <motion.div
       initial={{ opacity: 0, x: -30 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.2 }}
       viewport={{ once: true }}
       className="relative overflow-hidden rounded-3xl bg-background/50 backdrop-blur-xl border border-border/50 p-8"
     >
@@ -137,7 +137,7 @@ export function ContactForm() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.1, delay: 0.02 }}
           viewport={{ once: true }}
           className="mb-8"
         >

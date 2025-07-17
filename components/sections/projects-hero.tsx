@@ -31,7 +31,7 @@ export function ProjectsHero() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.2 }}
           className="text-center max-w-5xl mx-auto"
         >
           {/* Main Title with Enhanced Typography */}

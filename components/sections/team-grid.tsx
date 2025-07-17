@@ -105,14 +105,14 @@ export function TeamGrid() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.2 }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.1, delay: 0.02 }}
             viewport={{ once: true }}
             className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-emerald-500/10 backdrop-blur-xl border border-blue-500/20 mb-8"
           >
@@ -168,7 +168,7 @@ export function TeamGrid() {
               key={member.name}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.2, delay: index * 0.05 }}
               viewport={{ once: true }}
               onHoverStart={() => setHoveredMember(member.name)}
               onHoverEnd={() => setHoveredMember(null)}
@@ -243,7 +243,7 @@ export function TeamGrid() {
                         key={achievement}
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, delay: 0.3 + achievementIndex * 0.1 }}
+                        transition={{ duration: 0.12, delay: 0.1 + achievementIndex * 0.02 }}
                         viewport={{ once: true }}
                         className="px-2 py-1 bg-blue-500/10 text-blue-600 text-xs font-semibold rounded-full border border-blue-500/20"
                       >
@@ -271,7 +271,7 @@ export function TeamGrid() {
                         key={skill}
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, delay: 0.4 + skillIndex * 0.05 }}
+                        transition={{ duration: 0.12, delay: 0.12 + skillIndex * 0.02 }}
                         viewport={{ once: true }}
                         whileHover={{ scale: 1.05 }}
                         className="px-3 py-1 bg-background/70 backdrop-blur-sm border border-border/50 text-foreground/80 text-xs rounded-xl hover:bg-blue-500/10 hover:border-blue-500/30 hover:text-foreground transition-all duration-300"
@@ -360,7 +360,7 @@ export function TeamGrid() {
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.1, delay: 0.02 }}
                 viewport={{ once: true }}
                 className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-500 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-blue-500/25"
               >

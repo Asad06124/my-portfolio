@@ -89,7 +89,7 @@ export function ContactInfo() {
     <motion.div
       initial={{ opacity: 0, x: 30 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.2 }}
       viewport={{ once: true }}
       className="relative overflow-hidden rounded-3xl bg-background/50 backdrop-blur-xl border border-border/50 p-8"
     >
@@ -101,7 +101,7 @@ export function ContactInfo() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.1, delay: 0.02 }}
           viewport={{ once: true }}
         >
           <div className="flex items-center gap-3 mb-6">

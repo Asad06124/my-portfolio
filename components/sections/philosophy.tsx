@@ -75,14 +75,14 @@ export function Philosophy() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.2, delay: 0.05 }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.1, delay: 0.02 }}
             viewport={{ once: true }}
             className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-pink-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-xl border border-pink-500/20 mb-8"
           >
@@ -127,7 +127,7 @@ export function Philosophy() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.2, delay: 0.05 }}
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-4 mb-16"
         >
@@ -136,7 +136,7 @@ export function Philosophy() {
               key={value.text}
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+              transition={{ duration: 0.12, delay: 0.08 + index * 0.02 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.05, y: -5 }}
               className="group flex items-center gap-3 px-6 py-3 rounded-2xl bg-background/50 backdrop-blur-xl border border-border/50 hover:border-pink-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/10"
@@ -156,7 +156,7 @@ export function Philosophy() {
               key={principle.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.15, delay: index * 0.04 }}
               viewport={{ once: true }}
               onHoverStart={() => setHoveredPrinciple(principle.title)}
               onHoverEnd={() => setHoveredPrinciple(null)}
@@ -194,7 +194,7 @@ export function Philosophy() {
                   className="mt-auto p-4 bg-background/30 backdrop-blur-sm rounded-2xl border border-border/30"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+                  transition={{ duration: 0.2, delay: 0.02 }}
                   viewport={{ once: true }}
                 >
                   <div className="flex items-center justify-between">

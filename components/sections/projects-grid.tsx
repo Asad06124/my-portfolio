@@ -94,7 +94,7 @@ export function ProjectsGrid() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.2 }}
           viewport={{ once: true }}
           className="flex flex-wrap gap-3 justify-center mb-12"
         >
@@ -120,7 +120,7 @@ export function ProjectsGrid() {
               key={project.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.2, delay: index * 0.05 }}
               viewport={{ once: true }}
               onHoverStart={() => setHoveredProject(project.title)}
               onHoverEnd={() => setHoveredProject(null)}
@@ -213,7 +213,7 @@ export function ProjectsGrid() {
                           key={tech}
                           initial={{ opacity: 0, scale: 0.8 }}
                           whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.3, delay: techIndex * 0.05 }}
+                          transition={{ duration: 0.15, delay: techIndex * 0.03 }}
                           viewport={{ once: true }}
                           className="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full border border-accent/20 hover:bg-accent/20 transition-colors"
                         >

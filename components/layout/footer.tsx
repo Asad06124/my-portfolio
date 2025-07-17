@@ -192,7 +192,7 @@ export function Footer() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.1, delay: 0.02 }}
             >
               <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
                 <Zap className="w-5 h-5 text-blue-500" />
