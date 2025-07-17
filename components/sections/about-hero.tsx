@@ -60,7 +60,7 @@ export function AboutHero() {
               className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              transition={{ duration: 0.03, delay: 0.3 }}
             >
               My{' '}
               <span className="relative">
@@ -98,7 +98,7 @@ export function AboutHero() {
               className="space-y-6 text-lg md:text-xl text-muted-foreground leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              transition={{ duration: 0.03, delay: 0.5 }}
             >
               <p>
                 I've always been fascinated by the intersection of{' '}
@@ -131,7 +131,7 @@ export function AboutHero() {
               className="grid grid-cols-2 gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
+              transition={{ duration: 0.03, delay: 0.7 }}
             >
               <div className="p-4 rounded-2xl bg-background/30 backdrop-blur-sm border border-border/30 group hover:bg-blue-500/10 hover:border-blue-500/30 transition-all duration-300">
                 <MapPin className="w-5 h-5 text-blue-500 mb-2 group-hover:scale-110 transition-transform" />
@@ -151,7 +151,7 @@ export function AboutHero() {
               className="flex gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
+              transition={{ duration: 0.03, delay: 0.9 }}
             >
               <a
                 href="https://github.com/asad06124"
@@ -182,7 +182,7 @@ export function AboutHero() {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.03, delay: 0.4 }}
             className="relative"
           >
             <div className="relative">
@@ -210,7 +210,7 @@ export function AboutHero() {
                 className="absolute -top-4 -left-4 p-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-2xl shadow-2xl"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: imageLoaded ? 1 : 0, scale: imageLoaded ? 1 : 0 }}
-                transition={{ duration: 0.6, delay: 1 }}
+                transition={{ duration: 0.03, delay: 1 }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
               >
                 <Code className="w-6 h-6" />
@@ -220,7 +220,7 @@ export function AboutHero() {
                 className="absolute -bottom-4 -right-4 p-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl shadow-2xl"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: imageLoaded ? 1 : 0, scale: imageLoaded ? 1 : 0 }}
-                transition={{ duration: 0.6, delay: 1.2 }}
+                transition={{ duration: 0.03, delay: 1.2 }}
                 whileHover={{ scale: 1.1, rotate: -5 }}
               >
                 <Rocket className="w-6 h-6" />
@@ -230,7 +230,7 @@ export function AboutHero() {
                 className="absolute top-1/2 -right-6 p-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-2xl shadow-2xl"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: imageLoaded ? 1 : 0, scale: imageLoaded ? 1 : 0 }}
-                transition={{ duration: 0.6, delay: 1.4 }}
+                transition={{ duration: 0.03, delay: 1.4 }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
               >
                 <Coffee className="w-6 h-6" />

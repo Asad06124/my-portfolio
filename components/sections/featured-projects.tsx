@@ -94,7 +94,7 @@ export function FeaturedProjects() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.03 }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
@@ -135,7 +135,7 @@ export function FeaturedProjects() {
                 className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-500/0 via-blue-500 to-blue-500/0 rounded-full"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
+                transition={{ duration: 0.03, delay: 0.8 }}
                 viewport={{ once: true }}
               />
             </span>
@@ -156,7 +156,7 @@ export function FeaturedProjects() {
               key={project.title}
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
+              transition={{ duration: 0.03, delay: index * 0.05 }}
               viewport={{ once: true }}
               onHoverStart={() => setHoveredProject(project.title)}
               onHoverEnd={() => setHoveredProject(null)}
@@ -225,7 +225,7 @@ export function FeaturedProjects() {
                           opacity: hoveredProject === project.title ? 1 : 0,
                           scale: hoveredProject === project.title ? 1 : 0
                         }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.03 }}
                       >
                         <div className={`w-16 h-16 bg-gradient-to-r ${project.gradient} rounded-full flex items-center justify-center shadow-2xl`}>
                           <Eye className="w-6 h-6 text-white" />
@@ -246,7 +246,7 @@ export function FeaturedProjects() {
                           key={achievement}
                           initial={{ opacity: 0, scale: 0.8 }}
                           whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.15, delay: 0.18 + achievementIndex * 0.03 }}
+                          transition={{ duration: 0.03, delay: 0.18 + achievementIndex * 0.03 }}
                           viewport={{ once: true }}
                           className="px-3 py-1 bg-yellow-500/10 text-yellow-600 text-xs font-semibold rounded-full border border-yellow-500/20"
                         >
@@ -298,7 +298,7 @@ export function FeaturedProjects() {
                             key={tech}
                             initial={{ opacity: 0, scale: 0.8 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.15, delay: 0.05 + techIndex * 0.05 }}
+                            transition={{ duration: 0.03, delay: 0.05 + techIndex * 0.05 }}
                             viewport={{ once: true }}
                             whileHover={{ scale: 1.05 }}
                             className="px-4 py-2 bg-background/70 backdrop-blur-sm border border-border/50 text-foreground/80 rounded-xl font-medium hover:bg-blue-500/10 hover:border-blue-500/30 hover:text-foreground transition-all duration-300"
@@ -314,7 +314,7 @@ export function FeaturedProjects() {
                       className="flex flex-col sm:flex-row gap-4 pt-4"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.2 }}
+                      transition={{ duration: 0.03, delay: 0.2 }}
                       viewport={{ once: true }}
                     >
                       <Link
@@ -358,7 +358,7 @@ export function FeaturedProjects() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.03, delay: 0.6 }}
           viewport={{ once: true }}
           className="text-center mt-20"
         >

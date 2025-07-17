@@ -120,7 +120,7 @@ export function Navbar() {
       )}
       initial={{ y: -100 }}
       animate={{ y: isLoaded ? 0 : -100 }}
-      transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+      transition={{ duration: 0.03, type: "spring", stiffness: 100 }}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -174,14 +174,14 @@ export function Navbar() {
             className="hidden lg:flex items-center space-x-4"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: isLoaded ? 1 : 0, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.03, delay: 0.4 }}
           >
             {navigation.map((item, index) => (
               <motion.div
                 key={item.name}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
+                transition={{ duration: 0.03, delay: 0.5 + index * 0.1 }}
                 className="relative"
               >
                 <Link
@@ -199,7 +199,7 @@ export function Navbar() {
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.03 }}
                       >
                         <Star className="w-3 h-3 text-yellow-400" />
                       </motion.div>
@@ -229,7 +229,7 @@ export function Navbar() {
             className="hidden lg:flex items-center"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: isLoaded ? 1 : 0, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 0.03, delay: 0.6 }}
           >
             <Link
               href="/contact"
@@ -258,7 +258,7 @@ export function Navbar() {
             aria-label="Toggle menu"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: isLoaded ? 1 : 0, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.8 }}
+            transition={{ duration: 0.03, delay: 0.8 }}
             whileTap={{ scale: 0.95 }}
           >
             <AnimatePresence mode="wait">
@@ -294,7 +294,7 @@ export function Navbar() {
               initial={{ opacity: 0, height: 0, y: -20 }}
               animate={{ opacity: 1, height: 'auto', y: 0 }}
               exit={{ opacity: 0, height: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
+              transition={{ duration: 0.03, ease: "easeInOut" }}
               className="lg:hidden border-t border-border/50 bg-background/80 backdrop-blur-xl rounded-b-3xl mt-4 overflow-hidden shadow-2xl shadow-blue-500/10"
             >
               <div className="py-8 space-y-3">
@@ -303,7 +303,7 @@ export function Navbar() {
                     key={item.name}
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    transition={{ duration: 0.03, delay: index * 0.1 }}
                   >
                     <Link
                       href={item.href}
@@ -321,7 +321,7 @@ export function Navbar() {
                           <motion.div
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            transition={{ duration: 0.3 }}
+                            transition={{ duration: 0.03 }}
                           >
                             <Star className="w-4 h-4" />
                           </motion.div>
@@ -337,7 +337,7 @@ export function Navbar() {
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.8 }}
+                  transition={{ duration: 0.03, delay: 0.8 }}
                   className="px-4 pt-6"
                 >
                   <Link
@@ -365,7 +365,7 @@ export function Navbar() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.4, delay: 1 }}
+                  transition={{ duration: 0.03, delay: 1 }}
                   className="px-6 pt-6 border-t border-border/30 mx-4 mt-6"
                 >
                   <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">

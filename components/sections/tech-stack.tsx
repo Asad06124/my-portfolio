@@ -108,7 +108,7 @@ export function TechStack() {
               key={category.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
+              transition={{ duration: 0.03, delay: categoryIndex * 0.1 }}
               viewport={{ once: true }}
               className="glass-card p-8 group hover:scale-[1.02] transition-all duration-500"
             >
@@ -129,7 +129,7 @@ export function TechStack() {
                     key={tech.name}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: categoryIndex * 0.1 + techIndex * 0.05 }}
+                    transition={{ duration: 0.03, delay: categoryIndex * 0.1 + techIndex * 0.05 }}
                     viewport={{ once: true }}
                     className="flex items-center gap-4 p-4 bg-glass/50 rounded-xl border border-glass-border hover:border-accent/30 transition-all duration-300 group/tech"
                   >
@@ -174,7 +174,7 @@ export function TechStack() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.03, delay: 0.4 }}
           viewport={{ once: true }}
           className="mt-20 text-center"
         >
@@ -209,7 +209,7 @@ export function TechStack() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.03, delay: 0.6 }}
           viewport={{ once: true }}
           className="mt-16"
         >

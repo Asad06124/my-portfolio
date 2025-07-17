@@ -99,7 +99,7 @@ export function Footer() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.03 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -125,7 +125,7 @@ export function Footer() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.03, delay: 0.1 }}
               className="lg:col-span-2"
             >
               <Link 
@@ -204,7 +204,7 @@ export function Footer() {
                     key={link.name}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -20 }}
-                    transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                    transition={{ duration: 0.03, delay: 0.3 + index * 0.1 }}
                   >
                     <Link
                       href={link.href}
@@ -221,7 +221,7 @@ export function Footer() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.03, delay: 0.3 }}
             >
               <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-blue-500" />
@@ -233,7 +233,7 @@ export function Footer() {
                     key={social.name}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.8 }}
-                    transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                    transition={{ duration: 0.03, delay: 0.4 + index * 0.1 }}
                   >
                     <Link
                       href={social.href}
@@ -254,7 +254,7 @@ export function Footer() {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 10 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
+                transition={{ duration: 0.03, delay: 0.8 }}
                 className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 text-green-600 rounded-full text-sm font-medium border border-green-500/20"
               >
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -267,7 +267,7 @@ export function Footer() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.03, delay: 0.5 }}
             className="py-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4"
           >
             <div className="flex items-center gap-2 text-muted-foreground text-sm">

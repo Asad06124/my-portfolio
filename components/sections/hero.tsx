@@ -86,7 +86,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={{ opacity: isLoaded ? 1 : 0, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+            transition={{ duration: 0.03, type: "spring", stiffness: 100 }}
             className="mb-8"
           >
             <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-primary/10 via-purple-500/10 to-cyan-500/10 backdrop-blur-xl border border-primary/20 shadow-2xl">
@@ -126,7 +126,7 @@ export function Hero() {
                 className="block text-foreground"
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                transition={{ duration: 0.03, delay: 0.5 }}
               >
                 We Build
               </motion.span>
@@ -175,7 +175,7 @@ export function Hero() {
                 className="block text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-muted-foreground mt-4"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.9 }}
+                transition={{ duration: 0.03, delay: 0.9 }}
               >
                 That <span className="text-accent font-semibold">Scales</span>
               </motion.span>
@@ -186,7 +186,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: isLoaded ? 1 : 0, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.1 }}
+            transition={{ duration: 0.03, delay: 1.1 }}
             className="mb-10"
           >
             <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground max-w-5xl mx-auto leading-relaxed">
@@ -231,7 +231,7 @@ export function Hero() {
             className="flex flex-wrap justify-center gap-4 mb-12"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: isLoaded ? 1 : 0, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.3 }}
+            transition={{ duration: 0.03, delay: 1.3 }}
           >
             {features.map((feature, index) => (
               <motion.div
@@ -264,7 +264,7 @@ export function Hero() {
             className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: isLoaded ? 1 : 0, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.6 }}
+            transition={{ duration: 0.03, delay: 1.6 }}
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -337,7 +337,7 @@ export function Hero() {
                     className="text-4xl md:text-5xl font-black mb-3"
                     initial={{ scale: 1 }}
                     whileInView={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 0.6, delay: 2.2 + index * 0.1 }}
+                    transition={{ duration: 0.03, delay: 2.2 + index * 0.1 }}
                   >
                     <span className={`bg-gradient-to-r from-primary via-purple-500 to-cyan-500 bg-clip-text text-transparent`}>
                       {stat.value}
@@ -359,7 +359,7 @@ export function Hero() {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: isLoaded ? 1 : 0, y: 0 }}
-        transition={{ duration: 0.8, delay: 2.5 }}
+        transition={{ duration: 0.03, delay: 2.5 }}
       >
         <div className="flex flex-col items-center space-y-3">
           <motion.span 

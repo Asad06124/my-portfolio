@@ -174,7 +174,7 @@ export function ServicesGrid() {
                 className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-500/0 via-blue-500 to-blue-500/0 rounded-full"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
+                transition={{ duration: 0.03, delay: 0.8 }}
                 viewport={{ once: true }}
               />
             </span>
@@ -249,7 +249,7 @@ export function ServicesGrid() {
                       key={feature}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.15, delay: 0.08 + featureIndex * 0.03 }}
+                      transition={{ duration: 0.03, delay: 0.08 + featureIndex * 0.03 }}
                       viewport={{ once: true }}
                       className="flex items-center gap-4 group/feature"
                     >
@@ -275,7 +275,7 @@ export function ServicesGrid() {
                         key={tech}
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.12, delay: 0.1 + techIndex * 0.02 }}
+                        transition={{ duration: 0.03, delay: 0.1 + techIndex * 0.02 }}
                         viewport={{ once: true }}
                         whileHover={{ scale: 1.05 }}
                         className="px-4 py-2 bg-background/70 backdrop-blur-sm border border-border/50 text-foreground/80 text-sm rounded-xl hover:bg-blue-500/10 hover:border-blue-500/30 hover:text-foreground transition-all duration-300"
@@ -349,7 +349,7 @@ export function ServicesGrid() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.03, delay: 0.4 }}
           viewport={{ once: true }}
           className="relative"
         >

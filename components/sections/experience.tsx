@@ -138,7 +138,7 @@ export function Experience() {
                 className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-500/0 via-blue-500 to-blue-500/0 rounded-full"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
+                transition={{ duration: 0.03, delay: 0.8 }}
                 viewport={{ once: true }}
               />
             </span>
@@ -160,7 +160,7 @@ export function Experience() {
               key={exp.company}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.03, delay: index * 0.2 }}
               viewport={{ once: true }}
               onHoverStart={() => setHoveredExperience(exp.company)}
               onHoverEnd={() => setHoveredExperience(null)}
@@ -238,7 +238,7 @@ export function Experience() {
                           className="text-muted-foreground flex items-start group/item"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+                          transition={{ duration: 0.03, delay: 0.3 + i * 0.1 }}
                           viewport={{ once: true }}
                         >
                           <ChevronRight className="w-4 h-4 text-blue-500 mt-0.5 mr-3 flex-shrink-0 group-hover/item:translate-x-1 transition-transform" />
@@ -262,7 +262,7 @@ export function Experience() {
                           key={achievement}
                           initial={{ opacity: 0, scale: 0.8 }}
                           whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.3, delay: 0.5 + achievementIndex * 0.1 }}
+                          transition={{ duration: 0.03, delay: 0.5 + achievementIndex * 0.1 }}
                           viewport={{ once: true }}
                           className="p-3 bg-background/30 backdrop-blur-sm rounded-xl border border-border/30 text-center group/achievement hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300"
                         >
@@ -287,7 +287,7 @@ export function Experience() {
                           key={tech}
                           initial={{ opacity: 0, scale: 0.8 }}
                           whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.3, delay: 0.6 + techIndex * 0.05 }}
+                          transition={{ duration: 0.03, delay: 0.6 + techIndex * 0.05 }}
                           viewport={{ once: true }}
                           whileHover={{ scale: 1.05 }}
                           className={`px-4 py-2 bg-gradient-to-r ${exp.gradient} bg-opacity-10 text-transparent bg-clip-text font-semibold text-sm rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300`}
@@ -322,7 +322,7 @@ export function Experience() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.03, delay: 0.6 }}
           viewport={{ once: true }}
           className="mt-20"
         >

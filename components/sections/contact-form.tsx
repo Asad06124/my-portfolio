@@ -50,7 +50,7 @@ export function ContactForm() {
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+        transition={{ duration: 0.03, type: "spring", stiffness: 100 }}
         className="relative overflow-hidden rounded-3xl bg-background/50 backdrop-blur-xl border border-border/50 p-12 text-center"
       >
         {/* Success Background */}
@@ -88,7 +88,7 @@ export function ContactForm() {
             className="text-3xl font-black mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.03, delay: 0.3 }}
           >
             <span className="bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent">
               Message Sent!
@@ -99,7 +99,7 @@ export function ContactForm() {
             className="text-lg text-muted-foreground mb-8 max-w-md mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.03, delay: 0.4 }}
           >
             Thank you for reaching out! I'll get back to you within{' '}
             <span className="text-emerald-500 font-semibold">24 hours</span>.
@@ -110,7 +110,7 @@ export function ContactForm() {
             className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-2xl font-bold transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/25 hover:scale-105"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.03, delay: 0.5 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -158,7 +158,7 @@ export function ContactForm() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.03, delay: 0.3 }}
               viewport={{ once: true }}
               className="relative"
             >
@@ -193,7 +193,7 @@ export function ContactForm() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.03, delay: 0.4 }}
               viewport={{ once: true }}
               className="relative"
             >
@@ -229,7 +229,7 @@ export function ContactForm() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.03, delay: 0.5 }}
             viewport={{ once: true }}
             className="relative"
           >
@@ -264,7 +264,7 @@ export function ContactForm() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 0.03, delay: 0.6 }}
             viewport={{ once: true }}
             className="relative"
           >
@@ -302,7 +302,7 @@ export function ContactForm() {
             className="group relative w-full overflow-hidden px-8 py-5 text-lg font-bold rounded-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
+            transition={{ duration: 0.03, delay: 0.7 }}
             viewport={{ once: true }}
             whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
             whileTap={{ scale: isSubmitting ? 1 : 0.98 }}

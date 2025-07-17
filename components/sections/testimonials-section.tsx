@@ -60,7 +60,7 @@ export function TestimonialsSection() {
               key={testimonial.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.03, delay: index * 0.1 }}
               viewport={{ once: true }}
               className="professional-card p-8 group enhance-3d"
             >
@@ -121,7 +121,7 @@ export function TestimonialsSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.03, delay: 0.4 }}
           viewport={{ once: true }}
           className="mt-16 text-center"
         >

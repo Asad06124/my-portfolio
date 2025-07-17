@@ -103,7 +103,7 @@ export function ContactCTA() {
                 className="text-4xl md:text-6xl lg:text-7xl font-black mb-8 leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+                transition={{ duration: 0.03, delay: 0.3 }}
                 viewport={{ once: true }}
               >
                 Let's Build Something{' '}
@@ -142,7 +142,7 @@ export function ContactCTA() {
                 className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                transition={{ duration: 0.03, delay: 0.5 }}
                 viewport={{ once: true }}
               >
                 I'm always excited about{' '}
@@ -157,7 +157,7 @@ export function ContactCTA() {
                 className="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
+                transition={{ duration: 0.03, delay: 0.6 }}
                 viewport={{ once: true }}
               >
                 <div className="group p-6 rounded-2xl bg-background/30 backdrop-blur-sm border border-border/30 hover:border-blue-500/30 transition-all duration-300 hover:bg-blue-500/5">
@@ -184,7 +184,7 @@ export function ContactCTA() {
                 className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
+                transition={{ duration: 0.03, delay: 0.7 }}
                 viewport={{ once: true }}
               >
                 <motion.div
@@ -247,7 +247,7 @@ export function ContactCTA() {
                 className="flex flex-wrap gap-6 justify-center"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
+                transition={{ duration: 0.03, delay: 0.8 }}
                 viewport={{ once: true }}
               >
                 <Link 
@@ -281,7 +281,7 @@ export function ContactCTA() {
                 className="mt-12 inline-flex items-center gap-3 px-6 py-3 rounded-full bg-emerald-500/10 border border-emerald-500/20"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.9 }}
+                transition={{ duration: 0.03, delay: 0.9 }}
                 viewport={{ once: true }}
               >
                 <motion.div
@@ -301,7 +301,7 @@ export function ContactCTA() {
             className="grid grid-cols-3 gap-8 mt-12 max-w-md mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
+            transition={{ duration: 0.03, delay: 1 }}
             viewport={{ once: true }}
           >
             <div className="text-center">

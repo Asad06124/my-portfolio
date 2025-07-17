@@ -42,7 +42,7 @@ export function TeamHero() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.03, delay: 0.3 }}
           className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto"
         >
           {achievements.map((achievement, index) => (
@@ -50,7 +50,7 @@ export function TeamHero() {
               key={achievement.label}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+              transition={{ duration: 0.03, delay: 0.5 + index * 0.1 }}
               className="neon-card p-8 text-center group"
             >
               <div className={`w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-glass to-glass/50 flex items-center justify-center group-hover:scale-110 transition-all duration-300`}>

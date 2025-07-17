@@ -97,7 +97,7 @@ export function ProcessSection() {
               key={step.step}
               initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              transition={{ duration: 0.03, delay: index * 0.2 }}
               viewport={{ once: true }}
               className={`relative flex items-center gap-8 mb-16 last:mb-0 ${
                 index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
@@ -163,7 +163,7 @@ export function ProcessSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.03, delay: 0.4 }}
           viewport={{ once: true }}
           className="mt-20 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
         >

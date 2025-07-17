@@ -130,7 +130,7 @@ export function ContactInfo() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.03, delay: 0.3 }}
           viewport={{ once: true }}
           className="space-y-4"
         >
@@ -145,7 +145,7 @@ export function ContactInfo() {
                 key={method.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                transition={{ duration: 0.03, delay: 0.4 + index * 0.1 }}
                 viewport={{ once: true }}
                 className={`group relative p-4 rounded-2xl bg-background/30 backdrop-blur-sm border border-border/30 ${method.bgColor} transition-all duration-300 overflow-hidden`}
               >
@@ -181,7 +181,7 @@ export function ContactInfo() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.03, delay: 0.5 }}
           viewport={{ once: true }}
           className="space-y-4"
         >
@@ -196,7 +196,7 @@ export function ContactInfo() {
                 key={social.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                transition={{ duration: 0.03, delay: 0.6 + index * 0.1 }}
                 viewport={{ once: true }}
               >
                 <Link
@@ -231,7 +231,7 @@ export function ContactInfo() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
+          transition={{ duration: 0.03, delay: 0.7 }}
           viewport={{ once: true }}
           className="relative p-6 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 overflow-hidden"
         >
@@ -298,7 +298,7 @@ export function ContactInfo() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 0.03, delay: 0.8 }}
           viewport={{ once: true }}
           className="grid grid-cols-2 gap-4"
         >

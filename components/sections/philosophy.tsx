@@ -107,7 +107,7 @@ export function Philosophy() {
                 className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-pink-500/0 via-pink-500 to-pink-500/0 rounded-full"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
+                transition={{ duration: 0.03, delay: 0.8 }}
                 viewport={{ once: true }}
               />
             </span>
@@ -136,7 +136,7 @@ export function Philosophy() {
               key={value.text}
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.12, delay: 0.08 + index * 0.02 }}
+              transition={{ duration: 0.03, delay: 0.08 + index * 0.02 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.05, y: -5 }}
               className="group flex items-center gap-3 px-6 py-3 rounded-2xl bg-background/50 backdrop-blur-xl border border-border/50 hover:border-pink-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/10"
@@ -156,7 +156,7 @@ export function Philosophy() {
               key={principle.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.15, delay: index * 0.04 }}
+              transition={{ duration: 0.03, delay: index * 0.04 }}
               viewport={{ once: true }}
               onHoverStart={() => setHoveredPrinciple(principle.title)}
               onHoverEnd={() => setHoveredPrinciple(null)}
@@ -224,7 +224,7 @@ export function Philosophy() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.03, delay: 0.4 }}
           viewport={{ once: true }}
           className="relative"
         >
@@ -240,7 +240,7 @@ export function Philosophy() {
             <motion.div
               initial={{ scale: 0, rotate: -180 }}
               whileInView={{ scale: 1, rotate: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.03, delay: 0.2 }}
               viewport={{ once: true }}
               className="relative z-10"
             >
@@ -252,7 +252,7 @@ export function Philosophy() {
                 className="text-2xl md:text-3xl font-light text-foreground mb-8 leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
+                transition={{ duration: 0.03, delay: 0.4 }}
                 viewport={{ once: true }}
               >
                 "The best code is not just{' '}
@@ -266,7 +266,7 @@ export function Philosophy() {
                 className="text-lg font-semibold bg-gradient-to-r from-pink-500 via-blue-500 to-purple-500 bg-clip-text text-transparent"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                transition={{ duration: 0.03, delay: 0.6 }}
                 viewport={{ once: true }}
               >
                 — My development mantra

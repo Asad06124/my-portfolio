@@ -111,7 +111,7 @@ export function Skills() {
                 className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-500/0 via-blue-500 to-blue-500/0 rounded-full"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
+                transition={{ duration: 0.03, delay: 0.8 }}
                 viewport={{ once: true }}
               />
             </span>
@@ -132,7 +132,7 @@ export function Skills() {
               key={category.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.2 }}
+              transition={{ duration: 0.03, delay: categoryIndex * 0.2 }}
               viewport={{ once: true }}
               onHoverStart={() => setHoveredCategory(category.title)}
               onHoverEnd={() => setHoveredCategory(null)}
@@ -173,7 +173,7 @@ export function Skills() {
                       className="space-y-2"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: 0.3 + skillIndex * 0.1 }}
+                      transition={{ duration: 0.03, delay: 0.3 + skillIndex * 0.1 }}
                       viewport={{ once: true }}
                     >
                       <div className="flex justify-between items-center">
@@ -210,7 +210,7 @@ export function Skills() {
                   className="mt-8 p-4 bg-background/30 backdrop-blur-sm rounded-2xl border border-border/30"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 + categoryIndex * 0.1 }}
+                  transition={{ duration: 0.03, delay: 0.8 + categoryIndex * 0.1 }}
                   viewport={{ once: true }}
                 >
                   <div className="flex items-center justify-between">
@@ -243,7 +243,7 @@ export function Skills() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.03, delay: 0.6 }}
           viewport={{ once: true }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
         >

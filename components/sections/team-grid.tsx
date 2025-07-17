@@ -146,7 +146,7 @@ export function TeamGrid() {
                 className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-500/0 via-blue-500 to-blue-500/0 rounded-full"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
+                transition={{ duration: 0.03, delay: 0.8 }}
                 viewport={{ once: true }}
               />
             </span>
@@ -243,7 +243,7 @@ export function TeamGrid() {
                         key={achievement}
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.12, delay: 0.1 + achievementIndex * 0.02 }}
+                        transition={{ duration: 0.03, delay: 0.1 + achievementIndex * 0.02 }}
                         viewport={{ once: true }}
                         className="px-2 py-1 bg-blue-500/10 text-blue-600 text-xs font-semibold rounded-full border border-blue-500/20"
                       >
@@ -271,7 +271,7 @@ export function TeamGrid() {
                         key={skill}
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.12, delay: 0.12 + skillIndex * 0.02 }}
+                        transition={{ duration: 0.03, delay: 0.12 + skillIndex * 0.02 }}
                         viewport={{ once: true }}
                         whileHover={{ scale: 1.05 }}
                         className="px-3 py-1 bg-background/70 backdrop-blur-sm border border-border/50 text-foreground/80 text-xs rounded-xl hover:bg-blue-500/10 hover:border-blue-500/30 hover:text-foreground transition-all duration-300"
@@ -344,7 +344,7 @@ export function TeamGrid() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.03, delay: 0.4 }}
           viewport={{ once: true }}
           className="relative"
         >

@@ -105,7 +105,7 @@ export function NotFoundHero() {
             className="relative inline-block"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.03, ease: "easeOut" }}
           >
             {/* Glitch Effect Background Layers */}
             <div className="absolute inset-0 text-8xl md:text-9xl lg:text-[12rem] font-black">
@@ -134,7 +134,7 @@ export function NotFoundHero() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.03 }}
                     >
                       {glitchTexts[glitchIndex]}
                     </motion.h1>
@@ -147,7 +147,7 @@ export function NotFoundHero() {
                       initial={{ opacity: 0, x: -60 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 60 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.03 }}
                     >
                       {glitchTexts[glitchIndex]}
                     </motion.h1>
@@ -160,7 +160,7 @@ export function NotFoundHero() {
                       initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
                       animate={{ opacity: 1, rotate: 0, scale: 1 }}
                       exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.03 }}
                     >
                       {glitchTexts[glitchIndex]}
                     </motion.h1>
@@ -173,7 +173,7 @@ export function NotFoundHero() {
                       initial={{ opacity: 0, scale: 1.3, color: '#f43f5e' }}
                       animate={{ opacity: 1, scale: 1, color: '#2563eb' }}
                       exit={{ opacity: 0, scale: 0.7, color: '#a21caf' }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.03 }}
                     >
                       {glitchTexts[glitchIndex]}
                     </motion.h1>
@@ -191,7 +191,7 @@ export function NotFoundHero() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.03, delay: 0.3 }}
           className="mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-foreground mb-4">
@@ -207,7 +207,7 @@ export function NotFoundHero() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.03, delay: 0.5 }}
           className="mb-12 max-w-md mx-auto"
         >
           <div className="relative glass-card p-2">
@@ -229,7 +229,7 @@ export function NotFoundHero() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
+          transition={{ duration: 0.03, delay: 0.7 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
         >
           <Link
@@ -262,7 +262,7 @@ export function NotFoundHero() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
+          transition={{ duration: 0.03, delay: 0.9 }}
           className="max-w-4xl mx-auto"
         >
           <h3 className="text-xl font-semibold text-gray-800 dark:text-foreground mb-6">
@@ -280,7 +280,7 @@ export function NotFoundHero() {
                 key={link.name}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
+                transition={{ duration: 0.03, delay: 1 + index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="group"
               >
@@ -307,7 +307,7 @@ export function NotFoundHero() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.3 }}
+          transition={{ duration: 0.03, delay: 1.3 }}
           className="mt-16 glass-card p-8 max-w-2xl mx-auto"
         >
           <div className="flex items-center justify-center gap-3 mb-4">

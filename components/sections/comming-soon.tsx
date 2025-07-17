@@ -102,7 +102,7 @@ export function ComingSoonSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.03 }}
             className="mb-8"
           >
             <Link
@@ -118,7 +118,7 @@ export function ComingSoonSection() {
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.03, delay: 0.2 }}
             className="mb-8"
           >
             <div className="relative w-32 h-32 mx-auto">
@@ -134,7 +134,7 @@ export function ComingSoonSection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.03, delay: 0.4 }}
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 gradient-text">
               Blog Coming Soon
@@ -149,7 +149,7 @@ export function ComingSoonSection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.03, delay: 0.6 }}
             className="mb-12"
           >
             <h3 className="text-lg font-semibold text-foreground mb-6 flex items-center justify-center gap-2">
@@ -167,7 +167,7 @@ export function ComingSoonSection() {
                   key={item.label}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                  transition={{ duration: 0.03, delay: 0.8 + index * 0.1 }}
                   className="card-3d p-4 text-center"
                 >
                   <div className="text-2xl md:text-3xl font-black gradient-text mb-1">
@@ -185,7 +185,7 @@ export function ComingSoonSection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
+            transition={{ duration: 0.03, delay: 1 }}
             className="mb-12"
           >
             {!isSubscribed ? (
@@ -237,7 +237,7 @@ export function ComingSoonSection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
+            transition={{ duration: 0.03, delay: 1.2 }}
             className="mb-12"
           >
             <h3 className="text-xl font-semibold text-foreground mb-8">
@@ -249,7 +249,7 @@ export function ComingSoonSection() {
                   key={category.title}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
+                  transition={{ duration: 0.03, delay: 1.4 + index * 0.1 }}
                   className="glass-card p-6 text-center group hover:scale-105 transition-all duration-300"
                 >
                   <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-purple-600/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -266,7 +266,7 @@ export function ComingSoonSection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.6 }}
+            transition={{ duration: 0.03, delay: 1.6 }}
             className="text-center"
           >
             <p className="text-muted-foreground mb-6">

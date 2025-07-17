@@ -38,7 +38,7 @@ export function ProjectsHero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.03, delay: 0.2 }}
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               My{' '}
@@ -50,7 +50,7 @@ export function ProjectsHero() {
                   className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-accent/0 via-accent to-accent/0 rounded-full"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
+                  transition={{ duration: 0.03, delay: 0.8 }}
                 />
               </span>
             </h1>
@@ -60,7 +60,7 @@ export function ProjectsHero() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.03, delay: 0.4 }}
             className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed"
           >
             A curated collection of{' '}
@@ -73,7 +73,7 @@ export function ProjectsHero() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.03, delay: 0.6 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-2xl mx-auto"
           >
             {stats.map((stat, index) => (
@@ -81,7 +81,7 @@ export function ProjectsHero() {
                 key={stat.label}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                transition={{ duration: 0.03, delay: 0.8 + index * 0.1 }}
                 className="group p-4 rounded-2xl bg-background/50 backdrop-blur-sm border border-border/50 hover:border-accent/50 transition-all duration-300 hover:shadow-lg hover:shadow-accent/10"
               >
                 <stat.icon className="w-8 h-8 text-accent mb-2 mx-auto group-hover:scale-110 transition-transform duration-300" />
@@ -95,7 +95,7 @@ export function ProjectsHero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.03, delay: 0.8 }}
             className="flex flex-wrap gap-3 justify-center"
           >
             {techStack.map((tech, index) => (
@@ -103,7 +103,7 @@ export function ProjectsHero() {
                 key={tech.name}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
+                transition={{ duration: 0.03, delay: 1 + index * 0.1 }}
                 className="group relative px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden"
               >
                 {/* Animated Background */}
@@ -128,7 +128,7 @@ export function ProjectsHero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
+            transition={{ duration: 0.03, delay: 1.2 }}
             className="mt-16 flex flex-col items-center"
           >
             <p className="text-sm text-muted-foreground mb-4">Scroll to explore projects</p>

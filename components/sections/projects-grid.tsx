@@ -159,7 +159,7 @@ export function ProjectsGrid() {
                       opacity: hoveredProject === project.title ? 1 : 0,
                       y: hoveredProject === project.title ? 0 : 20
                     }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.03 }}
                     className="absolute bottom-4 left-4 right-4 flex gap-2"
                   >
                     <Link
@@ -213,7 +213,7 @@ export function ProjectsGrid() {
                           key={tech}
                           initial={{ opacity: 0, scale: 0.8 }}
                           whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.15, delay: techIndex * 0.03 }}
+                          transition={{ duration: 0.03, delay: techIndex * 0.03 }}
                           viewport={{ once: true }}
                           className="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full border border-accent/20 hover:bg-accent/20 transition-colors"
                         >
@@ -254,7 +254,7 @@ export function ProjectsGrid() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.03, delay: 0.4 }}
           viewport={{ once: true }}
           className="mt-20 text-center"
         >

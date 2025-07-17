@@ -44,7 +44,7 @@ export function ServicesHero() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.03, delay: 0.3 }}
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-5xl mx-auto"
         >
           {serviceHighlights.map((service, index) => (
@@ -52,7 +52,7 @@ export function ServicesHero() {
               key={service.label}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+              transition={{ duration: 0.03, delay: 0.5 + index * 0.1 }}
               className="glass-card p-6 text-center group hover:scale-105 transition-all duration-300"
             >
               <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-accent/20 to-accent-tertiary/20 flex items-center justify-center group-hover:shadow-neon transition-all duration-300">

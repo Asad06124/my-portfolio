@@ -68,7 +68,7 @@ export function ContactHero() {
             className="text-4xl md:text-6xl lg:text-7xl font-black mb-8 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.03, delay: 0.3 }}
           >
             Let's{' '}
             <span className="relative">
@@ -106,7 +106,7 @@ export function ContactHero() {
             className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.03, delay: 0.5 }}
           >
             I'm always interested in hearing about{' '}
             <span className="text-blue-500 font-semibold">new opportunities</span>, 
@@ -120,7 +120,7 @@ export function ContactHero() {
             className="grid md:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.03, delay: 0.6 }}
           >
             <div className="group p-6 rounded-2xl bg-background/30 backdrop-blur-sm border border-border/30 hover:border-blue-500/30 transition-all duration-300 hover:bg-blue-500/5">
               <MessageCircle className="w-8 h-8 text-blue-500 mb-4 mx-auto group-hover:scale-110 transition-transform" />
@@ -146,14 +146,14 @@ export function ContactHero() {
             className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.03, delay: 0.8 }}
           >
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.9 + index * 0.1 }}
+                transition={{ duration: 0.03, delay: 0.9 + index * 0.1 }}
                 className="group relative p-8 text-center rounded-3xl bg-background/50 backdrop-blur-xl border border-border/50 hover:border-blue-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/10 overflow-hidden"
               >
                 {/* Background gradient */}
@@ -182,7 +182,7 @@ export function ContactHero() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
+            transition={{ duration: 0.03, delay: 1 }}
             className="mt-12 flex items-center justify-center gap-2 text-muted-foreground"
           >
             <Heart className="w-4 h-4 text-pink-500" />
