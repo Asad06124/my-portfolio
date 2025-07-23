@@ -1,4 +1,3 @@
-"use client";
 
 import type { Metadata } from 'next'
 import { ContactHero } from '@/components/sections/contact-hero'
