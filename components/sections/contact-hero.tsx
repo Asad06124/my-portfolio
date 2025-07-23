@@ -1,5 +1,3 @@
-'use client'
-
 import { motion } from 'framer-motion'
 import { 
   MessageCircle, 
@@ -20,15 +18,8 @@ const stats = [
 
 export function ContactHero() {
   return (
-    <section className="section-padding pt-32 relative overflow-hidden">
-      {/* Enhanced Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90" />
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-emerald-500/5" />
+    <section className="section-padding pt-32 bg-background">
       
-      {/* Floating Elements */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-700" />
-
       <div className="container relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

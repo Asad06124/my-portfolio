@@ -1,5 +1,3 @@
-'use client'
-
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -23,7 +21,7 @@ const projects = [
   {
     title: 'FinTech Mobile App',
     description: 'A comprehensive financial management app with real-time analytics, investment tracking, and secure payment processing. Built for modern users who demand security and speed.',
-    image: '/projects/fintech.webp',
+    image: '/projects/fintech-optimized.webp',
     technologies: ['React Native', 'Node.js', 'PostgreSQL', 'Stripe', 'AWS'],
     liveUrl: 'https://fintech-demo.com',
     githubUrl: 'https://github.com/devstudio/fintech-app',
@@ -41,7 +39,7 @@ const projects = [
   {
     title: 'E-Learning Platform',
     description: 'Modern educational platform with live streaming, interactive courses, and AI-powered learning recommendations. Revolutionizing online education with cutting-edge technology.',
-    image: '/projects/elearning.webp',
+    image: '/projects/elearning-optimized.webp',
     technologies: ['Next.js', 'TypeScript', 'MongoDB', 'WebRTC', 'OpenAI'],
     liveUrl: 'https://elearning-demo.com',
     githubUrl: 'https://github.com/devstudio/elearning-platform',
@@ -59,7 +57,7 @@ const projects = [
   {
     title: 'Healthcare Dashboard',
     description: 'Advanced healthcare management system with patient records, appointment scheduling, and telemedicine features. Empowering healthcare providers with data-driven insights.',
-    image: '/projects/healthcare.webp',
+    image: '/projects/healthcare-optimized.webp',
     technologies: ['React', 'Python', 'FastAPI', 'PostgreSQL', 'Docker'],
     liveUrl: 'https://healthcare-demo.com',
     githubUrl: 'https://github.com/devstudio/healthcare-dashboard',
@@ -80,15 +78,8 @@ export function FeaturedProjects() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null)
 
   return (
-    <section id="projects" className="section-padding relative overflow-hidden">
-      {/* Enhanced Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90" />
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-emerald-500/5" />
+    <section id="projects" className="section-padding bg-background">
       
-      {/* Floating Elements */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-700" />
-
       <div className="container relative z-10">
         {/* Enhanced Header */}
         <motion.div

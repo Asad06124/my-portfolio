@@ -1,5 +1,3 @@
-'use client'
-
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
@@ -57,40 +55,7 @@ export function NotFoundHero() {
   }, [])
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex items-center justify-center">
-      {/* Enhanced Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 dark:from-background via-blue-50/30 dark:via-background/80 to-purple-50/30 dark:to-background" />
-      
-      {/* Animated Background Grid */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.01)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(0,217,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,217,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px] animate-pulse" />
-      </div>
-
-      {/* Floating Elements */}
-      {floatingElements.map((element, index) => (
-        <motion.div
-          key={index}
-          className={`absolute ${element.color} opacity-20 dark:opacity-30`}
-          style={{
-            left: `${10 + index * 15}%`,
-            top: `${15 + index * 10}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            rotate: [0, 360],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: element.duration,
-            delay: element.delay,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          <element.icon size={24 + index * 4} />
-        </motion.div>
-      ))}
-
+    <div className="min-h-screen flex items-center justify-center bg-background">
       {/* Main Content Container */}
       <div className="container relative z-10 text-center">
         {/* 3D 404 Number */}

@@ -1,5 +1,3 @@
-'use client'
-
 import { motion } from 'framer-motion'
 import { Code, Palette, Smartphone, TrendingUp, Database, Shield } from 'lucide-react'
 
@@ -14,7 +12,7 @@ const serviceHighlights = [
 
 export function ServicesHero() {
   return (
-    <section className="section-padding pt-32">
+    <section className="section-padding pt-32 bg-background">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

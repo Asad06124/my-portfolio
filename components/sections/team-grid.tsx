@@ -1,5 +1,3 @@
-'use client'
-
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -91,15 +89,7 @@ export function TeamGrid() {
   const [hoveredMember, setHoveredMember] = useState<string | null>(null)
 
   return (
-    <section className="section-padding relative overflow-hidden">
-      {/* Enhanced Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90" />
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-emerald-500/5" />
-      
-      {/* Floating Elements */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-700" />
-
+    <section className="section-padding bg-background">
       <div className="container relative z-10">
         {/* Enhanced Header */}
         <motion.div

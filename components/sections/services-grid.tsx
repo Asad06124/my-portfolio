@@ -1,5 +1,3 @@
-'use client'
-
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -137,12 +135,7 @@ export function ServicesGrid() {
   const [hoveredService, setHoveredService] = useState<string | null>(null)
 
   return (
-    <section className="section-padding relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-700" />
-      </div>
+    <section className="section-padding bg-background">
 
       <div className="container relative z-10">
         {/* Enhanced Header */}
