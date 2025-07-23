@@ -1,6 +1,5 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, Play, Code, Sparkles, Users, Award, Clock, Zap, Globe, Rocket, Star } from 'lucide-react'
@@ -19,14 +18,6 @@ const features = [
   { text: 'Agile development process', icon: Zap }
 ]
 
-const floatingElements = [
-  { size: 'w-20 h-20', position: 'top-20 left-20', color: 'bg-primary/10', duration: 20 },
-  { size: 'w-32 h-32', position: 'bottom-20 right-20', color: 'bg-purple-600/10', duration: 25 },
-  { size: 'w-16 h-16', position: 'top-1/3 right-1/4', color: 'bg-cyan-500/10', duration: 18 },
-  { size: 'w-24 h-24', position: 'bottom-1/3 left-1/4', color: 'bg-emerald-500/10', duration: 22 },
-  { size: 'w-12 h-12', position: 'top-1/2 left-10', color: 'bg-orange-500/10', duration: 16 },
-  { size: 'w-28 h-28', position: 'bottom-10 right-1/3', color: 'bg-pink-500/10', duration: 24 }
-]
 
 export function Hero() {
 

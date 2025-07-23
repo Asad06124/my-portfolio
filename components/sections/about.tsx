@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { Code, Zap, Users, Globe } from 'lucide-react'
 
 const highlights = [
@@ -55,7 +54,7 @@ export function About() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-            {highlights.map((item, index) => (
+            {highlights.map((item) => (
               <div
                 key={item.title}
                 className="flex items-start space-x-3"

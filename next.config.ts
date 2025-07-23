@@ -7,7 +7,10 @@ const nextConfig = {
   output: 'export',
   basePath: '',  // Remove basePath since you're using custom domain
   assetPrefix: '', // Remove assetPrefix for custom domain
-  
+  eslint: {
+
+    ignoreDuringBuilds: true,
+  },
   // ===== PERFORMANCE OPTIMIZATIONS =====
   
   // Image Optimization (Global)

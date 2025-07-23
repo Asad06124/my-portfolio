@@ -18,14 +18,6 @@ import {
   ChevronRight
 } from 'lucide-react'
 
-const floatingElements = [
-  { icon: Code, delay: 0, duration: 20, color: 'text-blue-500 dark:text-accent' },
-  { icon: Rocket, delay: 6, duration: 20, color: 'text-purple-500 dark:text-accent-secondary' },
-  { icon: Globe, delay: 10, duration: 20, color: 'text-green-500 dark:text-accent-tertiary' },
-  { icon: Sparkles, delay: 14, duration: 20, color: 'text-yellow-500 dark:text-accent' },
-  { icon: Star, delay: 20, duration: 20, color: 'text-pink-500 dark:text-accent-secondary' },
-  { icon: Zap, delay: 24, duration: 20, color: 'text-blue-400 dark:text-accent-tertiary' },
-]
 
 const glitchTexts = [
   "404",
