@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion/dist/framer-motion'
 import Link from 'next/link'
 import { ArrowRight, Play, Code, Sparkles, Users, Award, Clock, Zap, Globe, Rocket, Star } from 'lucide-react'
 

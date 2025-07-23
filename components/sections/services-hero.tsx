@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion/dist/framer-motion'
 import { Code, Palette, Smartphone, TrendingUp, Database, Shield } from 'lucide-react'
 
 const serviceHighlights = [

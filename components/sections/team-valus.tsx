@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion/dist/framer-motion'
 import { Heart, Zap, Target, Users, Lightbulb, Shield } from 'lucide-react'
 
 const values = [
