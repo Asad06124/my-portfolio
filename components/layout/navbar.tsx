@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion/dist/framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Code2, Sparkles, Rocket, Star, Zap, ChevronDown, BookOpen, Home, FolderKanban, Hammer, Info, Mail, Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 

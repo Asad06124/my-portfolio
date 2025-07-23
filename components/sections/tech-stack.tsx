@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion/dist/framer-motion'
+import { motion } from 'framer-motion'
 
 const techCategories = [
   {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion/dist/framer-motion'
+import { motion } from 'framer-motion'
 import { Send, CheckCircle, User, Mail, MessageSquare, FileText, Sparkles, Zap } from 'lucide-react'
 
 export function ContactForm() {
