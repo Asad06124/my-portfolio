@@ -40,9 +40,9 @@ export default function Footer() {
               <Mail size={13} className="text-primary/60 shrink-0" />
               theasadsahir@gmail.com
             </a>
-            <a href="tel:+923047755530" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="tel:+923176854356" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
               <Phone size={13} className="text-primary/60 shrink-0" />
-              +92 304 7755530
+              +92 317 6854356
             </a>
             <a href="https://linkedin.com/in/theasadsahir" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
               <Linkedin size={13} className="text-primary/60 shrink-0" />
@@ -50,7 +50,7 @@ export default function Footer() {
             </a>
             <span className="flex items-center gap-2 text-sm text-muted-foreground">
               <MapPin size={13} className="text-primary/60 shrink-0" />
-              Faisal Town, Lahore, Pakistan
+              Model Town, Lahore, Pakistan
             </span>
           </div>
         </div>

@@ -96,7 +96,7 @@ export default function HeroSection() {
             Asad Ullah<span className="text-primary">.</span>
           </h1>
           <h2 className="text-xl md:text-2xl text-muted-foreground font-light mb-10 max-w-xl leading-relaxed">
-            4+ years building cross-platform mobile apps — Flutter, iOS Swift, React Native.
+            3+ years building cross-platform mobile apps — Flutter, iOS Swift, React Native.
           </h2>
 
           <div className="flex items-center flex-wrap gap-6">
@@ -129,7 +129,7 @@ export default function HeroSection() {
 
           <div className="mt-14 flex flex-wrap gap-10 md:gap-16">
             {[
-              { number: "4+", label: "Years Experience" },
+              { number: "3+", label: "Years Experience" },
               { number: "5", label: "Companies" },
               { number: "1", label: "Flutter Package" },
               { number: "∞", label: "Lines Shipped" },

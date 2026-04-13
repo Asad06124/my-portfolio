@@ -79,7 +79,7 @@ export default function ExperiencePage() {
         </h2>
         <div className="h-0.5 w-10 bg-primary mt-5" />
         <p className="text-muted-foreground mt-6 max-w-xl">
-          4+ years across startups, agencies, and enterprises — building mobile products used by real people.
+          3+ years across startups, agencies, and enterprises — building mobile products used by real people.
         </p>
       </motion.div>
 

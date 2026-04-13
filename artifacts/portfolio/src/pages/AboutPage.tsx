@@ -76,7 +76,7 @@ export default function AboutPage() {
             className="md:col-span-3 space-y-5 text-muted-foreground text-base leading-relaxed"
           >
             <p>
-              I'm a <span className="text-foreground font-medium">Senior Mobile Developer</span> based in Lahore, Pakistan, with 4+ years of hands-on experience building and shipping apps in Flutter, iOS (Swift/SwiftUI), and React Native.
+              I'm a <span className="text-foreground font-medium">Senior Mobile Developer</span> based in Lahore, Pakistan, with 3+ years of hands-on experience building and shipping apps in Flutter, iOS (Swift/SwiftUI), and React Native.
             </p>
             <p>
               My work spans healthcare, e-commerce, ride-sharing, and enterprise platforms — typically taking ownership of features end-to-end, from architecture and API design to App Store submission.
@@ -86,8 +86,8 @@ export default function AboutPage() {
             </p>
             <div className="grid grid-cols-2 gap-4 pt-4">
               {[
-                { label: "Location", value: "Lahore, Pakistan" },
-                { label: "Experience", value: "4+ Years" },
+                { label: "Location", value: "Model Town, Lahore" },
+                { label: "Experience", value: "3+ Years" },
                 { label: "Education", value: "BS Computer Science, GCUF (2023)" },
                 { label: "Focus", value: "Flutter · iOS · React Native" },
               ].map((item) => (

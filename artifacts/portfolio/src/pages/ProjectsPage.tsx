@@ -9,7 +9,7 @@ const OPEN_SOURCE = [
       "A Flutter plugin for integrating Easypaisa payment gateway — Pakistan's leading mobile payment platform. Supports MA (Mobile Account) transactions and provides a clean, idiomatic Dart API for seamless checkout flows.",
     tags: ["Flutter", "Dart", "Payments", "Easypaisa", "Plugin"],
     pubLink: "https://pub.dev/packages/easypaisa_flutter",
-    githubLink: "https://github.com/theasadsahir/easypaisa_flutter",
+    githubLink: "https://github.com/Asad06124/easypaisa_flutter",
     highlight: true,
   },
 ];
