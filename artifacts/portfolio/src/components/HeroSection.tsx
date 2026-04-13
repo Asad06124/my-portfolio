@@ -1,4 +1,3 @@
-import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
 function GeometricOrb() {
@@ -24,9 +23,7 @@ function GeometricOrb() {
       >
         <div
           className="w-full h-full rounded-full"
-          style={{
-            border: "1px solid rgba(34,211,238,0.25)",
-          }}
+          style={{ border: "1px solid rgba(34,211,238,0.25)" }}
         />
       </motion.div>
       <motion.div
@@ -50,24 +47,23 @@ function GeometricOrb() {
         <div
           className="w-24 h-24 rounded-full"
           style={{
-            background: "radial-gradient(circle at 40% 40%, rgba(34,211,238,0.18) 0%, rgba(34,211,238,0.04) 60%, transparent 100%)",
+            background:
+              "radial-gradient(circle at 40% 40%, rgba(34,211,238,0.18) 0%, rgba(34,211,238,0.04) 60%, transparent 100%)",
             boxShadow: "0 0 40px rgba(34,211,238,0.12)",
           }}
         />
       </motion.div>
       {[0, 60, 120, 180, 240, 300].map((deg, i) => (
         <motion.div
-          key={i}
+          key={deg}
           className="absolute w-1.5 h-1.5 rounded-full"
           style={{
             background: "rgba(34,211,238,0.7)",
             top: "50%",
             left: "50%",
-            transformOrigin: "0 0",
             boxShadow: "0 0 6px rgba(34,211,238,0.8)",
           }}
           animate={{
-            rotate: [deg, deg + 360],
             x: [
               Math.cos((deg * Math.PI) / 180) * 130,
               Math.cos(((deg + 360) * Math.PI) / 180) * 130,

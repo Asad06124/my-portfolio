@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, Linkedin, MapPin, Github } from "lucide-react";
+import { Mail, Phone, Linkedin, MapPin } from "lucide-react";
 
 export default function ContactSection() {
   return (

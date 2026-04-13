@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import HeroSection from "@/components/HeroSection";
 import ExperienceSection from "@/components/ExperienceSection";
@@ -21,7 +20,7 @@ export default function Home() {
 
 function AboutSection() {
   return (
-    <motion.section 
+    <motion.section
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -34,7 +33,7 @@ function AboutSection() {
           <h2 className="text-3xl md:text-4xl font-bold font-display text-white">
             About<span className="text-primary">.</span>
           </h2>
-          <div className="h-1 w-12 bg-primary mt-6"></div>
+          <div className="h-1 w-12 bg-primary mt-6" />
         </div>
         <div className="w-full md:w-2/3">
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
