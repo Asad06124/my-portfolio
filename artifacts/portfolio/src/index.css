@@ -90,6 +90,48 @@ html.dark {
   animation: marquee 30s linear infinite;
 }
 
+@media print {
+  @page {
+    margin: 1.2cm 1.5cm;
+    size: A4;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html, body {
+    background: white !important;
+    color: #111 !important;
+  }
+
+  nav,
+  header,
+  footer,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  main {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Resume card — no shadows, full width */
+  [data-testid="page-resume"] > * {
+    box-shadow: none !important;
+    border-color: #e5e7eb !important;
+  }
+
+  /* Prevent page breaks inside experience items */
+  .resume-entry {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
-import { Download, Mail, Phone, Linkedin, MapPin, ExternalLink } from "lucide-react";
+import { Download, Mail, Phone, Linkedin, MapPin, ExternalLink, Printer } from "lucide-react";
+
+function printResume() {
+  window.print();
+}
 
 const EXP = [
   {
@@ -91,25 +95,22 @@ export default function ResumePage() {
           </h2>
           <div className="h-0.5 w-10 bg-primary mt-4" />
         </div>
-        <div className="flex gap-3">
-          <a
-            href="/resume.pdf"
-            download
-            className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground text-xs font-mono uppercase tracking-widest rounded-sm hover:opacity-90 transition-opacity"
+        <div className="flex gap-3 print:hidden">
+          <button
+            onClick={printResume}
+            className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground text-xs font-mono uppercase tracking-widest rounded-sm hover:opacity-90 transition-opacity cursor-pointer"
             data-testid="btn-download-resume"
           >
             <Download size={13} />
-            Download PDF
-          </a>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-2.5 border border-border text-muted-foreground text-xs font-mono uppercase tracking-widest rounded-sm hover:border-primary/40 hover:text-foreground transition-colors"
+            Save as PDF
+          </button>
+          <button
+            onClick={printResume}
+            className="flex items-center gap-2 px-5 py-2.5 border border-border text-muted-foreground text-xs font-mono uppercase tracking-widest rounded-sm hover:border-primary/40 hover:text-foreground transition-colors cursor-pointer"
           >
-            <ExternalLink size={13} />
-            View
-          </a>
+            <Printer size={13} />
+            Print
+          </button>
         </div>
       </motion.div>
 
@@ -194,7 +195,7 @@ export default function ResumePage() {
               <Divider label="Experience" />
               <div className="space-y-8">
                 {EXP.map((e, i) => (
-                  <div key={i} className="relative pl-4 border-l-2 border-border hover:border-primary/50 transition-colors">
+                  <div key={i} className="resume-entry relative pl-4 border-l-2 border-border hover:border-primary/50 transition-colors">
                     <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
                       <div>
                         <p className="text-sm font-semibold text-foreground">{e.role}</p>
@@ -220,11 +221,11 @@ export default function ResumePage() {
           </div>
         </div>
 
-        <div className="border-t border-border px-8 py-4 bg-secondary/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground font-mono">
+        <div className="border-t border-border px-8 py-4 bg-secondary/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground font-mono print:hidden">
           <p>Asad Ullah · Senior Mobile Developer · theasadsahir@gmail.com</p>
-          <a href="/resume.pdf" download className="flex items-center gap-1.5 hover:text-foreground transition-colors">
-            <Download size={11} /> Download PDF
-          </a>
+          <button onClick={printResume} className="flex items-center gap-1.5 hover:text-foreground transition-colors cursor-pointer">
+            <Download size={11} /> Save as PDF
+          </button>
         </div>
       </motion.div>
     </main>
