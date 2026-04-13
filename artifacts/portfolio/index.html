@@ -1,13 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Asad Ullah - Portfolio</title>
+    <title>Asad Ullah — Senior Mobile Developer</title>
+    <meta name="description" content="Asad Ullah — Senior Mobile App Developer with 4+ years of experience in Flutter, iOS Swift/SwiftUI, and React Native. Based in Lahore, Pakistan." />
+    <meta property="og:title" content="Asad Ullah — Senior Mobile Developer" />
+    <meta property="og:description" content="Flutter, iOS Swift, React Native developer based in Lahore, Pakistan." />
+    <meta property="og:image" content="/asad.jpg" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        var theme = stored || 'dark';
+        if (theme === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

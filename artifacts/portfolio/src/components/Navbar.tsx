@@ -1,0 +1,93 @@
+import { useState } from "react";
+import { Link, useLocation } from "wouter";
+import { motion, AnimatePresence } from "framer-motion";
+import { Moon, Sun, Menu, X } from "lucide-react";
+import { useTheme } from "@/context/ThemeContext";
+
+const NAV_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Experience", href: "/experience" },
+  { label: "Projects", href: "/projects" },
+  { label: "Resume", href: "/resume" },
+];
+
+export default function Navbar() {
+  const [location] = useLocation();
+  const { theme, toggle } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md">
+      <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <Link href="/">
+          <span className="font-display font-bold text-lg text-foreground cursor-pointer tracking-tight">
+            AU<span className="text-primary">.</span>
+          </span>
+        </Link>
+
+        <nav className="hidden md:flex items-center gap-8">
+          {NAV_LINKS.map((link) => (
+            <Link key={link.href} href={link.href}>
+              <span
+                className={`text-sm font-mono uppercase tracking-widest transition-colors cursor-pointer ${
+                  location === link.href
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {link.label}
+              </span>
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <button
+            onClick={toggle}
+            className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
+          <button
+            className="md:hidden p-2 rounded-md text-muted-foreground hover:text-foreground transition-colors"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
+      </div>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden border-t border-border/60 bg-background/95 backdrop-blur-md overflow-hidden"
+          >
+            <nav className="flex flex-col py-4 px-6 gap-4">
+              {NAV_LINKS.map((link) => (
+                <Link key={link.href} href={link.href}>
+                  <span
+                    onClick={() => setMenuOpen(false)}
+                    className={`text-sm font-mono uppercase tracking-widest cursor-pointer transition-colors block py-1 ${
+                      location === link.href
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {link.label}
+                  </span>
+                </Link>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}
