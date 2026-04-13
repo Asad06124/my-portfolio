@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Download, Mail, Phone, Linkedin, MapPin, ExternalLink, Printer } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
 
 function printResume() {
   window.print();
@@ -81,6 +82,11 @@ function Divider({ label }: { label: string }) {
 }
 
 export default function ResumePage() {
+  useSEO({
+    title: "Resume — Asad Ullah",
+    description: "View or download the resume of Asad Ullah — Senior Mobile App Developer specialising in Flutter, iOS Swift/SwiftUI, and React Native.",
+    path: "/resume",
+  });
   return (
     <main className="pt-28 pb-24 max-w-4xl mx-auto px-6" data-testid="page-resume">
       <motion.div

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import HeroSection from "@/components/HeroSection";
+import { useSEO } from "@/hooks/useSEO";
 
 const WHAT_I_DO = [
   {
@@ -63,6 +64,11 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
 }
 
 export default function Home() {
+  useSEO({
+    title: "Asad Ullah — Senior Mobile App Developer | Flutter · iOS · React Native",
+    description: "Asad Ullah is a Senior Mobile App Developer with 3+ years of experience in Flutter, iOS Swift/SwiftUI, and React Native. Based in Lahore, Pakistan.",
+    path: "/",
+  });
   return (
     <main data-testid="page-home">
       <HeroSection />

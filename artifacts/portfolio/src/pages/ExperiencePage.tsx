@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useSEO } from "@/hooks/useSEO";
 
 const EXPERIENCES = [
   {
@@ -66,6 +67,11 @@ const EXPERIENCES = [
 ];
 
 export default function ExperiencePage() {
+  useSEO({
+    title: "Experience — Asad Ullah",
+    description: "3+ years of mobile development experience at RootPointers, BritSols, Ride Options, and MicroProgramers. Flutter, iOS, and React Native engineer.",
+    path: "/experience",
+  });
   return (
     <main className="pt-28 pb-24 max-w-5xl mx-auto px-6" data-testid="page-experience">
       <motion.div

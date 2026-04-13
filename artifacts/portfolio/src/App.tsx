@@ -7,6 +7,7 @@ import AboutPage from "@/pages/AboutPage";
 import ExperiencePage from "@/pages/ExperiencePage";
 import ProjectsPage from "@/pages/ProjectsPage";
 import ResumePage from "@/pages/ResumePage";
+import ArticlesPage from "@/pages/ArticlesPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -19,6 +20,7 @@ function Router() {
         <Route path="/experience" component={ExperiencePage} />
         <Route path="/projects" component={ProjectsPage} />
         <Route path="/resume" component={ResumePage} />
+        <Route path="/articles" component={ArticlesPage} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

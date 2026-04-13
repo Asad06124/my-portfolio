@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Package, Star, GitFork } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
 
 const OPEN_SOURCE = [
   {
@@ -66,6 +67,11 @@ function TagList({ tags }: { tags: string[] }) {
 }
 
 export default function ProjectsPage() {
+  useSEO({
+    title: "Projects — Asad Ullah",
+    description: "Open source work and professional projects by Asad Ullah. Includes easypaisa_flutter — a Flutter payment plugin for Pakistan's Easypaisa gateway.",
+    path: "/projects",
+  });
   return (
     <main className="pt-28 pb-24 max-w-5xl mx-auto px-6 space-y-24" data-testid="page-projects">
       <section>

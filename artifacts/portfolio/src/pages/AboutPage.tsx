@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useSEO } from "@/hooks/useSEO";
 
 const SKILL_CATEGORIES = [
   {
@@ -41,6 +42,11 @@ function SectionHeader({ title }: { title: string }) {
 }
 
 export default function AboutPage() {
+  useSEO({
+    title: "About — Asad Ullah",
+    description: "Learn about Asad Ullah — a Senior Mobile Developer from Lahore, Pakistan with 3+ years building Flutter, iOS, and React Native apps.",
+    path: "/about",
+  });
   return (
     <main className="pt-28 pb-24 max-w-5xl mx-auto px-6 space-y-28" data-testid="page-about">
       <section>

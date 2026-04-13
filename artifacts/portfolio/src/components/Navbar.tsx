@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: "Experience", href: "/experience" },
   { label: "Projects", href: "/projects" },
   { label: "Resume", href: "/resume" },
+  { label: "Articles", href: "/articles", badge: "Soon" },
 ];
 
 export default function Navbar() {
@@ -18,7 +19,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md print:hidden">
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/">
           <span className="font-display font-bold text-lg text-foreground cursor-pointer tracking-tight">
@@ -26,17 +27,24 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-7">
           {NAV_LINKS.map((link) => (
             <Link key={link.href} href={link.href}>
-              <span
-                className={`text-sm font-mono uppercase tracking-widest transition-colors cursor-pointer ${
-                  location === link.href
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {link.label}
+              <span className="flex items-center gap-1.5 cursor-pointer">
+                <span
+                  className={`text-sm font-mono uppercase tracking-widest transition-colors ${
+                    location === link.href
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </span>
+                {link.badge && (
+                  <span className="text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 bg-primary/10 text-primary border border-primary/20 rounded-full leading-none">
+                    {link.badge}
+                  </span>
+                )}
               </span>
             </Link>
           ))}
@@ -74,13 +82,18 @@ export default function Navbar() {
                 <Link key={link.href} href={link.href}>
                   <span
                     onClick={() => setMenuOpen(false)}
-                    className={`text-sm font-mono uppercase tracking-widest cursor-pointer transition-colors block py-1 ${
+                    className={`flex items-center gap-2 text-sm font-mono uppercase tracking-widest cursor-pointer transition-colors py-1 ${
                       location === link.href
                         ? "text-primary"
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     {link.label}
+                    {link.badge && (
+                      <span className="text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 bg-primary/10 text-primary border border-primary/20 rounded-full leading-none">
+                        {link.badge}
+                      </span>
+                    )}
                   </span>
                 </Link>
               ))}
