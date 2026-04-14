@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: read
   pages: write
@@ -19,7 +22,7 @@ jobs:
         with:
           version: 8
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
       - name: Build portfolio
         run: pnpm --dir artifacts/portfolio build
       - name: Copy Pages metadata
