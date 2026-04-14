@@ -1,0 +1,47 @@
+name: Deploy portfolio to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build portfolio
+        run: pnpm --dir artifacts/portfolio build
+      - name: Copy Pages metadata
+        run: |
+          cp CNAME artifacts/portfolio/dist/public/CNAME
+          touch artifacts/portfolio/dist/public/.nojekyll
+      - name: Configure Pages
+        uses: actions/configure-pages@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: artifacts/portfolio/dist/public
+
+  deploy:
+    needs: build-and-publish
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        id: deployment
+      - name: Show deployed URL
+        run: echo "Deployed to ${{ steps.deployment.outputs.page_url }}"
