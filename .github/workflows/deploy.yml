@@ -18,11 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
-      - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+          version: 10
+      - name: Install portfolio dependencies
+        run: pnpm --dir artifacts/portfolio install --no-frozen-lockfile --ignore-scripts
       - name: Build portfolio
         run: pnpm --dir artifacts/portfolio build
       - name: Copy Pages metadata
