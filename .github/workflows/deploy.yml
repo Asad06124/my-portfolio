@@ -19,8 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10
       - name: Install portfolio dependencies
         run: pnpm --dir artifacts/portfolio install --no-frozen-lockfile --ignore-scripts
       - name: Build portfolio
