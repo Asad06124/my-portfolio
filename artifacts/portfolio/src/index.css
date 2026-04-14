@@ -92,18 +92,24 @@ html.dark {
 
 @media print {
   @page {
-    margin: 1.2cm 1.5cm;
+    margin: 1.5cm 1.8cm;
     size: A4;
   }
 
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    color: #111 !important;
+    background: white !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
   }
 
   html, body {
     background: white !important;
     color: #111 !important;
+    font-size: 11pt !important;
+    font-family: "Arial", "Helvetica", sans-serif !important;
   }
 
   nav,
@@ -117,16 +123,25 @@ html.dark {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     max-width: 100% !important;
+    margin: 0 !important;
   }
 
-  /* Resume card — no shadows, full width */
-  [data-testid="page-resume"] > * {
-    box-shadow: none !important;
-    border-color: #e5e7eb !important;
+  #resume-document {
+    border: none !important;
+    background: white !important;
+    border-radius: 0 !important;
   }
 
-  /* Prevent page breaks inside experience items */
-  .resume-entry {
+  h1, h2, h3 {
+    color: #111 !important;
+  }
+
+  a {
+    color: #111 !important;
+    text-decoration: none !important;
+  }
+
+  section {
     break-inside: avoid;
     page-break-inside: avoid;
   }
