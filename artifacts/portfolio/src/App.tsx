@@ -10,6 +10,7 @@ import ProjectsPage from "@/pages/ProjectsPage";
 import ResumePage from "@/pages/ResumePage";
 import { useEffect } from "react";
 import { Route, Switch, Router as WouterRouter, useLocation } from "wouter";
+import ContactPage from "./pages/ContactPage";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -32,6 +33,8 @@ function Router() {
         <Route path="/projects" component={ProjectsPage} />
         <Route path="/resume" component={ResumePage} />
         <Route path="/articles" component={ArticlesPage} />
+         <Route path="/contact" component={ContactPage} />
+
         <Route component={NotFound} />
       </Switch>
       <Footer />

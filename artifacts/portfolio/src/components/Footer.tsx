@@ -24,6 +24,8 @@ export default function Footer() {
               { label: "Projects", href: "/projects" },
               { label: "Resume", href: "/resume" },
               { label: "Articles", href: "/articles" },
+              { label: "Contact", href: "/contact" },
+
             ].map((l) => (
               <Link key={l.href} href={l.href}>
                 <span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">

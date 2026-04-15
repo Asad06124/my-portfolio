@@ -11,6 +11,8 @@ const NAV_LINKS = [
   { label: "Projects", href: "/projects" },
   { label: "Resume", href: "/resume" },
   { label: "Articles", href: "/articles", badge: "Soon" },
+    { label: "Contact", href: "/contact" },
+
 ];
 
 export default function Navbar() {
