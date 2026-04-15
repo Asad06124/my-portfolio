@@ -26,6 +26,7 @@ function Router() {
       <Navbar />
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/home" component={Home} />
         <Route path="/about" component={AboutPage} />
         <Route path="/experience" component={ExperiencePage} />
         <Route path="/projects" component={ProjectsPage} />

@@ -1,134 +1,248 @@
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "wouter";
+import { motion, AnimatePresence } from "framer-motion";
 import { useSEO } from "@/hooks/useSEO";
-import { motion } from "framer-motion";
-import { ArrowLeft, Briefcase, FileText, Folder, Home, User } from "lucide-react";
-import { Link } from "wouter";
 
-const QUICK_LINKS = [
-  { label: "Home", href: "/", icon: Home },
-  { label: "About", href: "/about", icon: User },
-  { label: "Experience", href: "/experience", icon: Briefcase },
-  { label: "Projects", href: "/projects", icon: Folder },
-  { label: "Resume", href: "/resume", icon: FileText },
+/* ── Typewriter hook ── */
+function useTypewriter(text: string, speed = 28, startDelay = 0) {
+  const [displayed, setDisplayed] = useState("");
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    setDisplayed("");
+    setDone(false);
+    let i = 0;
+    const timeout = setTimeout(() => {
+      const interval = setInterval(() => {
+        setDisplayed(text.slice(0, i + 1));
+        i++;
+        if (i >= text.length) {
+          clearInterval(interval);
+          setDone(true);
+        }
+      }, speed);
+      return () => clearInterval(interval);
+    }, startDelay);
+    return () => clearTimeout(timeout);
+  }, [text, speed, startDelay]);
+
+  return { displayed, done };
+}
+
+/* ── One terminal line ── */
+function TermLine({
+  prefix,
+  text,
+  color = "text-foreground",
+  delay = 0,
+  speed = 22,
+  onDone,
+}: {
+  prefix?: string;
+  text: string;
+  color?: string;
+  delay?: number;
+  speed?: number;
+  onDone?: () => void;
+}) {
+  const { displayed, done } = useTypewriter(text, speed, delay);
+
+  useEffect(() => {
+    if (done && onDone) onDone();
+  }, [done, onDone]);
+
+  return (
+    <div className="flex gap-2 leading-relaxed">
+      {prefix && <span className="text-primary shrink-0 select-none">{prefix}</span>}
+      <span className={color}>
+        {displayed}
+        {!done && (
+          <motion.span
+            animate={{ opacity: [1, 0, 1] }}
+            transition={{ duration: 0.8, repeat: Infinity }}
+            className="inline-block w-2 h-4 bg-primary align-middle ml-0.5"
+          />
+        )}
+      </span>
+    </div>
+  );
+}
+
+const NAV_CMDS = [
+  { cmd: "cd ~/home",         href: "/" },
+  { cmd: "open /about",       href: "/about" },
+  { cmd: "cat projects.md",   href: "/projects" },
+  { cmd: "less resume.pdf",   href: "/resume" },
 ];
+
+/* ── Build the terminal script based on the bad path ── */
+function buildScript(path: string) {
+  return [
+    { prefix: "$", text: `curl https://asadullah.dev${path}`, color: "text-foreground", speed: 30 },
+    { prefix: ">", text: "Resolving host...", color: "text-muted-foreground", speed: 18 },
+    { prefix: ">", text: "Connecting... 200 OK", color: "text-muted-foreground", speed: 18 },
+    { prefix: ">", text: "Fetching route...", color: "text-muted-foreground", speed: 18 },
+    { prefix: "✗", text: `RouteNotFoundError: Cannot GET ${path}`, color: "text-red-400", speed: 20 },
+    { prefix: " ", text: `  at Router.resolve (router.ts:142:7)`, color: "text-red-400/60", speed: 14 },
+    { prefix: " ", text: `  at App.navigate (index.tsx:88:3)`, color: "text-red-400/60", speed: 14 },
+    { prefix: "$", text: "node --inspect debug.js", color: "text-foreground", speed: 28 },
+    { prefix: ">", text: "Scanning registered routes...", color: "text-muted-foreground", speed: 16 },
+    { prefix: ">", text: "[ /, /about, /experience, /projects, /resume, /articles ]", color: "text-primary/80", speed: 12 },
+    { prefix: ">", text: `No match for "${path}" — 0 of 6 routes`, color: "text-yellow-400", speed: 16 },
+    { prefix: "$", text: "git stash && git checkout main", color: "text-foreground", speed: 28 },
+    { prefix: ">", text: "Switching to a valid page... where would you like to go?", color: "text-green-400", speed: 18 },
+  ];
+}
 
 export default function NotFound() {
   useSEO({
-    title: "404 - Page Not Found",
+    title: "404 — Page Not Found",
     description: "The page you are looking for does not exist.",
     path: "/404",
   });
 
+  const [location] = useLocation();
+  const script = buildScript(location);
+
+  const [step, setStep] = useState(0);
+  const [showNav, setShowNav] = useState(false);
+
+  function advance() {
+    setStep((s) => {
+      const next = s + 1;
+      if (next >= script.length) setShowNav(true);
+      return Math.min(next, script.length);
+    });
+  }
+
+  /* cumulative delay per line so each line starts after the previous */
+  const delays: number[] = [];
+  let acc = 0;
+  for (const line of script) {
+    delays.push(acc + 120);
+    acc += line.text.length * (line.speed ?? 22) + 320;
+  }
+
   return (
-    <main className="min-h-screen w-full flex flex-col items-center justify-center px-6 pt-20 pb-16 relative overflow-hidden">
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          top: "30%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "60vw",
-          height: "60vw",
-          background: "radial-gradient(circle, rgba(34,211,238,0.05) 0%, transparent 70%)",
-          filter: "blur(40px)",
-        }}
-      />
-
+    <main className="min-h-screen w-full flex flex-col items-center justify-center px-4 pt-20 pb-16">
       <motion.div
-        initial={{ opacity: 0, y: -10 }}
+        initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="font-mono text-xs text-primary/60 mb-6 tracking-widest"
+        transition={{ duration: 0.55 }}
+        className="w-full max-w-2xl"
       >
-        ERROR_CODE: 404 - RESOURCE_NOT_FOUND
-      </motion.div>
+        {/* Terminal window chrome */}
+        <div className="bg-[#0d1117] border border-border/70 rounded-lg overflow-hidden shadow-2xl shadow-black/60">
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="relative select-none mb-6"
-      >
-        <span
-          className="absolute inset-0 font-display font-bold text-[8rem] sm:text-[12rem] md:text-[16rem] leading-none tracking-tighter"
-          style={{
-            WebkitTextStroke: "1px rgba(34,211,238,0.15)",
-            color: "transparent",
-            transform: "translate(3px, 3px)",
-            userSelect: "none",
-          }}
-          aria-hidden
-        >
-          404
-        </span>
-        <span className="relative font-display font-bold text-[8rem] sm:text-[12rem] md:text-[16rem] leading-none tracking-tighter text-foreground">
-          4<span className="text-primary">0</span>4
-        </span>
-      </motion.div>
+          {/* Title bar */}
+          <div className="flex items-center gap-2 px-4 py-3 bg-[#161b22] border-b border-border/60">
+            <span className="w-3 h-3 rounded-full bg-red-500/80" />
+            <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
+            <span className="w-3 h-3 rounded-full bg-green-500/80" />
+            <span className="flex-1 text-center text-xs font-mono text-muted-foreground/60 select-none">
+              asad@portfolio: ~{location}
+            </span>
+          </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="text-center mb-12"
-      >
-        <h1 className="text-xl md:text-2xl font-display font-semibold text-foreground mb-3">
-          Page not found<span className="text-primary">.</span>
-        </h1>
-        <p className="text-muted-foreground text-sm max-w-sm mx-auto leading-relaxed font-mono">
-          The page you're looking for doesn't exist or has been moved.
-          <br />
-          Here are some places you can go instead.
-        </p>
-      </motion.div>
+          {/* Terminal body */}
+          <div className="p-5 md:p-7 font-mono text-sm space-y-1.5 min-h-[380px]">
 
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.32 }}
-        className="flex flex-wrap justify-center gap-3 mb-10"
-      >
-        {QUICK_LINKS.map((link, i) => {
-          const Icon = link.icon;
-          return (
-            <motion.div
-              key={link.href}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.38 + i * 0.07 }}
-            >
-              <Link href={link.href}>
-                <span className="flex items-center gap-2 px-4 py-2.5 border border-border/60 rounded-sm text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground hover:border-primary/40 hover:bg-primary/5 transition-all cursor-pointer">
-                  <Icon size={12} className="text-primary/70" />
-                  {link.label}
-                </span>
-              </Link>
-            </motion.div>
-          );
-        })}
-      </motion.div>
+            {script.slice(0, step + 1).map((line, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                {i < step ? (
+                  /* Already-finished lines show instantly */
+                  <div className="flex gap-2 leading-relaxed">
+                    {line.prefix && (
+                      <span
+                        className={`shrink-0 select-none ${
+                          line.prefix === "✗"
+                            ? "text-red-400"
+                            : line.prefix === "$"
+                            ? "text-primary"
+                            : "text-muted-foreground"
+                        }`}
+                      >
+                        {line.prefix}
+                      </span>
+                    )}
+                    <span className={line.color}>{line.text}</span>
+                  </div>
+                ) : (
+                  /* Current line types out */
+                  <TermLine
+                    prefix={line.prefix}
+                    text={line.text}
+                    color={line.color}
+                    speed={line.speed}
+                    delay={0}
+                    onDone={advance}
+                  />
+                )}
+              </motion.div>
+            ))}
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.75 }}
-      >
-        <Link href="/">
-          <motion.span
-            whileHover={{ x: -3 }}
-            className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+            {/* Navigation commands */}
+            <AnimatePresence>
+              {showNav && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="pt-4 space-y-2"
+                >
+                  {NAV_CMDS.map((item, i) => (
+                    <motion.div
+                      key={item.href}
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.25 + i * 0.1 }}
+                    >
+                      <Link href={item.href}>
+                        <span className="flex items-center gap-2 group cursor-pointer w-fit">
+                          <span className="text-primary group-hover:text-primary/70 transition-colors">$</span>
+                          <span className="text-foreground group-hover:text-primary transition-colors underline-offset-2 group-hover:underline">
+                            {item.cmd}
+                          </span>
+                        </span>
+                      </Link>
+                    </motion.div>
+                  ))}
+
+                  {/* Blinking prompt */}
+                  <div className="flex gap-2 pt-1">
+                    <span className="text-primary">$</span>
+                    <motion.span
+                      animate={{ opacity: [1, 0, 1] }}
+                      transition={{ duration: 0.9, repeat: Infinity }}
+                      className="inline-block w-2 h-4 bg-primary align-middle"
+                    />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Skip button */}
+        {!showNav && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            className="text-center mt-5"
           >
-            <ArrowLeft size={13} />
-            Back to Home
-          </motion.span>
-        </Link>
-      </motion.div>
-
-      <motion.div
-        className="absolute bottom-10 right-10 font-mono text-xs text-primary/30 hidden md:block"
-        animate={{ opacity: [1, 0, 1] }}
-        transition={{ duration: 1.1, repeat: Infinity }}
-      >
-        _
+            <button
+              onClick={() => { setStep(script.length); setShowNav(true); }}
+              className="text-xs font-mono text-muted-foreground/50 hover:text-muted-foreground transition-colors cursor-pointer"
+            >
+              skip animation →
+            </button>
+          </motion.div>
+        )}
       </motion.div>
     </main>
   );
