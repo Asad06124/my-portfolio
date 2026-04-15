@@ -79,6 +79,19 @@
         }
       })();
     </script>
+
+    <!-- GitHub Pages SPA route recovery -->
+    <script>
+      (function() {
+        var redirect = sessionStorage.getItem('gh-pages-spa-redirect');
+        if (redirect) {
+          sessionStorage.removeItem('gh-pages-spa-redirect');
+          if (redirect !== window.location.pathname + window.location.search + window.location.hash) {
+            window.history.replaceState(null, '', redirect);
+          }
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
