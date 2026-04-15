@@ -1,72 +1,89 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 
+function Dot({ size = 10, glow = true }: { size?: number; glow?: boolean }) {
+  return (
+    <div
+      style={{
+        width: size,
+        height: size,
+        borderRadius: "50%",
+        background: "rgba(34,211,238,1)",
+        boxShadow: glow ? "0 0 8px 2px rgba(34,211,238,0.8)" : undefined,
+        position: "absolute",
+        top: -(size / 2),
+        left: "50%",
+        transform: "translateX(-50%)",
+      }}
+    />
+  );
+}
+
 function ProfileOrb() {
   return (
-    <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 shrink-0 pointer-events-none select-none">
+    <div
+      className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 shrink-0 pointer-events-none select-none"
+    >
+      {/* Outer ring — rotates CW — 1 large dot at top, 1 small dot ~240° */}
       <motion.div
         className="absolute inset-0 rounded-full"
         animate={{ rotate: 360 }}
         transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-        style={{
-          background: "conic-gradient(from 0deg, rgba(34,211,238,0.75), rgba(34,211,238,0.08) 22%, rgba(34,211,238,0.08) 78%, rgba(34,211,238,0.75))",
-          WebkitMask: "radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px))",
-          mask: "radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px))",
-        }}
-      />
-      <motion.div
-        className="absolute inset-5 rounded-full"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
-        style={{
-          background: "conic-gradient(from 0deg, rgba(34,211,238,0.6), rgba(34,211,238,0.06) 25%, rgba(34,211,238,0.06) 75%, rgba(34,211,238,0.6))",
-          WebkitMask: "radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px))",
-          mask: "radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px))",
-        }}
-      />
+        style={{ border: "1.5px solid rgba(34,211,238,0.35)" }}
+      >
+        <Dot size={10} />
+        {/* Second dot rotated 240° on this ring — wrap in a rotated div */}
+        <div style={{ position: "absolute", inset: 0, rotate: "240deg" }}>
+          <Dot size={6} glow={false} />
+        </div>
+      </motion.div>
 
+      {/* Middle ring — rotates CCW — 1 dot at top, 1 at 150° */}
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-6 rounded-full"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+        style={{ border: "1px solid rgba(34,211,238,0.22)" }}
+      >
+        <Dot size={8} />
+        <div style={{ position: "absolute", inset: 0, rotate: "150deg" }}>
+          <Dot size={5} glow={false} />
+        </div>
+      </motion.div>
+
+      {/* Inner decorative ring — slow CW — 1 tiny dot */}
+      <motion.div
+        className="absolute inset-12 rounded-full"
         animate={{ rotate: 360 }}
-        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+        style={{ border: "1px dashed rgba(34,211,238,0.12)" }}
       >
-        <span
-          className="absolute top-0 left-1/2 w-2 h-2 rounded-full -translate-x-1/2 -translate-y-1/2"
-          style={{ background: "rgba(34,211,238,0.95)", boxShadow: "0 0 8px rgba(34,211,238,0.8)" }}
-        />
+        <Dot size={4} glow={false} />
       </motion.div>
 
-      <motion.div
-        className="absolute inset-5"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
-      >
-        <span
-          className="absolute top-0 left-1/2 w-1.5 h-1.5 rounded-full -translate-x-1/2 -translate-y-1/2"
-          style={{ background: "rgba(34,211,238,0.85)", boxShadow: "0 0 7px rgba(34,211,238,0.6)" }}
-        />
-      </motion.div>
-
+      {/* Profile photo */}
       <div
         className="absolute inset-10 rounded-full overflow-hidden"
         style={{
-          boxShadow: "0 0 0 1px rgba(34,211,238,0.25), 0 0 40px rgba(34,211,238,0.08)",
+          boxShadow:
+            "0 0 0 1.5px rgba(34,211,238,0.3), 0 0 40px rgba(34,211,238,0.1)",
         }}
       >
-        <div className="absolute inset-0 rounded-full overflow-hidden">
-          <img
-            src="/asad.jpg"
-            alt="Asad Ullah"
-            className="w-full h-full object-cover object-top"
-            style={{ mixBlendMode: "luminosity", filter: "contrast(1.05) brightness(0.92)" }}
-          />
-          <div
-            className="absolute inset-0 rounded-full"
-            style={{
-              background: "radial-gradient(circle at center, transparent 55%, rgba(14,17,23,0.85) 100%)",
-            }}
-          />
-        </div>
+        <img
+          src="/asad.jpg"
+          alt="Asad Ullah"
+          className="w-full h-full object-cover object-top"
+          style={{
+            filter: "contrast(1.05) brightness(0.93)",
+          }}
+        />
+        <div
+          className="absolute inset-0 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle at center, transparent 55%, rgba(10,13,20,0.7) 100%)",
+          }}
+        />
       </div>
     </div>
   );
@@ -135,15 +152,17 @@ export default function HeroSection() {
               ].map((stat) => (
                 <div key={stat.label}>
                   <p className="text-3xl font-bold font-display text-foreground">{stat.number}</p>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1 font-mono">{stat.label}</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1 font-mono">
+                    {stat.label}
+                  </p>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Profile orb — centered on mobile, right-aligned on desktop */}
+          {/* Profile orb */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
             className="flex justify-center md:justify-end shrink-0"

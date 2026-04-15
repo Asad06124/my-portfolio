@@ -1,31 +1,28 @@
-import { Switch, Route, Router as WouterRouter } from "wouter";
-import { useEffect } from "react";
-import { useLocation } from "wouter";
-import { ThemeProvider } from "@/context/ThemeContext";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Home from "@/pages/Home";
+import Navbar from "@/components/Navbar";
+import { ThemeProvider } from "@/context/ThemeContext";
 import AboutPage from "@/pages/AboutPage";
+import ArticlesPage from "@/pages/ArticlesPage";
 import ExperiencePage from "@/pages/ExperiencePage";
+import Home from "@/pages/Home";
+import NotFound from "@/pages/not-found";
 import ProjectsPage from "@/pages/ProjectsPage";
 import ResumePage from "@/pages/ResumePage";
-import ArticlesPage from "@/pages/ArticlesPage";
-import NotFound from "@/pages/not-found";
+import { useEffect } from "react";
+import { Route, Switch, Router as WouterRouter, useLocation } from "wouter";
 
-function ScrollToTopOnRouteChange() {
+function ScrollToTop() {
   const [location] = useLocation();
-
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, [location]);
-
   return null;
 }
 
 function Router() {
   return (
     <>
-      <ScrollToTopOnRouteChange />
+      <ScrollToTop />
       <Navbar />
       <Switch>
         <Route path="/" component={Home} />
@@ -45,9 +42,7 @@ function App() {
   return (
     <ThemeProvider>
       <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-        <div>
-          <Router />
-        </div>
+        <Router />
       </WouterRouter>
     </ThemeProvider>
   );

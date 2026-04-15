@@ -1,18 +1,5 @@
-<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-	<defs>
-		<linearGradient id="bg" x1="20" y1="14" x2="164" y2="170" gradientUnits="userSpaceOnUse">
-			<stop stop-color="#0D1724"/>
-			<stop offset="1" stop-color="#0A0F17"/>
-		</linearGradient>
-		<linearGradient id="ring" x1="40" y1="28" x2="148" y2="154" gradientUnits="userSpaceOnUse">
-			<stop stop-color="#2DD4E7"/>
-			<stop offset="1" stop-color="#20B7D6"/>
-		</linearGradient>
-	</defs>
-
-	<rect x="8" y="8" width="164" height="164" rx="46" fill="url(#bg)"/>
-	<circle cx="90" cy="90" r="52" stroke="url(#ring)" stroke-width="9"/>
-	<circle cx="90" cy="38" r="8" fill="#2DD4E7"/>
-	<path d="M67.2 118L75.8 64H85.1L93.8 118H84.6L82.8 104.5H76.9L75.1 118H67.2ZM78.1 95.4H81.6L80 80.2L78.1 95.4Z" fill="#E8F6F8"/>
-	<path d="M97.8 64H106.8V102.2C106.8 106.2 108.3 108.2 111.3 108.2C114.3 108.2 115.8 106.2 115.8 102.2V64H124.8V101.8C124.8 113 119.2 118.8 111.3 118.8C103.4 118.8 97.8 113 97.8 101.8V64Z" fill="#E8F6F8"/>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="8" fill="#0a0d14"/>
+  <text x="4" y="23" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#22d3ee" letter-spacing="-1">AU</text>
+  <circle cx="28" cy="6" r="3" fill="#22d3ee"/>
 </svg>

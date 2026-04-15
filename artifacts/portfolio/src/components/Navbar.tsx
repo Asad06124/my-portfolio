@@ -1,8 +1,8 @@
+import { useTheme } from "@/context/ThemeContext";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { motion, AnimatePresence } from "framer-motion";
-import { Moon, Sun, Menu, X } from "lucide-react";
-import { useTheme } from "@/context/ThemeContext";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
