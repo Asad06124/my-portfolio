@@ -1,4 +1,4 @@
-import { Mail, Phone, Linkedin, MapPin } from "lucide-react";
+import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Footer() {
@@ -10,7 +10,7 @@ export default function Footer() {
             Asad Ullah<span className="text-primary">.</span>
           </p>
           <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-            Senior Mobile Developer — Flutter, iOS Swift, React Native.
+            Mobile Developer — Flutter, iOS Swift, React Native.
           </p>
         </div>
 
@@ -37,9 +37,9 @@ export default function Footer() {
         <div>
           <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-4">Contact</p>
           <div className="flex flex-col gap-3">
-            <a href="mailto:theasadsahir@gmail.com" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="mailto:asadbalqani@gmail.com" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
               <Mail size={13} className="text-primary/60 shrink-0" />
-              theasadsahir@gmail.com
+              asadbalqani@gmail.com
             </a>
             <a href="tel:+923176854356" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
               <Phone size={13} className="text-primary/60 shrink-0" />

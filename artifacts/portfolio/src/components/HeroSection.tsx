@@ -106,7 +106,7 @@ export default function HeroSection() {
             className="flex-1 min-w-0"
           >
             <p className="text-primary tracking-widest uppercase text-xs font-mono mb-4">
-              // Senior Mobile Developer · Lahore, Pakistan
+              // Mobile Developer · Lahore, Pakistan
             </p>
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold font-display text-foreground mb-5 tracking-tight">
               Asad Ullah<span className="text-primary">.</span>
@@ -136,7 +136,7 @@ export default function HeroSection() {
               </Link>
 
               <a
-                href="mailto:theasadsahir@gmail.com"
+                href="mailto:asadbalqani@gmail.com"
                 className="text-muted-foreground hover:text-foreground border-b border-transparent hover:border-border pb-0.5 transition-colors uppercase tracking-widest text-xs font-mono"
               >
                 Contact

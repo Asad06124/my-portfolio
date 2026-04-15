@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
-import { Link } from "wouter";
 import HeroSection from "@/components/HeroSection";
 import { useSEO } from "@/hooks/useSEO";
+import { motion } from "framer-motion";
+import { Link } from "wouter";
 
 const WHAT_I_DO = [
   {
@@ -65,8 +65,8 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
 
 export default function Home() {
   useSEO({
-    title: "Asad Ullah — Senior Mobile App Developer | Flutter · iOS · React Native",
-    description: "Asad Ullah is a Senior Mobile App Developer with 3+ years of experience in Flutter, iOS Swift/SwiftUI, and React Native. Based in Lahore, Pakistan.",
+    title: "Asad Ullah — Mobile App Developer | Flutter · iOS · React Native",
+    description: "Asad Ullah is a Mobile App Developer with 3+ years of experience in Flutter, iOS Swift/SwiftUI, and React Native. Based in Lahore, Pakistan.",
     path: "/",
   });
   return (
@@ -189,7 +189,7 @@ export default function Home() {
 
           <div className="space-y-6">
             {[
-              { role: "Senior Flutter Developer", company: "RootPointers", period: "Jan 2025 – Present", location: "Lahore" },
+              { role: "Flutter Developer", company: "RootPointers", period: "Jan 2025 – Present", location: "Lahore" },
               { role: "Flutter Developer", company: "BritSols", period: "Jun 2024 – Dec 2024", location: "London (Remote)" },
               { role: "Associate Flutter Developer", company: "Ride Options", period: "Aug 2023 – May 2024", location: "Lahore" },
               { role: "Junior Flutter Developer", company: "MicroProgramers", period: "Jun 2022 – Aug 2023", location: "Layyah" },
@@ -230,7 +230,7 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
-              href="mailto:theasadsahir@gmail.com"
+              href="mailto:asadbalqani@gmail.com"
               className="px-8 py-3.5 bg-primary text-primary-foreground text-sm font-mono uppercase tracking-widest rounded-sm hover:opacity-90 transition-opacity"
             >
               Send an Email

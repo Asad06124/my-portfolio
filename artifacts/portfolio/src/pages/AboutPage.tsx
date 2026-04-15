@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
 import { useSEO } from "@/hooks/useSEO";
+import { motion } from "framer-motion";
 
 const SKILL_CATEGORIES = [
   {
@@ -44,7 +44,7 @@ function SectionHeader({ title }: { title: string }) {
 export default function AboutPage() {
   useSEO({
     title: "About — Asad Ullah",
-    description: "Learn about Asad Ullah — a Senior Mobile Developer from Lahore, Pakistan with 3+ years building Flutter, iOS, and React Native apps.",
+    description: "Learn about Asad Ullah — a Mobile Developer from Lahore, Pakistan with 3+ years building Flutter, iOS, and React Native apps.",
     path: "/about",
   });
   return (
@@ -82,7 +82,7 @@ export default function AboutPage() {
             className="md:col-span-3 space-y-5 text-muted-foreground text-base leading-relaxed"
           >
             <p>
-              I'm a <span className="text-foreground font-medium">Senior Mobile Developer</span> based in Lahore, Pakistan, with 3+ years of hands-on experience building and shipping apps in Flutter, iOS (Swift/SwiftUI), and React Native.
+              I'm a <span className="text-foreground font-medium">Mobile Developer</span> based in Lahore, Pakistan, with 3+ years of hands-on experience building and shipping apps in Flutter, iOS (Swift/SwiftUI), and React Native.
             </p>
             <p>
               My work spans healthcare, e-commerce, ride-sharing, and enterprise platforms — typically taking ownership of features end-to-end, from architecture and API design to App Store submission.

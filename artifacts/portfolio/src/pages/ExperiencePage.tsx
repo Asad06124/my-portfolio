@@ -1,9 +1,9 @@
-import { motion } from "framer-motion";
 import { useSEO } from "@/hooks/useSEO";
+import { motion } from "framer-motion";
 
 const EXPERIENCES = [
   {
-    role: "Senior Flutter Developer",
+    role: "Flutter Developer",
     company: "RootPointers",
     location: "Lahore",
     period: "Jan 2025 – Present",

@@ -8,7 +8,7 @@ function printResume() {
 
 const EXP = [
   {
-    role: "Senior Flutter Developer",
+    role: "Mobile App Developer",
     company: "RootPointers",
     period: "Jan 2025 – Present",
     location: "Lahore, Pakistan",
@@ -76,7 +76,7 @@ const SKILLS_FLAT = [
 export default function ResumePage() {
   useSEO({
     title: "Resume — Asad Ullah",
-    description: "View or download the resume of Asad Ullah — Senior Mobile App Developer specialising in Flutter, iOS Swift/SwiftUI, and React Native.",
+    description: "View or download the resume of Asad Ullah — Mobile App Developer specialising in Flutter, iOS Swift/SwiftUI, and React Native.",
     path: "/resume",
   });
 
@@ -127,7 +127,7 @@ export default function ResumePage() {
         <div className="p-8 md:p-10 border-b border-border print:border-b-2 print:border-gray-300">
           <h1 className="text-3xl font-bold text-foreground print:text-black print:text-4xl">Asad Ullah</h1>
           <p className="text-primary font-semibold text-base mt-1 print:text-black print:font-bold">
-            Senior Mobile App Developer — Flutter · iOS Swift/SwiftUI · React Native
+            Mobile App Developer — Flutter · iOS Swift/SwiftUI · React Native
           </p>
           <p className="text-muted-foreground text-sm mt-3 max-w-2xl leading-relaxed print:text-black">
             Mobile Developer with 3+ years of experience delivering cross-platform apps in Flutter, iOS (Swift/SwiftUI), and React Native. Specialised in clean architecture, CI/CD pipelines, App Store deployment, and high-performance UI engineering.
@@ -135,7 +135,7 @@ export default function ResumePage() {
 
           {/* Contact row */}
           <div className="flex flex-wrap gap-x-5 gap-y-2 mt-5 text-xs text-muted-foreground print:text-black print:text-sm">
-            <a href="mailto:theasadsahir@gmail.com" className="flex items-center gap-1.5 hover:text-foreground transition-colors print:no-underline">
+            <a href="mailto:asadbalqani@gmail.com" className="flex items-center gap-1.5 hover:text-foreground transition-colors print:no-underline">
               <Mail size={12} className="text-primary print:text-black" />
               theasadsahir@gmail.com
             </a>
@@ -246,7 +246,7 @@ export default function ResumePage() {
 
         {/* Footer bar */}
         <div className="border-t border-border px-8 py-4 bg-secondary/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground font-mono print:hidden">
-          <p>Asad Ullah · Senior Mobile Developer · theasadsahir@gmail.com</p>
+          <p>Asad Ullah · Mobile Developer · asadbalqani@gmail.com</p>
           <button onClick={printResume} className="flex items-center gap-1.5 hover:text-foreground transition-colors cursor-pointer">
             <Download size={11} /> Save as PDF
           </button>
