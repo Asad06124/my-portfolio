@@ -52,7 +52,7 @@ export default function AboutPage() {
       <section>
         <SectionHeader title="About Me" />
         <div className="grid md:grid-cols-5 gap-12 items-start">
-          <div className="md:col-span-2 flex justify-center md:justify-start">
+                    <div className="hidden md:flex md:col-span-2 justify-center md:justify-start">
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}

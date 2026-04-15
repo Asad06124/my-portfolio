@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import { Download, Mail, Phone, Linkedin, MapPin, Github, Globe, Printer } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
+import { motion } from "framer-motion";
+import { Download, Github, Globe, Linkedin, Mail, MapPin, Phone, Printer } from "lucide-react";
 
 function printResume() {
   window.print();
@@ -172,7 +172,7 @@ export default function ResumePage() {
             </h2>
             <div className="space-y-2">
               {SKILLS_FLAT.map((s) => (
-                <div key={s.label} className="flex flex-col sm:flex-row sm:gap-2 text-sm print:text-sm">
+                                <div key={s.label} className="skill-row flex flex-col sm:flex-row sm:gap-2 text-sm print:text-sm">
                   <span className="font-semibold text-foreground min-w-[140px] shrink-0 print:text-black">{s.label}:</span>
                   <span className="text-muted-foreground print:text-black">{s.value}</span>
                 </div>
