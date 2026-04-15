@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
-    <!-- Primary SEO -->
-    <title>Asad Ullah — Senior Mobile App Developer | Flutter · iOS · React Native</title>
-    <meta name="description" content="Asad Ullah is a Senior Mobile App Developer with 3+ years of experience building Flutter, iOS Swift/SwiftUI, and React Native apps. Based in Lahore, Pakistan. Open to full-time roles and freelance projects." />
-    <meta name="keywords" content="Asad Ullah, Flutter Developer, iOS Developer, React Native, Mobile App Developer, Lahore Pakistan, SwiftUI, Dart, Firebase" />
-    <meta name="author" content="Asad Ullah" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0a0d14" />
-    <link rel="canonical" href="https://asadullah.dev/" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://asadullah.dev/" />
-    <meta property="og:title" content="Asad Ullah — Senior Mobile App Developer" />
-    <meta property="og:description" content="Flutter, iOS Swift/SwiftUI, and React Native developer with 3+ years of experience. Based in Lahore, Pakistan." />
-    <meta property="og:image" content="https://asadullah.dev/asad.jpg" />
-    <meta property="og:image:alt" content="Asad Ullah — Senior Mobile App Developer" />
-    <meta property="og:site_name" content="Asad Ullah Portfolio" />
-    <meta property="og:locale" content="en_US" />
+  <!-- Primary SEO -->
+  <title>Asad Ullah — Senior Mobile App Developer | Flutter · iOS · React Native</title>
+  <meta name="description"
+    content="Asad Ullah is a Senior Mobile App Developer with 3+ years of experience building Flutter, iOS Swift/SwiftUI, and React Native apps. Based in Lahore, Pakistan. Open to full-time roles and freelance projects." />
+  <meta name="keywords"
+    content="Asad Ullah, Flutter Developer, iOS Developer, React Native, Mobile App Developer, Lahore Pakistan, SwiftUI, Dart, Firebase" />
+  <meta name="author" content="Asad Ullah" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0a0d14" />
+  <link rel="canonical" href="https://asadullah.dev/" />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Asad Ullah — Senior Mobile App Developer" />
-    <meta name="twitter:description" content="Flutter, iOS Swift/SwiftUI, and React Native developer. Based in Lahore, Pakistan." />
-    <meta name="twitter:image" content="https://asadullah.dev/asad.jpg" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://asadullah.dev/" />
+  <meta property="og:title" content="Asad Ullah — Senior Mobile App Developer" />
+  <meta property="og:description"
+    content="Flutter, iOS Swift/SwiftUI, and React Native developer with 3+ years of experience. Based in Lahore, Pakistan." />
+  <meta property="og:image" content="https://asadullah.dev/asad.jpg" />
+  <meta property="og:image:alt" content="Asad Ullah — Senior Mobile App Developer" />
+  <meta property="og:site_name" content="Asad Ullah Portfolio" />
+  <meta property="og:locale" content="en_US" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Asad Ullah — Senior Mobile App Developer" />
+  <meta name="twitter:description"
+    content="Flutter, iOS Swift/SwiftUI, and React Native developer. Based in Lahore, Pakistan." />
+  <meta name="twitter:image" content="https://asadullah.dev/asad.jpg" />
 
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
@@ -63,38 +68,42 @@
     }
     </script>
 
-    <!-- Preconnect for Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Preconnect for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Instant theme (no flash) -->
-    <script>
-      (function() {
-        var stored = localStorage.getItem('theme');
-        var theme = stored || 'dark';
-        if (theme === 'light') {
-          document.documentElement.classList.remove('dark');
-        } else {
-          document.documentElement.classList.add('dark');
-        }
-      })();
-    </script>
+  <!-- Instant theme (no flash) -->
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme');
+      var theme = stored || 'dark';
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
 
-    <!-- GitHub Pages SPA route recovery -->
-    <script>
-      (function() {
-        var redirect = sessionStorage.getItem('gh-pages-spa-redirect');
-        if (redirect) {
-          sessionStorage.removeItem('gh-pages-spa-redirect');
-          if (redirect !== window.location.pathname + window.location.search + window.location.hash) {
-            window.history.replaceState(null, '', redirect);
-          }
-        }
-      })();
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <!-- GitHub Pages SPA route recovery -->
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var redirect = params.get('p');
+      if (!redirect) return;
+
+      params.delete('p');
+      var remainingQuery = params.toString();
+      var suffix = remainingQuery ? (redirect.indexOf('?') >= 0 ? '&' : '?') + remainingQuery : '';
+      var target = redirect + suffix;
+      window.history.replaceState(null, '', target);
+    })();
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
