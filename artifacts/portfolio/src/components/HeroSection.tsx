@@ -8,42 +8,44 @@ function ProfileOrb() {
         className="absolute inset-0 rounded-full"
         animate={{ rotate: 360 }}
         transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-        style={{ border: "1px solid rgba(34,211,238,0.3)" }}
+        style={{
+          background: "conic-gradient(from 0deg, rgba(34,211,238,0.75), rgba(34,211,238,0.08) 22%, rgba(34,211,238,0.08) 78%, rgba(34,211,238,0.75))",
+          WebkitMask: "radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px))",
+          mask: "radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px))",
+        }}
       />
       <motion.div
         className="absolute inset-5 rounded-full"
         animate={{ rotate: -360 }}
         transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
-        style={{ border: "1px solid rgba(34,211,238,0.18)" }}
+        style={{
+          background: "conic-gradient(from 0deg, rgba(34,211,238,0.6), rgba(34,211,238,0.06) 25%, rgba(34,211,238,0.06) 75%, rgba(34,211,238,0.6))",
+          WebkitMask: "radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px))",
+          mask: "radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px))",
+        }}
       />
 
-      {[0, 72, 144, 216, 288].map((deg, i) => {
-        const rad = (deg * Math.PI) / 180;
-        const r = 112;
-        return (
-          <motion.div
-            key={deg}
-            className="absolute w-1.5 h-1.5 rounded-full"
-            style={{
-              background: "rgba(34,211,238,0.7)",
-              top: "50%",
-              left: "50%",
-              marginTop: -3,
-              marginLeft: -3,
-              boxShadow: "0 0 6px rgba(34,211,238,0.7)",
-            }}
-            animate={{
-              x: [Math.cos(rad) * r, Math.cos(rad + Math.PI * 2) * r],
-              y: [Math.sin(rad) * r, Math.sin(rad + Math.PI * 2) * r],
-            }}
-            transition={{
-              duration: 14 + i * 2.5,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        );
-      })}
+      <motion.div
+        className="absolute inset-0"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+      >
+        <span
+          className="absolute top-0 left-1/2 w-2 h-2 rounded-full -translate-x-1/2 -translate-y-1/2"
+          style={{ background: "rgba(34,211,238,0.95)", boxShadow: "0 0 8px rgba(34,211,238,0.8)" }}
+        />
+      </motion.div>
+
+      <motion.div
+        className="absolute inset-5"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
+      >
+        <span
+          className="absolute top-0 left-1/2 w-1.5 h-1.5 rounded-full -translate-x-1/2 -translate-y-1/2"
+          style={{ background: "rgba(34,211,238,0.85)", boxShadow: "0 0 7px rgba(34,211,238,0.6)" }}
+        />
+      </motion.div>
 
       <div
         className="absolute inset-10 rounded-full overflow-hidden"

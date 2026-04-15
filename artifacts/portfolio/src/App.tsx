@@ -1,4 +1,6 @@
 import { Switch, Route, Router as WouterRouter } from "wouter";
+import { useEffect } from "react";
+import { useLocation } from "wouter";
 import { ThemeProvider } from "@/context/ThemeContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -10,9 +12,20 @@ import ResumePage from "@/pages/ResumePage";
 import ArticlesPage from "@/pages/ArticlesPage";
 import NotFound from "@/pages/not-found";
 
+function ScrollToTopOnRouteChange() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [location]);
+
+  return null;
+}
+
 function Router() {
   return (
     <>
+      <ScrollToTopOnRouteChange />
       <Navbar />
       <Switch>
         <Route path="/" component={Home} />

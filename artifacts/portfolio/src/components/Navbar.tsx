@@ -22,8 +22,8 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md print:hidden">
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/">
-          <span className="font-display font-bold text-lg text-foreground cursor-pointer tracking-tight">
-            AU<span className="text-primary">.</span>
+          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-primary/40 bg-primary/10 font-display font-bold text-sm text-foreground cursor-pointer tracking-wide shadow-[0_0_14px_rgba(34,211,238,0.22)]">
+            AU
           </span>
         </Link>
 
