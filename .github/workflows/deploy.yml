@@ -25,7 +25,14 @@ jobs:
       - uses: pnpm/action-setup@v4
       - name: Install portfolio dependencies
         run: pnpm --dir artifacts/portfolio install --no-frozen-lockfile --ignore-scripts
+      - name: Check API base URL config
+        run: |
+          if [ -z "${{ vars.VITE_API_BASE_URL }}" ]; then
+            echo "::warning::VITE_API_BASE_URL repo variable is not set. Chat will not work on GitHub Pages until this is configured."
+          fi
       - name: Build portfolio
+        env:
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
         run: pnpm --dir artifacts/portfolio build
       - name: Add Pages metadata
         run: touch artifacts/portfolio/dist/public/.nojekyll
