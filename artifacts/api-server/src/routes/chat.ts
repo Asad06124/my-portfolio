@@ -74,8 +74,8 @@ const router: IRouter = Router();
 router.post("/chat", async (req, res) => {
     const apiKey = process.env.OPENROUTER_API_KEY;
 
-    if (!apiKey) {
-        logger.error("OPENROUTER_API_KEY is missing");
+    if (!apiKey || apiKey === "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") {
+        logger.error("OPENROUTER_API_KEY is missing or placeholder");
         return res.status(500).json({
             error: "AI assistant is not configured yet. Please try again later.",
         });

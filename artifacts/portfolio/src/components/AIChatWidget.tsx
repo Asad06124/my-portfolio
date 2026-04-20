@@ -22,6 +22,10 @@ function isAbusive(text: string): boolean {
 }
 
 export default function AIChatWidget() {
+  const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? "").replace(
+    /\/$/,
+    "",
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -70,7 +74,7 @@ export default function AIChatWidget() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/chat", {
+      const response = await fetch(`${apiBaseUrl}/api/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,11 +85,21 @@ export default function AIChatWidget() {
         }),
       });
 
-      const data = (await response.json()) as {
+      let data: {
         reply?: string;
         error?: string;
         reasoning_details?: unknown;
       };
+
+      try {
+        data = (await response.json()) as {
+          reply?: string;
+          error?: string;
+          reasoning_details?: unknown;
+        };
+      } catch {
+        data = { error: "Unable to parse server response." };
+      }
 
       if (!response.ok || !data.reply) {
         throw new Error(data.error ?? "Unable to process message");
