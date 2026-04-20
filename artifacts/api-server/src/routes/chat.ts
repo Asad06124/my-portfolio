@@ -28,6 +28,7 @@ RULES:
 type ChatMessage = {
     role: "user" | "assistant";
     content: string;
+    reasoning_details?: unknown;
 };
 
 const abusivePattern =
@@ -44,6 +45,24 @@ function isChatMessage(value: unknown): value is ChatMessage {
         (message.role === "user" || message.role === "assistant") &&
         typeof message.content === "string"
     );
+}
+
+function toOpenRouterMessage(message: ChatMessage): Record<string, unknown> {
+    if (
+        message.role === "assistant" &&
+        typeof message.reasoning_details !== "undefined"
+    ) {
+        return {
+            role: message.role,
+            content: message.content,
+            reasoning_details: message.reasoning_details,
+        };
+    }
+
+    return {
+        role: message.role,
+        content: message.content,
+    };
 }
 
 function isAbusive(content: string): boolean {
@@ -106,6 +125,7 @@ router.post("/chat", async (req, res) => {
             body: JSON.stringify({
                 model: MODEL,
                 max_tokens: MAX_TOKENS,
+                reasoning: { enabled: true },
                 messages: [
                     { role: "system", content: SYSTEM_PROMPT },
                     ...(freshStart
@@ -117,7 +137,7 @@ router.post("/chat", async (req, res) => {
                             },
                         ]
                         : []),
-                    ...messages,
+                    ...messages.map(toOpenRouterMessage),
                 ],
             }),
         });
@@ -138,10 +158,16 @@ router.post("/chat", async (req, res) => {
         }
 
         const data = (await openRouterResponse.json()) as {
-            choices?: Array<{ message?: { content?: string } }>;
+            choices?: Array<{
+                message?: {
+                    content?: string;
+                    reasoning_details?: unknown;
+                };
+            }>;
         };
 
-        const reply = data.choices?.[0]?.message?.content?.trim();
+        const assistantMessage = data.choices?.[0]?.message;
+        const reply = assistantMessage?.content?.trim();
 
         if (!reply) {
             return res.status(502).json({
@@ -149,7 +175,10 @@ router.post("/chat", async (req, res) => {
             });
         }
 
-        return res.json({ reply });
+        return res.json({
+            reply,
+            reasoning_details: assistantMessage?.reasoning_details,
+        });
     } catch (error) {
         logger.error({ error }, "Unexpected error in /api/chat");
 

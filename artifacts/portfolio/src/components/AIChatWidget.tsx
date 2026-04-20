@@ -7,6 +7,7 @@ type ChatRole = "user" | "assistant";
 type ChatMessage = {
   role: ChatRole;
   content: string;
+  reasoning_details?: unknown;
 };
 
 const ABUSIVE_RESPONSE = "😤🤬😡";
@@ -83,6 +84,7 @@ export default function AIChatWidget() {
       const data = (await response.json()) as {
         reply?: string;
         error?: string;
+        reasoning_details?: unknown;
       };
 
       if (!response.ok || !data.reply) {
@@ -92,6 +94,7 @@ export default function AIChatWidget() {
       const assistantMessage: ChatMessage = {
         role: "assistant",
         content: data.reply,
+        reasoning_details: data.reasoning_details,
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
