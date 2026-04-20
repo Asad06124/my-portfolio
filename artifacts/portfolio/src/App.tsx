@@ -1,6 +1,6 @@
+import AIChatWidget from "@/components/AIChatWidget";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import AIChatWidget from "@/components/AIChatWidget";
 import { ThemeProvider } from "@/context/ThemeContext";
 import AboutPage from "@/pages/AboutPage";
 import ArticlesPage from "@/pages/ArticlesPage";
