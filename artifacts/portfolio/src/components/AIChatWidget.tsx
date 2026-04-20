@@ -11,10 +11,30 @@ type ChatMessage = {
 };
 
 const ABUSIVE_RESPONSE = "😤🤬😡";
+const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
+const DEFAULT_MODEL = "google/gemma-4-31b-it:free";
+const MAX_TOKENS = 500;
 const ERROR_MESSAGE =
   "Sorry, I couldn't reach the assistant right now. Please try again in a moment.";
 const GITHUB_PAGES_API_MESSAGE =
-  "Chat backend is not configured for this deployment yet. Set VITE_API_BASE_URL to your deployed API URL.";
+  "Chat is not configured yet. Set either VITE_API_BASE_URL or VITE_OPENROUTER_API_KEY in your deployment build variables.";
+
+const SYSTEM_PROMPT = `You are an AI assistant embedded in Asad Ullah's portfolio website. You represent me professionally.
+
+ABOUT ME:
+- Name: Asad Ullah
+- Role: Senior Mobile Developer
+- Skills: Flutter/Dart, iOS (Swift/SwiftUI), React Native, GetX, Riverpod, BLoC, Firebase, Node.js/Express, REST APIs, CI/CD, Git/GitHub
+- Projects: easypaisa_flutter (Flutter payment plugin), Enterprise OTA Update System, Real-time Ride Sharing Platform, Multi-tenant Healthcare App, Flutter UI Component Library
+- Contact: asadbalqani@gmail.com
+- Available for: Full-time senior mobile roles and select freelance projects
+
+RULES:
+1. Only answer questions related to me, my work, skills, projects, and experience.
+2. If someone uses any abusive, offensive, or inappropriate language - respond with ONLY this: "😤🤬😡" and nothing else.
+3. After an abusive message, if the user sends another message - FIRST reset the conversation context completely (ignore all previous messages), then respond with: "I don't respond to bad language. Let's start fresh - feel free to ask me something about Asad Ullah's work!" and then answer their new question if it's appropriate.
+4. Be concise, friendly, and professional.
+5. Use conversation history to give context-aware follow-up answers.`;
 
 const abusivePattern =
   /\b(fuck|f\*+k|shit|bitch|asshole|bastard|motherfucker|mf|slut|whore|idiot|stupid|dumbass|chutiya|madarchod|mc|bc|bsdk|gandu|harami|lund|randi|gaand|kutta)\b/i;
@@ -28,6 +48,8 @@ export default function AIChatWidget() {
     /\/$/,
     "",
   );
+  const directOpenRouterKey = import.meta.env.VITE_OPENROUTER_API_KEY ?? "";
+  const directModel = import.meta.env.VITE_OPENROUTER_MODEL ?? DEFAULT_MODEL;
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -75,7 +97,11 @@ export default function AIChatWidget() {
     setWasAbusive(false);
     setIsLoading(true);
 
-    if (!apiBaseUrl && window.location.hostname.endsWith("github.io")) {
+    if (
+      !apiBaseUrl &&
+      !directOpenRouterKey &&
+      window.location.hostname.endsWith("github.io")
+    ) {
       setMessages((prev) => [
         ...prev,
         {
@@ -88,35 +114,104 @@ export default function AIChatWidget() {
     }
 
     try {
-      const response = await fetch(`${apiBaseUrl}/api/chat`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          messages: payloadMessages,
-          freshStart,
-        }),
-      });
-
       let data: {
         reply?: string;
         error?: string;
         reasoning_details?: unknown;
       };
 
-      try {
-        data = (await response.json()) as {
-          reply?: string;
-          error?: string;
-          reasoning_details?: unknown;
-        };
-      } catch {
-        data = { error: "Unable to parse server response." };
-      }
+      if (apiBaseUrl) {
+        const response = await fetch(`${apiBaseUrl}/api/chat`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            messages: payloadMessages,
+            freshStart,
+          }),
+        });
 
-      if (!response.ok || !data.reply) {
-        throw new Error(data.error ?? "Unable to process message");
+        try {
+          data = (await response.json()) as {
+            reply?: string;
+            error?: string;
+            reasoning_details?: unknown;
+          };
+        } catch {
+          data = { error: "Unable to parse server response." };
+        }
+
+        if (!response.ok || !data.reply) {
+          throw new Error(data.error ?? "Unable to process message");
+        }
+      } else {
+        const openRouterResponse = await fetch(OPENROUTER_ENDPOINT, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${directOpenRouterKey}`,
+            "Content-Type": "application/json",
+            "HTTP-Referer": window.location.origin,
+            "X-Title": "Asad Ullah Portfolio AI Assistant",
+          },
+          body: JSON.stringify({
+            model: directModel,
+            max_tokens: MAX_TOKENS,
+            reasoning: { enabled: true },
+            messages: [
+              { role: "system", content: SYSTEM_PROMPT },
+              ...(freshStart
+                ? [
+                  {
+                    role: "system",
+                    content:
+                      'The user is returning after abusive language. Start your response with this exact sentence: "I don\'t respond to bad language. Let\'s start fresh - feel free to ask me something about Asad Ullah\'s work!" Then answer the current user question concisely if it is appropriate.',
+                  },
+                ]
+                : []),
+              ...payloadMessages.map((message) =>
+                message.role === "assistant" &&
+                  typeof message.reasoning_details !== "undefined"
+                  ? {
+                    role: message.role,
+                    content: message.content,
+                    reasoning_details: message.reasoning_details,
+                  }
+                  : {
+                    role: message.role,
+                    content: message.content,
+                  },
+              ),
+            ],
+          }),
+        });
+
+        const openRouterData = (await openRouterResponse.json()) as {
+          choices?: Array<{
+            message?: {
+              content?: string;
+              reasoning_details?: unknown;
+            };
+          }>;
+          error?: { message?: string };
+        };
+
+        if (!openRouterResponse.ok) {
+          throw new Error(
+            openRouterData.error?.message ??
+            "OpenRouter request failed from frontend.",
+          );
+        }
+
+        const assistantMessage = openRouterData.choices?.[0]?.message;
+        data = {
+          reply: assistantMessage?.content,
+          reasoning_details: assistantMessage?.reasoning_details,
+        };
+
+        if (!data.reply) {
+          throw new Error("No response was returned by OpenRouter.");
+        }
       }
 
       const assistantMessage: ChatMessage = {
