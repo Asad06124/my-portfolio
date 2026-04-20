@@ -2,7 +2,7 @@ import { Router, type IRouter } from "express";
 import { logger } from "../lib/logger";
 
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
-const MODEL = "google/gemma-4-31b-it:free";
+const DEFAULT_MODEL = "google/gemma-4-31b-it:free";
 const MAX_TOKENS = 500;
 const ABUSIVE_RESPONSE = "😤🤬😡";
 const FRESH_START_NOTICE =
@@ -73,8 +73,9 @@ const router: IRouter = Router();
 
 router.post("/chat", async (req, res) => {
     const apiKey = process.env.OPENROUTER_API_KEY;
+    const model = process.env.OPENROUTER_MODEL?.trim() || DEFAULT_MODEL;
 
-    if (!apiKey || apiKey === "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") {
+    if (!apiKey || apiKey === "your_key_here") {
         logger.error("OPENROUTER_API_KEY is missing or placeholder");
         return res.status(500).json({
             error: "AI assistant is not configured yet. Please try again later.",
@@ -123,7 +124,7 @@ router.post("/chat", async (req, res) => {
                 "X-Title": "Asad Ullah Portfolio AI Assistant",
             },
             body: JSON.stringify({
-                model: MODEL,
+                model,
                 max_tokens: MAX_TOKENS,
                 reasoning: { enabled: true },
                 messages: [

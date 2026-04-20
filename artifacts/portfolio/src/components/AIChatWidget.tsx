@@ -13,6 +13,8 @@ type ChatMessage = {
 const ABUSIVE_RESPONSE = "😤🤬😡";
 const ERROR_MESSAGE =
   "Sorry, I couldn't reach the assistant right now. Please try again in a moment.";
+const GITHUB_PAGES_API_MESSAGE =
+  "Chat backend is not configured for this deployment yet. Set VITE_API_BASE_URL to your deployed API URL.";
 
 const abusivePattern =
   /\b(fuck|f\*+k|shit|bitch|asshole|bastard|motherfucker|mf|slut|whore|idiot|stupid|dumbass|chutiya|madarchod|mc|bc|bsdk|gandu|harami|lund|randi|gaand|kutta)\b/i;
@@ -72,6 +74,18 @@ export default function AIChatWidget() {
     setMessages(payloadMessages);
     setWasAbusive(false);
     setIsLoading(true);
+
+    if (!apiBaseUrl && window.location.hostname.endsWith("github.io")) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: GITHUB_PAGES_API_MESSAGE,
+        },
+      ]);
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch(`${apiBaseUrl}/api/chat`, {
