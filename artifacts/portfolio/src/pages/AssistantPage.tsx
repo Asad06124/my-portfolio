@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { Bot, LoaderCircle, Send, User, WifiOff } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { askOfflineAssistant, preloadOfflineAssistant } from "@/lib/offlineAssistant";
+import { motion } from "framer-motion";
+import { Bot, LoaderCircle, Send, User, WifiOff } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type ChatRole = "user" | "assistant";
 
