@@ -36,12 +36,16 @@ type Text2TextPipeline = (
     }
 ) => Promise<Array<{ generated_text: string }>>;
 
-const REMOTE_MODEL_ID = "Xenova/flan-t5-small";
-const LOCAL_MODEL_ID = "/models/flan-t5-small";
+const PRIMARY_REMOTE_MODEL_ID = "Xenova/LaMini-Flan-T5-248M";
+const SECONDARY_REMOTE_MODEL_ID = "Xenova/flan-t5-small";
+const PRIMARY_LOCAL_MODEL_ID = "/models/lamini-flan-t5-248m";
+const SECONDARY_LOCAL_MODEL_ID = "/models/flan-t5-small";
 const ANSWER_MIN_WORDS = 10;
 const LOW_QUALITY_PATTERNS = [
     /snoop/i,
     /i am a professional developer and developer/i,
+    /i am a professional app developer based in lahore/i,
+    /i am a professional developer based in lahore/i,
     /cannot answer/i,
     /as an ai language model/i
 ];
@@ -179,6 +183,63 @@ function detectIntent(question: string):
     return "other";
 }
 
+function jaccardSimilarity(textA: string, textB: string): number {
+    const tokensA = new Set(normalize(textA));
+    const tokensB = new Set(normalize(textB));
+
+    if (tokensA.size === 0 || tokensB.size === 0) {
+        return 0;
+    }
+
+    let intersection = 0;
+    for (const token of tokensA) {
+        if (tokensB.has(token)) {
+            intersection += 1;
+        }
+    }
+
+    const union = tokensA.size + tokensB.size - intersection;
+    return union === 0 ? 0 : intersection / union;
+}
+
+function hasIntentSignal(intent: ReturnType<typeof detectIntent>, answer: string): boolean {
+    const a = answer.toLowerCase();
+
+    if (intent === "other") {
+        return true;
+    }
+
+    if (intent === "intro") {
+        return /asad|mobile|developer|flutter|lahore/.test(a);
+    }
+
+    if (intent === "skills") {
+        return /flutter|dart|swift|swiftui|react\s*native|firebase|ci\/?cd|api|architecture/.test(a);
+    }
+
+    if (intent === "projects") {
+        return /project|built|shipped|ota|easypaisa|ride|healthcare|enterprise|open\s*source/.test(a);
+    }
+
+    if (intent === "experience") {
+        return /year|experience|rootpointers|britsols|ride options|microprogramers|role|company/.test(a);
+    }
+
+    if (intent === "contact") {
+        return /email|phone|linkedin|github|contact|reach/.test(a);
+    }
+
+    if (intent === "availability") {
+        return /open|available|full[-\s]?time|freelance|collaboration|hire/.test(a);
+    }
+
+    if (intent === "education") {
+        return /education|bs|computer science|gcuf|degree/.test(a);
+    }
+
+    return true;
+}
+
 function toSentenceList(contextDocs: string[]): string[] {
     return contextDocs
         .map((doc) => doc.replace(/\s+/g, " ").trim())
@@ -257,7 +318,12 @@ function synthesizeGroundedAnswer(question: string, contextDocs: string[]): stri
     return "I do not have that exact detail in my current offline knowledge yet, but you can contact me at asadbalqani@gmail.com and I will share it directly.";
 }
 
-function isLowQualityAnswer(answer: string, contextDocs: string[]): boolean {
+function isLowQualityAnswer(
+    answer: string,
+    question: string,
+    contextDocs: string[],
+    history: AssistantMessage[]
+): boolean {
     if (!answer) {
         return true;
     }
@@ -271,6 +337,11 @@ function isLowQualityAnswer(answer: string, contextDocs: string[]): boolean {
         return true;
     }
 
+    const intent = detectIntent(question);
+    if (!hasIntentSignal(intent, answer)) {
+        return true;
+    }
+
     const answerTokens = new Set(normalize(answer));
     const contextTokens = new Set(normalize(contextDocs.join(" ")));
 
@@ -281,7 +352,22 @@ function isLowQualityAnswer(answer: string, contextDocs: string[]): boolean {
         }
     }
 
-    return overlap < 3;
+    if (overlap < 3) {
+        return true;
+    }
+
+    const previousAssistantMessages = history
+        .filter((entry) => entry.role === "assistant")
+        .slice(-4)
+        .map((entry) => entry.text);
+
+    for (const previous of previousAssistantMessages) {
+        if (jaccardSimilarity(previous, answer) >= 0.72) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 export async function preloadOfflineAssistant(onProgress?: (update: ProgressUpdate) => void): Promise<void> {
@@ -303,18 +389,26 @@ export async function preloadOfflineAssistant(onProgress?: (update: ProgressUpda
         };
 
         pipelinePromise = (async () => {
+            const tryModel = async (modelId: string, local: boolean): Promise<Text2TextPipeline> => {
+                env.allowLocalModels = local;
+                return (await pipeline("text2text-generation", modelId, {
+                    quantized: true,
+                    progress_callback: progressCallback
+                })) as Text2TextPipeline;
+            };
+
             try {
-                env.allowLocalModels = true;
-                return (await pipeline("text2text-generation", LOCAL_MODEL_ID, {
-                    quantized: true,
-                    progress_callback: progressCallback
-                })) as Text2TextPipeline;
+                return await tryModel(PRIMARY_LOCAL_MODEL_ID, true);
             } catch {
-                env.allowLocalModels = false;
-                return (await pipeline("text2text-generation", REMOTE_MODEL_ID, {
-                    quantized: true,
-                    progress_callback: progressCallback
-                })) as Text2TextPipeline;
+                try {
+                    return await tryModel(SECONDARY_LOCAL_MODEL_ID, true);
+                } catch {
+                    try {
+                        return await tryModel(PRIMARY_REMOTE_MODEL_ID, false);
+                    } catch {
+                        return await tryModel(SECONDARY_REMOTE_MODEL_ID, false);
+                    }
+                }
             }
         })();
     }
@@ -339,14 +433,14 @@ export async function askOfflineAssistant(
         const prompt = buildPrompt(question, history, contextDocs);
         const output = await text2text(prompt, {
             max_new_tokens: 180,
-            temperature: 0.3,
+            temperature: 0.6,
             top_k: 40,
             repetition_penalty: 1.15
         });
 
         const generated = output?.[0]?.generated_text || "";
         const answer = cleanAnswer(generated);
-        const safeAnswer = isLowQualityAnswer(answer, contextDocs)
+        const safeAnswer = isLowQualityAnswer(answer, question, contextDocs, history)
             ? synthesizeGroundedAnswer(question, contextDocs)
             : answer;
 
