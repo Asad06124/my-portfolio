@@ -50,6 +50,28 @@ const LOW_QUALITY_PATTERNS = [
     /as an ai language model/i
 ];
 
+const BAD_LANGUAGE_WORDS = [
+    "fuck",
+    "fucking",
+    "bitch",
+    "asshole",
+    "bastard",
+    "motherfucker",
+    "shit",
+    "chutiya",
+    "madarchod",
+    "gandu"
+];
+
+const APOLOGY_WORDS = [
+    "sorry",
+    "apologize",
+    "apology",
+    "my bad",
+    "pardon",
+    "forgive"
+];
+
 const STOP_WORDS = new Set([
     "a",
     "an",
@@ -153,6 +175,36 @@ function buildPrompt(question: string, history: AssistantMessage[], contextDocs:
     ].join("\n");
 }
 
+function buildRetryPrompt(
+    question: string,
+    history: AssistantMessage[],
+    contextDocs: string[],
+    previousAnswer: string
+): string {
+    const historyText = history
+        .slice(-6)
+        .map((message) => `${message.role === "user" ? "User" : "Asad AI"}: ${message.text}`)
+        .join("\n");
+
+    return [
+        "You are Asad AI, an offline portfolio assistant speaking in first person as Asad Ullah.",
+        "Generate a better answer than the previous draft.",
+        "Use only provided context. Keep it specific, human, and engaging.",
+        "Avoid generic introductions. Answer the question directly in 2 to 5 sentences.",
+        "Do not use abusive words.",
+        "",
+        "Context:",
+        ...contextDocs.map((doc, index) => `${index + 1}. ${doc}`),
+        "",
+        "Recent conversation:",
+        historyText || "No previous messages.",
+        "",
+        `User question: ${question}`,
+        `Previous low-quality draft: ${previousAnswer || "N/A"}`,
+        "Improved answer:"
+    ].join("\n");
+}
+
 function cleanAnswer(text: string): string {
     return text
         .replace(/^answer\s*:\s*/i, "")
@@ -163,6 +215,7 @@ function cleanAnswer(text: string): string {
 
 function detectIntent(question: string):
     | "intro"
+    | "achievement"
     | "skills"
     | "projects"
     | "experience"
@@ -172,6 +225,7 @@ function detectIntent(question: string):
     | "other" {
     const q = question.toLowerCase();
 
+    if (/biggest\s+achiev|big\s+achiev|achievement|proudest|best\s+work|major\s+win/.test(q)) return "achievement";
     if (/who\s+is|about\s+you|introduce|tell\s+me\s+about\s+you/.test(q)) return "intro";
     if (/skill|stack|tech|flutter|swift|react\s*native|firebase/.test(q)) return "skills";
     if (/project|built|build|open\s*source|easypaisa/.test(q)) return "projects";
@@ -213,6 +267,10 @@ function hasIntentSignal(intent: ReturnType<typeof detectIntent>, answer: string
         return /asad|mobile|developer|flutter|lahore/.test(a);
     }
 
+    if (intent === "achievement") {
+        return /achievement|proud|ota|ci\/?cd|system|result|impact|delivery|real-time/.test(a);
+    }
+
     if (intent === "skills") {
         return /flutter|dart|swift|swiftui|react\s*native|firebase|ci\/?cd|api|architecture/.test(a);
     }
@@ -240,82 +298,92 @@ function hasIntentSignal(intent: ReturnType<typeof detectIntent>, answer: string
     return true;
 }
 
-function toSentenceList(contextDocs: string[]): string[] {
-    return contextDocs
-        .map((doc) => doc.replace(/\s+/g, " ").trim())
-        .filter((doc) => doc.length > 0)
-        .slice(0, 4);
+function containsBadLanguage(text: string): boolean {
+    const normalized = text.toLowerCase();
+    return BAD_LANGUAGE_WORDS.some((word) => {
+        const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        return new RegExp(`\\b${escaped}\\b`, "i").test(normalized);
+    });
 }
 
-function synthesizeGroundedAnswer(question: string, contextDocs: string[]): string {
-    const intent = detectIntent(question);
-    const facts = toSentenceList(contextDocs);
-    const opener = "I am Asad Ullah, and thanks for asking.";
+function isApologyMessage(text: string): boolean {
+    const normalized = text.toLowerCase();
+    return APOLOGY_WORDS.some((word) => normalized.includes(word));
+}
 
-    if (intent === "contact") {
-        return [
-            "You can reach me directly at asadbalqani@gmail.com, and I am active on LinkedIn at linkedin.com/in/theasadsahir.",
-            "If you want to discuss a role or project quickly, feel free to call me at +92 317 6854356.",
-            "I usually reply fast and I am happy to discuss full-time or freelance opportunities."
-        ].join(" ");
+function needsApologyFromHistory(history: AssistantMessage[]): boolean {
+    const userMessages = history.filter((entry) => entry.role === "user").map((entry) => entry.text);
+    let apologyRequired = false;
+
+    for (const message of userMessages) {
+        if (containsBadLanguage(message)) {
+            apologyRequired = true;
+            continue;
+        }
+
+        if (apologyRequired && isApologyMessage(message)) {
+            apologyRequired = false;
+        }
     }
 
-    if (intent === "availability") {
-        return [
-            "Yes, I am open to full-time roles, freelance projects, and collaborations.",
-            "I focus on shipping high-quality mobile apps with Flutter, Swift/SwiftUI, and React Native.",
-            "Share your project goals and timeline, and I can suggest the best implementation approach."
-        ].join(" ");
+    return apologyRequired;
+}
+
+function hasDuplicateSentence(answer: string): boolean {
+    const sentences = answer
+        .split(/[.!?]+/)
+        .map((sentence) => sentence.replace(/\s+/g, " ").trim().toLowerCase())
+        .filter((sentence) => sentence.length > 0);
+
+    const seen = new Set<string>();
+    for (const sentence of sentences) {
+        if (seen.has(sentence)) {
+            return true;
+        }
+        seen.add(sentence);
     }
 
-    if (intent === "skills") {
-        return [
-            "My strongest stack is Flutter and Dart, plus iOS with Swift/SwiftUI and React Native.",
-            "I also work deeply with Firebase, REST APIs, CI/CD pipelines, and clean architecture patterns.",
-            "I focus on building apps that are maintainable, high-performance, and production-ready."
-        ].join(" ");
+    return false;
+}
+
+function qualityScore(
+    answer: string,
+    question: string,
+    contextDocs: string[],
+    history: AssistantMessage[]
+): number {
+    if (!answer) {
+        return -100;
     }
 
-    if (intent === "projects") {
-        return [
-            "I have built enterprise mobile products across healthcare, ride-sharing, and business platforms.",
-            "A key open-source project is my easypaisa_flutter package, which simplifies Easypaisa payment integration for Flutter apps.",
-            "I also shipped OTA update systems, real-time communication modules, and scalable mobile architectures."
-        ].join(" ");
+    const wordCount = answer.split(/\s+/).filter(Boolean).length;
+    const answerTokens = new Set(normalize(answer));
+    const contextTokens = new Set(normalize(contextDocs.join(" ")));
+    let overlap = 0;
+    for (const token of answerTokens) {
+        if (contextTokens.has(token)) {
+            overlap += 1;
+        }
     }
 
-    if (intent === "experience") {
-        return [
-            "I have 3+ years of mobile development experience across RootPointers, BritSols, Ride Options, and MicroProgramers.",
-            "My work includes enterprise OTA systems, real-time app features, performance optimization, and production releases.",
-            "I take ownership from architecture and coding to deployment and ongoing improvements."
-        ].join(" ");
+    const previousAssistantMessages = history
+        .filter((entry) => entry.role === "assistant")
+        .slice(-4)
+        .map((entry) => entry.text);
+    let maxSimilarity = 0;
+    for (const previous of previousAssistantMessages) {
+        maxSimilarity = Math.max(maxSimilarity, jaccardSimilarity(previous, answer));
     }
 
-    if (intent === "education") {
-        return [
-            "I completed a BS in Computer Science from GCUF in 2023.",
-            "That foundation, combined with hands-on production work, shaped my focus on practical and scalable mobile engineering."
-        ].join(" ");
-    }
+    let score = 0;
+    score += Math.min(wordCount, 60) * 0.4;
+    score += overlap * 1.5;
+    score += hasIntentSignal(detectIntent(question), answer) ? 10 : -15;
+    score += hasDuplicateSentence(answer) ? -20 : 0;
+    score += LOW_QUALITY_PATTERNS.some((pattern) => pattern.test(answer)) ? -40 : 0;
+    score += maxSimilarity > 0.72 ? -30 : 0;
 
-    if (intent === "intro") {
-        return [
-            opener,
-            "I am a mobile app developer based in Lahore with 3+ years of experience building real-world apps.",
-            "I specialize in Flutter, Swift/SwiftUI, and React Native, and I enjoy turning product ideas into polished releases."
-        ].join(" ");
-    }
-
-    if (facts.length > 0) {
-        return [
-            opener,
-            ...facts,
-            "If you share your exact goal, I can give you a more focused answer."
-        ].join(" ");
-    }
-
-    return "I do not have that exact detail in my current offline knowledge yet, but you can contact me at asadbalqani@gmail.com and I will share it directly.";
+    return score;
 }
 
 function isLowQualityAnswer(
@@ -334,6 +402,14 @@ function isLowQualityAnswer(
     }
 
     if (LOW_QUALITY_PATTERNS.some((pattern) => pattern.test(answer))) {
+        return true;
+    }
+
+    if (!/\bI\b/.test(answer) && /\bAsad\b/i.test(answer)) {
+        return true;
+    }
+
+    if (hasDuplicateSentence(answer)) {
         return true;
     }
 
@@ -420,6 +496,27 @@ export async function askOfflineAssistant(
     question: string,
     history: AssistantMessage[]
 ): Promise<AskResult> {
+    if (containsBadLanguage(question)) {
+        return {
+            answer: "😠",
+            sources: []
+        };
+    }
+
+    if (needsApologyFromHistory(history) && !isApologyMessage(question)) {
+        return {
+            answer: "Please clean your previous message first. I do not want to continue with bad language.",
+            sources: []
+        };
+    }
+
+    if (needsApologyFromHistory(history) && isApologyMessage(question)) {
+        return {
+            answer: "Thanks for apologizing. We can continue now. Ask me anything about my work or experience.",
+            sources: []
+        };
+    }
+
     const contextDocs = retrieveContext(question, history);
 
     try {
@@ -430,27 +527,51 @@ export async function askOfflineAssistant(
             throw new Error("Model pipeline was not initialized.");
         }
 
-        const prompt = buildPrompt(question, history, contextDocs);
-        const output = await text2text(prompt, {
-            max_new_tokens: 180,
-            temperature: 0.6,
-            top_k: 40,
-            repetition_penalty: 1.15
-        });
+        let bestAnswer = "";
+        let bestScore = -Infinity;
+        let previousAttempt = "";
 
-        const generated = output?.[0]?.generated_text || "";
-        const answer = cleanAnswer(generated);
-        const safeAnswer = isLowQualityAnswer(answer, question, contextDocs, history)
-            ? synthesizeGroundedAnswer(question, contextDocs)
-            : answer;
+        const attemptConfigs = [
+            { temperature: 0.6, top_k: 40, repetition_penalty: 1.15 },
+            { temperature: 0.75, top_k: 50, repetition_penalty: 1.2 },
+            { temperature: 0.85, top_k: 60, repetition_penalty: 1.22 }
+        ];
+
+        for (let i = 0; i < attemptConfigs.length; i += 1) {
+            const prompt = i === 0
+                ? buildPrompt(question, history, contextDocs)
+                : buildRetryPrompt(question, history, contextDocs, previousAttempt);
+
+            const output = await text2text(prompt, {
+                max_new_tokens: 200,
+                ...attemptConfigs[i]
+            });
+
+            const candidate = cleanAnswer(output?.[0]?.generated_text || "");
+            if (!candidate) {
+                continue;
+            }
+
+            previousAttempt = candidate;
+            const candidateScore = qualityScore(candidate, question, contextDocs, history);
+            if (candidateScore > bestScore) {
+                bestScore = candidateScore;
+                bestAnswer = candidate;
+            }
+
+            if (!isLowQualityAnswer(candidate, question, contextDocs, history)) {
+                bestAnswer = candidate;
+                break;
+            }
+        }
 
         return {
-            answer: safeAnswer,
+            answer: bestAnswer || "I could not generate a strong answer right now. Please ask again in a slightly different way.",
             sources: contextDocs
         };
     } catch {
         return {
-            answer: synthesizeGroundedAnswer(question, contextDocs),
+            answer: "I could not generate an answer on-device right now. Please try again in a moment.",
             sources: contextDocs
         };
     }
