@@ -1,4 +1,3 @@
-import ChatWidget from "@/components/ChatWidget";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/context/ThemeContext";
@@ -38,7 +37,6 @@ function Router() {
 
         <Route component={NotFound} />
       </Switch>
-      <ChatWidget />
       <Footer />
     </>
   );
