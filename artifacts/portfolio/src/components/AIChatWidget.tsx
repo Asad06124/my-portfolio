@@ -154,7 +154,6 @@ export default function AIChatWidget() {
           body: JSON.stringify({
             model: directModel,
             max_tokens: MAX_TOKENS,
-            reasoning: { enabled: true },
             messages: [
               { role: "system", content: SYSTEM_PROMPT },
               ...(freshStart

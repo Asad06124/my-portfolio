@@ -126,7 +126,6 @@ router.post("/chat", async (req, res) => {
             body: JSON.stringify({
                 model,
                 max_tokens: MAX_TOKENS,
-                reasoning: { enabled: true },
                 messages: [
                     { role: "system", content: SYSTEM_PROMPT },
                     ...(freshStart
