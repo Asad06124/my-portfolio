@@ -12,7 +12,7 @@ type ChatMessage = {
 
 const ABUSIVE_RESPONSE = "😤🤬😡";
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
-const DEFAULT_MODEL = "google/gemma-4-31b-it:free";
+const DEFAULT_MODEL = "nvidia/nemotron-3-super-120b-a12b:free";
 const MAX_TOKENS = 500;
 const ERROR_MESSAGE =
   "Sorry, I couldn't reach the assistant right now. Please try again in a moment.";
