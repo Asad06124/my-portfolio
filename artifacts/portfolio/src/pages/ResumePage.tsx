@@ -1,6 +1,6 @@
-import { useSEO } from "@/hooks/useSEO";
 import { motion } from "framer-motion";
-import { Download, Github, Globe, Linkedin, Mail, MapPin, Phone, Printer } from "lucide-react";
+import { Download, Mail, Phone, Linkedin, MapPin, Github, Globe, Printer } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
 
 function printResume() {
   window.print();
@@ -8,7 +8,7 @@ function printResume() {
 
 const EXP = [
   {
-    role: "Mobile App Developer",
+    role: "Senior Flutter Developer",
     company: "RootPointers",
     period: "Jan 2025 – Present",
     location: "Lahore, Pakistan",
@@ -76,7 +76,7 @@ const SKILLS_FLAT = [
 export default function ResumePage() {
   useSEO({
     title: "Resume — Asad Ullah",
-    description: "View or download the resume of Asad Ullah — Mobile App Developer specialising in Flutter, iOS Swift/SwiftUI, and React Native.",
+    description: "View or download the resume of Asad Ullah — Senior Mobile App Developer specialising in Flutter, iOS Swift/SwiftUI, and React Native.",
     path: "/resume",
   });
 
@@ -127,7 +127,7 @@ export default function ResumePage() {
         <div className="p-8 md:p-10 border-b border-border print:border-b-2 print:border-gray-300">
           <h1 className="text-3xl font-bold text-foreground print:text-black print:text-4xl">Asad Ullah</h1>
           <p className="text-primary font-semibold text-base mt-1 print:text-black print:font-bold">
-            Mobile App Developer — Flutter · iOS Swift/SwiftUI · React Native
+            Senior Mobile App Developer — Flutter · iOS Swift/SwiftUI · React Native
           </p>
           <p className="text-muted-foreground text-sm mt-3 max-w-2xl leading-relaxed print:text-black">
             Mobile Developer with 3+ years of experience delivering cross-platform apps in Flutter, iOS (Swift/SwiftUI), and React Native. Specialised in clean architecture, CI/CD pipelines, App Store deployment, and high-performance UI engineering.
@@ -135,7 +135,7 @@ export default function ResumePage() {
 
           {/* Contact row */}
           <div className="flex flex-wrap gap-x-5 gap-y-2 mt-5 text-xs text-muted-foreground print:text-black print:text-sm">
-            <a href="mailto:asadbalqani@gmail.com" className="flex items-center gap-1.5 hover:text-foreground transition-colors print:no-underline">
+            <a href="mailto:theasadsahir@gmail.com" className="flex items-center gap-1.5 hover:text-foreground transition-colors print:no-underline">
               <Mail size={12} className="text-primary print:text-black" />
               theasadsahir@gmail.com
             </a>
@@ -163,7 +163,7 @@ export default function ResumePage() {
         </div>
 
         {/* ── BODY (single column — ATS safe) ── */}
-        <div className="p-8 md:p-10 space-y-9 print:space-y-7">
+        <div id="resume-body" className="p-8 md:p-10 space-y-9 print:space-y-5 print:p-0 print:pt-2">
 
           {/* SKILLS */}
           <section>
@@ -172,7 +172,7 @@ export default function ResumePage() {
             </h2>
             <div className="space-y-2">
               {SKILLS_FLAT.map((s) => (
-                                <div key={s.label} className="skill-row flex flex-col sm:flex-row sm:gap-2 text-sm print:text-sm">
+                <div key={s.label} className="skill-row flex flex-col sm:flex-row sm:gap-2 text-sm print:text-sm">
                   <span className="font-semibold text-foreground min-w-[140px] shrink-0 print:text-black">{s.label}:</span>
                   <span className="text-muted-foreground print:text-black">{s.value}</span>
                 </div>
@@ -185,9 +185,9 @@ export default function ResumePage() {
             <h2 className="text-xs font-mono uppercase tracking-widest font-bold text-foreground border-b border-border pb-2 mb-5 print:text-sm print:text-black print:border-gray-300 print:font-bold">
               Professional Experience
             </h2>
-            <div className="space-y-7 print:space-y-6">
+            <div className="space-y-7 print:space-y-5">
               {EXP.map((e, i) => (
-                <div key={i}>
+                <div key={i} className="print-entry">
                   <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 mb-1">
                     <div>
                       <span className="font-semibold text-foreground text-sm print:text-black">{e.role}</span>
@@ -246,7 +246,7 @@ export default function ResumePage() {
 
         {/* Footer bar */}
         <div className="border-t border-border px-8 py-4 bg-secondary/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground font-mono print:hidden">
-          <p>Asad Ullah · Mobile Developer · asadbalqani@gmail.com</p>
+          <p>Asad Ullah · Senior Mobile Developer · theasadsahir@gmail.com</p>
           <button onClick={printResume} className="flex items-center gap-1.5 hover:text-foreground transition-colors cursor-pointer">
             <Download size={11} /> Save as PDF
           </button>
