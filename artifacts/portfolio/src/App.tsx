@@ -10,7 +10,7 @@ import NotFound from "@/pages/not-found";
 import ProjectsPage from "@/pages/ProjectsPage";
 import ResumePage from "@/pages/ResumePage";
 import { useEffect } from "react";
-import { Route, Router as WouterRouter, Switch, useLocation } from "wouter";
+import { Route, Switch, useLocation, Router as WouterRouter } from "wouter";
 import ContactPage from "./pages/ContactPage";
 
 function ScrollToTop() {
