@@ -48,8 +48,9 @@ export default function AIChatWidget() {
     /\/$/,
     "",
   );
-  const directOpenRouterKey = import.meta.env.VITE_OPENROUTER_API_KEY ?? "";
-  const directModel = import.meta.env.VITE_OPENROUTER_MODEL ?? DEFAULT_MODEL;
+  const directOpenRouterKey = (import.meta.env.VITE_OPENROUTER_API_KEY ?? "").trim();
+  const directModel =
+    (import.meta.env.VITE_OPENROUTER_MODEL ?? "").trim() || DEFAULT_MODEL;
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -97,11 +98,7 @@ export default function AIChatWidget() {
     setWasAbusive(false);
     setIsLoading(true);
 
-    if (
-      !apiBaseUrl &&
-      !directOpenRouterKey &&
-      window.location.hostname.endsWith("github.io")
-    ) {
+    if (!apiBaseUrl && !directOpenRouterKey) {
       setMessages((prev) => [
         ...prev,
         {
@@ -222,12 +219,17 @@ export default function AIChatWidget() {
 
       setMessages((prev) => [...prev, assistantMessage]);
       setWasAbusive(data.reply.trim() === ABUSIVE_RESPONSE);
-    } catch {
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error && error.message
+          ? error.message
+          : ERROR_MESSAGE;
+
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          content: ERROR_MESSAGE,
+          content: errorMessage,
         },
       ]);
     } finally {
