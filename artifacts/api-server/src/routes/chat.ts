@@ -2,7 +2,7 @@ import { Router, type IRouter } from "express";
 import { logger } from "../lib/logger";
 
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
-const DEFAULT_MODEL = "nvidia/nemotron-3-super-120b-a12b:free";
+const DEFAULT_MODEL = "openrouter/auto";
 const MAX_TOKENS = 500;
 const ABUSIVE_RESPONSE = "😤🤬😡";
 const FRESH_START_NOTICE =

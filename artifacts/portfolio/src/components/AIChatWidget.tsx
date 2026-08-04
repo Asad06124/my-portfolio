@@ -19,11 +19,11 @@ type ChatMessage = {
 
 const ABUSIVE_RESPONSE = "😤🤬😡";
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
-const DEFAULT_MODEL = "nvidia/nemotron-3-super-120b-a12b:free";
+const DEFAULT_MODEL = "openrouter/auto";
 const MAX_TOKENS = 500;
 const CONTACT_EMAIL = "asadbalqani@gmail.com";
 const ERROR_MESSAGE =
-  "Sorry, I couldn't reach the assistant right now. Please try again in a moment.";
+  "Sorry, I couldn't reach the assistant right now. Please try again later.";
 const GITHUB_PAGES_API_MESSAGE =
   "Chat is not configured yet. Set either VITE_API_BASE_URL or VITE_OPENROUTER_API_KEY in your deployment build variables.";
 
