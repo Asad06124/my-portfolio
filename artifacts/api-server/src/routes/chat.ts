@@ -2,7 +2,7 @@ import { Router, type IRouter } from "express";
 import { logger } from "../lib/logger";
 
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
-const DEFAULT_MODEL = "openrouter/auto";
+const DEFAULT_MODEL = "openrouter/free";
 const MAX_TOKENS = 500;
 const ABUSIVE_RESPONSE = "😤🤬😡";
 const FRESH_START_NOTICE =
