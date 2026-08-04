@@ -2,9 +2,17 @@ import { Router, type IRouter } from "express";
 import { logger } from "../lib/logger";
 
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
-const DEFAULT_MODEL = "openrouter/auto";
-// Reasoning models charge thinking against max_tokens; keep headroom for the visible reply.
-const MAX_TOKENS = 1200;
+// Auto Beta picks top models by task; cqt 0 = maximize quality (no cost skimping).
+const DEFAULT_MODEL = "openrouter/auto-beta";
+const MAX_TOKENS = 8192;
+const OPENROUTER_REQUEST_OPTIONS = {
+    max_tokens: MAX_TOKENS,
+    // Prefer the best models available, not cheaper alternatives.
+    plugins: [{ id: "auto-router", cost_quality_tradeoff: 0 }],
+    // Among eligible providers for the chosen model, pick the lowest latency.
+    provider: { sort: "latency" as const },
+    reasoning: { effort: "high" as const },
+};
 const ABUSIVE_RESPONSE = "😤🤬😡";
 const FRESH_START_NOTICE =
     "I don't respond to bad language. Let's start fresh - feel free to ask me something about Asad Ullah's work!";
@@ -171,9 +179,7 @@ router.post("/chat", async (req, res) => {
             },
             body: JSON.stringify({
                 model,
-                max_tokens: MAX_TOKENS,
-                // Prefer a short final answer when auto-router lands on a reasoning model.
-                reasoning: { effort: "low" },
+                ...OPENROUTER_REQUEST_OPTIONS,
                 messages: [
                     { role: "system", content: SYSTEM_PROMPT },
                     ...(freshStart
