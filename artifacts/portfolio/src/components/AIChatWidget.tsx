@@ -20,12 +20,50 @@ type ChatMessage = {
 const ABUSIVE_RESPONSE = "😤🤬😡";
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 const DEFAULT_MODEL = "openrouter/auto";
-const MAX_TOKENS = 500;
+// Reasoning models charge thinking against max_tokens; keep headroom for the visible reply.
+const MAX_TOKENS = 1200;
 const CONTACT_EMAIL = "asadbalqani@gmail.com";
 const ERROR_MESSAGE =
   "Sorry, I couldn't reach the assistant right now. Please try again later.";
 const GITHUB_PAGES_API_MESSAGE =
   "Chat is not configured yet. Set either VITE_API_BASE_URL or VITE_OPENROUTER_API_KEY in your deployment build variables.";
+
+function extractMessageText(content: unknown): string {
+  if (typeof content === "string") {
+    return content.trim();
+  }
+
+  if (Array.isArray(content)) {
+    return content
+      .map((part) => {
+        if (typeof part === "string") {
+          return part;
+        }
+
+        if (part && typeof part === "object") {
+          const block = part as {
+            type?: string;
+            text?: string;
+            content?: string;
+          };
+
+          if (typeof block.text === "string") {
+            return block.text;
+          }
+
+          if (typeof block.content === "string") {
+            return block.content;
+          }
+        }
+
+        return "";
+      })
+      .join("")
+      .trim();
+  }
+
+  return "";
+}
 
 const SYSTEM_PROMPT = `You are an AI assistant embedded in Asad Ullah's portfolio website. You represent me professionally.
 
@@ -212,6 +250,8 @@ export default function AIChatWidget() {
           body: JSON.stringify({
             model: directModel,
             max_tokens: MAX_TOKENS,
+            // Prefer a short final answer when auto-router lands on a reasoning model.
+            reasoning: { effort: "low" },
             messages: [
               { role: "system", content: SYSTEM_PROMPT },
               ...(freshStart
@@ -243,7 +283,7 @@ export default function AIChatWidget() {
         const openRouterData = (await openRouterResponse.json()) as {
           choices?: Array<{
             message?: {
-              content?: string;
+              content?: unknown;
               reasoning_details?: unknown;
             };
           }>;
@@ -259,12 +299,12 @@ export default function AIChatWidget() {
 
         const assistantMessage = openRouterData.choices?.[0]?.message;
         data = {
-          reply: assistantMessage?.content,
+          reply: extractMessageText(assistantMessage?.content),
           reasoning_details: assistantMessage?.reasoning_details,
         };
 
         if (!data.reply) {
-          throw new Error("No response was returned by OpenRouter.");
+          throw new Error(ERROR_MESSAGE);
         }
       }
 

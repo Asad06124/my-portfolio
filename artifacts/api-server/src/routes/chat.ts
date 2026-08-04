@@ -3,7 +3,8 @@ import { logger } from "../lib/logger";
 
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 const DEFAULT_MODEL = "openrouter/auto";
-const MAX_TOKENS = 500;
+// Reasoning models charge thinking against max_tokens; keep headroom for the visible reply.
+const MAX_TOKENS = 1200;
 const ABUSIVE_RESPONSE = "😤🤬😡";
 const FRESH_START_NOTICE =
     "I don't respond to bad language. Let's start fresh - feel free to ask me something about Asad Ullah's work!";
@@ -33,6 +34,48 @@ type ChatMessage = {
     content: string;
     reasoning_details?: unknown;
 };
+
+type OpenRouterMessage = {
+    content?: unknown;
+    reasoning_details?: unknown;
+};
+
+function extractMessageText(content: unknown): string {
+    if (typeof content === "string") {
+        return content.trim();
+    }
+
+    if (Array.isArray(content)) {
+        return content
+            .map((part) => {
+                if (typeof part === "string") {
+                    return part;
+                }
+
+                if (part && typeof part === "object") {
+                    const block = part as {
+                        type?: string;
+                        text?: string;
+                        content?: string;
+                    };
+
+                    if (typeof block.text === "string") {
+                        return block.text;
+                    }
+
+                    if (typeof block.content === "string") {
+                        return block.content;
+                    }
+                }
+
+                return "";
+            })
+            .join("")
+            .trim();
+    }
+
+    return "";
+}
 
 const abusivePattern =
     /\b(fuck|f\*+k|shit|bitch|asshole|bastard|motherfucker|mf|slut|whore|idiot|stupid|dumbass|chutiya|madarchod|mc|bc|bsdk|gandu|harami|lund|randi|gaand|kutta)\b/i;
@@ -129,6 +172,8 @@ router.post("/chat", async (req, res) => {
             body: JSON.stringify({
                 model,
                 max_tokens: MAX_TOKENS,
+                // Prefer a short final answer when auto-router lands on a reasoning model.
+                reasoning: { effort: "low" },
                 messages: [
                     { role: "system", content: SYSTEM_PROMPT },
                     ...(freshStart
@@ -161,20 +206,30 @@ router.post("/chat", async (req, res) => {
         }
 
         const data = (await openRouterResponse.json()) as {
+            model?: string;
             choices?: Array<{
-                message?: {
-                    content?: string;
-                    reasoning_details?: unknown;
-                };
+                finish_reason?: string | null;
+                message?: OpenRouterMessage;
             }>;
         };
 
-        const assistantMessage = data.choices?.[0]?.message;
-        const reply = assistantMessage?.content?.trim();
+        const choice = data.choices?.[0];
+        const assistantMessage = choice?.message;
+        const reply = extractMessageText(assistantMessage?.content);
 
         if (!reply) {
+            logger.error(
+                {
+                    model: data.model,
+                    finishReason: choice?.finish_reason,
+                    hasReasoningDetails:
+                        typeof assistantMessage?.reasoning_details !== "undefined",
+                },
+                "OpenRouter returned empty assistant content",
+            );
+
             return res.status(502).json({
-                error: "No response was returned by the AI service.",
+                error: "I hit a temporary issue reaching the AI service. Please try again.",
             });
         }
 
