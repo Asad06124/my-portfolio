@@ -21,7 +21,7 @@ const ABUSIVE_RESPONSE = "😤🤬😡";
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 // Auto Beta picks top models by task; cqt 0 = maximize quality (no cost skimping).
 const DEFAULT_MODEL = "openrouter/auto-beta";
-const MAX_TOKENS = 8192;
+const MAX_TOKENS = 500000;
 const OPENROUTER_REQUEST_OPTIONS = {
   max_tokens: MAX_TOKENS,
   // Prefer the best models available, not cheaper alternatives.
