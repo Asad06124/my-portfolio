@@ -4,9 +4,15 @@ import { logger } from "../lib/logger";
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 // Auto Beta picks top models by task; cqt 0 = maximize quality (no cost skimping).
 const DEFAULT_MODEL = "openrouter/auto-beta";
-const MAX_TOKENS = 500000;
+// Keep recent turns only so long chats can't overflow the model context.
+const MAX_HISTORY_MESSAGES = 16;
+const MAX_MESSAGE_CHARS = 4000;
+// High output ceiling; actual max_tokens shrinks if the prompt is large.
+const MAX_OUTPUT_TOKENS = 32768;
+const MIN_OUTPUT_TOKENS = 1024;
+// Conservative shared budget for auto-routed models (many are 128k+; reserve headroom).
+const CONTEXT_TOKEN_BUDGET = 120_000;
 const OPENROUTER_REQUEST_OPTIONS = {
-    max_tokens: MAX_TOKENS,
     // Prefer the best models available, not cheaper alternatives.
     plugins: [{ id: "auto-router", cost_quality_tradeoff: 0 }],
     // Among eligible providers for the chosen model, pick the lowest latency.
@@ -47,6 +53,42 @@ type OpenRouterMessage = {
     content?: unknown;
     reasoning_details?: unknown;
 };
+
+function estimateTokens(text: string): number {
+    // Rough OpenAI-style estimate; good enough for budgeting.
+    return Math.ceil(text.length / 4);
+}
+
+function windowMessages(messages: ChatMessage[]): ChatMessage[] {
+    let windowed = messages.slice(-MAX_HISTORY_MESSAGES);
+
+    // Avoid starting mid-exchange with a dangling assistant turn.
+    if (windowed[0]?.role === "assistant") {
+        windowed = windowed.slice(1);
+    }
+
+    return windowed.map((message) => ({
+        role: message.role,
+        // Drop reasoning_details: replaying them bloats context across long chats.
+        content: message.content.slice(0, MAX_MESSAGE_CHARS),
+    }));
+}
+
+function resolveMaxTokens(
+    systemMessages: Array<{ content: string }>,
+    messages: ChatMessage[],
+): number {
+    const inputText =
+        systemMessages.map((m) => m.content).join("") +
+        messages.map((m) => m.content).join("");
+    const inputTokens = estimateTokens(inputText);
+    const remaining = CONTEXT_TOKEN_BUDGET - inputTokens - 512;
+
+    return Math.max(
+        MIN_OUTPUT_TOKENS,
+        Math.min(MAX_OUTPUT_TOKENS, remaining),
+    );
+}
 
 function extractMessageText(content: unknown): string {
     if (typeof content === "string") {
@@ -102,17 +144,6 @@ function isChatMessage(value: unknown): value is ChatMessage {
 }
 
 function toOpenRouterMessage(message: ChatMessage): Record<string, unknown> {
-    if (
-        message.role === "assistant" &&
-        typeof message.reasoning_details !== "undefined"
-    ) {
-        return {
-            role: message.role,
-            content: message.content,
-            reasoning_details: message.reasoning_details,
-        };
-    }
-
     return {
         role: message.role,
         content: message.content,
@@ -145,7 +176,7 @@ router.post("/chat", async (req, res) => {
         });
     }
 
-    const messages = rawMessages.filter(isChatMessage);
+    const messages = windowMessages(rawMessages.filter(isChatMessage));
 
     if (messages.length === 0) {
         return res.status(400).json({
@@ -168,6 +199,20 @@ router.post("/chat", async (req, res) => {
     const referer =
         process.env.PORTFOLIO_URL?.trim() || "https://asad06124.github.io";
 
+    const systemMessages = [
+        { role: "system" as const, content: SYSTEM_PROMPT },
+        ...(freshStart
+            ? [
+                {
+                    role: "system" as const,
+                    content:
+                        'The user is returning after abusive language. Start your response with this exact sentence: "I don\'t respond to bad language. Let\'s start fresh - feel free to ask me something about Asad Ullah\'s work!" Then answer the current user question concisely if it is appropriate.',
+                },
+            ]
+            : []),
+    ];
+    const maxTokens = resolveMaxTokens(systemMessages, messages);
+
     try {
         const openRouterResponse = await fetch(OPENROUTER_ENDPOINT, {
             method: "POST",
@@ -179,18 +224,10 @@ router.post("/chat", async (req, res) => {
             },
             body: JSON.stringify({
                 model,
+                max_tokens: maxTokens,
                 ...OPENROUTER_REQUEST_OPTIONS,
                 messages: [
-                    { role: "system", content: SYSTEM_PROMPT },
-                    ...(freshStart
-                        ? [
-                            {
-                                role: "system",
-                                content:
-                                    'The user is returning after abusive language. Start your response with this exact sentence: "I don\'t respond to bad language. Let\'s start fresh - feel free to ask me something about Asad Ullah\'s work!" Then answer the current user question concisely if it is appropriate.',
-                            },
-                        ]
-                        : []),
+                    ...systemMessages,
                     ...messages.map(toOpenRouterMessage),
                 ],
             }),
@@ -202,6 +239,8 @@ router.post("/chat", async (req, res) => {
                 {
                     status: openRouterResponse.status,
                     errorBody,
+                    maxTokens,
+                    historyCount: messages.length,
                 },
                 "OpenRouter request failed",
             );
@@ -230,6 +269,7 @@ router.post("/chat", async (req, res) => {
                     finishReason: choice?.finish_reason,
                     hasReasoningDetails:
                         typeof assistantMessage?.reasoning_details !== "undefined",
+                    maxTokens,
                 },
                 "OpenRouter returned empty assistant content",
             );

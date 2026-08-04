@@ -21,9 +21,15 @@ const ABUSIVE_RESPONSE = "😤🤬😡";
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 // Auto Beta picks top models by task; cqt 0 = maximize quality (no cost skimping).
 const DEFAULT_MODEL = "openrouter/auto-beta";
-const MAX_TOKENS = 500000;
+// Keep recent turns only so long chats can't overflow the model context.
+const MAX_HISTORY_MESSAGES = 16;
+const MAX_MESSAGE_CHARS = 4000;
+// High output ceiling; actual max_tokens shrinks if the prompt is large.
+const MAX_OUTPUT_TOKENS = 32768;
+const MIN_OUTPUT_TOKENS = 1024;
+// Conservative shared budget for auto-routed models (many are 128k+; reserve headroom).
+const CONTEXT_TOKEN_BUDGET = 120_000;
 const OPENROUTER_REQUEST_OPTIONS = {
-  max_tokens: MAX_TOKENS,
   // Prefer the best models available, not cheaper alternatives.
   plugins: [{ id: "auto-router", cost_quality_tradeoff: 0 }],
   // Among eligible providers for the chosen model, pick the lowest latency.
@@ -35,6 +41,37 @@ const ERROR_MESSAGE =
   "Sorry, I couldn't reach the assistant right now. Please try again later.";
 const GITHUB_PAGES_API_MESSAGE =
   "Chat is not configured yet. Set either VITE_API_BASE_URL or VITE_OPENROUTER_API_KEY in your deployment build variables.";
+
+function estimateTokens(text: string): number {
+  return Math.ceil(text.length / 4);
+}
+
+function windowMessages(messages: ChatMessage[]): ChatMessage[] {
+  let windowed = messages.slice(-MAX_HISTORY_MESSAGES);
+
+  if (windowed[0]?.role === "assistant") {
+    windowed = windowed.slice(1);
+  }
+
+  return windowed.map((message) => ({
+    role: message.role,
+    // Drop reasoning_details: replaying them bloats context across long chats.
+    content: message.content.slice(0, MAX_MESSAGE_CHARS),
+  }));
+}
+
+function resolveMaxTokens(
+  systemMessages: Array<{ content: string }>,
+  messages: ChatMessage[],
+): number {
+  const inputText =
+    systemMessages.map((m) => m.content).join("") +
+    messages.map((m) => m.content).join("");
+  const inputTokens = estimateTokens(inputText);
+  const remaining = CONTEXT_TOKEN_BUDGET - inputTokens - 512;
+
+  return Math.max(MIN_OUTPUT_TOKENS, Math.min(MAX_OUTPUT_TOKENS, remaining));
+}
 
 function extractMessageText(content: unknown): string {
   if (typeof content === "string") {
@@ -196,9 +233,12 @@ export default function AIChatWidget() {
 
     const nextUser: ChatMessage = { role: "user", content };
     const freshStart = wasAbusive;
-    const payloadMessages = freshStart ? [nextUser] : [...messages, nextUser];
+    // Full thread stays in the UI; only recent turns go to the model.
+    const payloadMessages = windowMessages(
+      freshStart ? [nextUser] : [...messages, nextUser],
+    );
 
-    setMessages(payloadMessages);
+    setMessages(freshStart ? [nextUser] : [...messages, nextUser]);
     setWasAbusive(false);
     setIsLoading(true);
 
@@ -247,6 +287,20 @@ export default function AIChatWidget() {
           throw new Error(data.error ?? "Unable to process message");
         }
       } else {
+        const systemMessages = [
+          { role: "system" as const, content: SYSTEM_PROMPT },
+          ...(freshStart
+            ? [
+              {
+                role: "system" as const,
+                content:
+                  'The user is returning after abusive language. Start your response with this exact sentence: "I don\'t respond to bad language. Let\'s start fresh - feel free to ask me something about Asad Ullah\'s work!" Then answer the current user question concisely if it is appropriate.',
+              },
+            ]
+            : []),
+        ];
+        const maxTokens = resolveMaxTokens(systemMessages, payloadMessages);
+
         const openRouterResponse = await fetch(OPENROUTER_ENDPOINT, {
           method: "POST",
           headers: {
@@ -257,31 +311,14 @@ export default function AIChatWidget() {
           },
           body: JSON.stringify({
             model: directModel,
+            max_tokens: maxTokens,
             ...OPENROUTER_REQUEST_OPTIONS,
             messages: [
-              { role: "system", content: SYSTEM_PROMPT },
-              ...(freshStart
-                ? [
-                  {
-                    role: "system",
-                    content:
-                      'The user is returning after abusive language. Start your response with this exact sentence: "I don\'t respond to bad language. Let\'s start fresh - feel free to ask me something about Asad Ullah\'s work!" Then answer the current user question concisely if it is appropriate.',
-                  },
-                ]
-                : []),
-              ...payloadMessages.map((message) =>
-                message.role === "assistant" &&
-                  typeof message.reasoning_details !== "undefined"
-                  ? {
-                    role: message.role,
-                    content: message.content,
-                    reasoning_details: message.reasoning_details,
-                  }
-                  : {
-                    role: message.role,
-                    content: message.content,
-                  },
-              ),
+              ...systemMessages,
+              ...payloadMessages.map((message) => ({
+                role: message.role,
+                content: message.content,
+              })),
             ],
           }),
         });
